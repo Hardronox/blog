@@ -1,9 +1,13 @@
 angular.module('main').controller('main', function ($scope,$http)
 {
-    $http.get("/api/todos").success(function(response){
+    $http.get("/api/blogs").success(function(response){
         $scope.blogs = response;
         $scope.sorted= _.sortBy(response, function(i) { return i.views; });
-        console.log($scope.sorted);
+        //for(var i=0; i<=$scope.sorted.length; i++)
+        //{
+         // console.log($scope.sorted[i].views);
+        //}
+
       });
 });
 

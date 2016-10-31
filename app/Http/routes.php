@@ -23,13 +23,19 @@ Route::get('orders', function () {
 Route::get('/', 'HomeController@index');
 
 
-Route::get('/api/todos',function() {
+Route::get('/blog/{id}', 'HomeController@blogView');
 
-    $blogs = \App\Blogs::all();
+Route::get('/create', 'HomeController@blogCreate');
 
+Route::post('/create', 'HomeController@blogCreate')->name('submit');
+
+
+
+Route::get('/api/blogs',function() {
+
+    $blogs = \App\Blogs::with('category')->get();
     return $blogs;
 });
-
 ////create
 //Route::post('test', function () {
 //    echo ' walking where dead ships dwell';

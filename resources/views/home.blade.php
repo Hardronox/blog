@@ -40,22 +40,23 @@
 
                 <div class="article" ng-repeat="blog in blogs">
                     <h6><%blog.category.name%> </h6>
-                    <a class="title" href="single.html">
+                    <a target="_self" class="title" href="/blog/<%blog.id%>">
                         <%blog.title%>
                     </a>
-                    <a href="single.html"><img src="images/a1.jpg" alt="" /></a>
+                    <img src="images/a1.jpg" alt="" />
                     <p><%blog.description%></p>
+                    <div class="pull-right"><%blog.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
                 </div>
 
             </div>
             <div class="col-md-5 content-right">
                 <h5 class="head">Popular</h5>
                 <div class="content-right-top" ng-repeat="sort in sorted">
-                    <a href="single.html">
+                    <a target="_self" href="/blog/<%sort.id%>">
                         <div class="editor text-center">
                             <h3><%sort.title%></h3>
                             <p><%sort.description%></p>
-                            <label><%sort.created_at%></label>
+                            <label><%sort.created_at%> and:  </label><label><%sort.views%></label>
                             <span></span>
                         </div>
                     </a>
@@ -64,10 +65,5 @@
             <div class="clearfix"></div>
         </div>
     </div>
+
 @endsection
-{{--@if ($abc=='bitch')--}}
-{{--I love {{$abc}}es--}}
-{{--@endif--}}
-{{--@foreach($orders as $order)--}}
-{{--{{$order}}--}}
-{{--@endforeach--}}
