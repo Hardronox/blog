@@ -25,10 +25,11 @@ Route::get('/', 'HomeController@index');
 
 Route::get('/blog/{id}', 'HomeController@blogView');
 
-Route::get('/create', 'HomeController@blogCreate');
+Route::get('/create', 'HomeController@blogCreate')->middleware('auth');
 
 Route::post('/create', 'HomeController@blogCreate')->name('submit');
 
+Route::get('/profile', 'HomeController@userProfile')->name('profile');
 
 
 Route::get('/api/blogs',function() {
@@ -36,6 +37,12 @@ Route::get('/api/blogs',function() {
     $blogs = \App\Blogs::with('category')->get();
     return $blogs;
 });
+
+Route::get('/admin',function() {
+
+    echo "hey";
+});
+
 ////create
 //Route::post('test', function () {
 //    echo ' walking where dead ships dwell';

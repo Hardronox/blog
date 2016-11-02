@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Blogs;
 use App\Http\Requests;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -33,9 +34,7 @@ class HomeController extends Controller
     public function index()
     {
         $blogs = \App\Blogs::with('category')->get();
-        //var_dump('<pre>', $blogs[0]['category'], '</pre>');
-        //$blogs= Blogs::all();
-        //var_dump($blogs[0]->category);
+
         return view('home');
     }
 
@@ -45,6 +44,38 @@ class HomeController extends Controller
 
         return view('view',['blog'=>$blog]);
     }
+
+    public function userProfile()
+    {
+        $user_id = Auth::user();
+
+        $user= User::with('profile')->find($user_id['id']);
+        //$user = User::with('profile')->get($user_id['id']);
+
+        return view('profile',['user'=>$user]);
+    }
+
+    public function editProfile()
+    {
+        $user_id = Auth::user();
+
+        $user= User::with('profile')->find($user_id['id']);
+        //$user = User::with('profile')->get($user_id['id']);
+
+        return view('profile',['user'=>$user]);
+    }
+
+    public function deleteAccount()
+    {
+        $user_id = Auth::user();
+
+        $user= User::with('profile')->find($user_id['id']);
+        //$user = User::with('profile')->get($user_id['id']);
+
+        return view('profile',['user'=>$user]);
+    }
+
+
 
     public function blogCreate()
     {

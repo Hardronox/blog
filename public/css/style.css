@@ -92,7 +92,6 @@ label{
 }
 .navigation ul li {
 	display:inline-block;
-	margin:0 0 0 2.5em;
 }
 .navigation ul li a {
 	color:#fff;
@@ -303,7 +302,7 @@ a.title {
 	border-top: 1px solid #e6e6e6;
 }
 .features {
-	background:url('../images/features-bg.jpg') no-repeat 0px 0px;
+	background:url('../images/blog/features-bg.jpg') no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -1150,7 +1149,7 @@ p.span a {
 	span.menu{
 		width:28px;
 		height:28px;
-		background:url(../images/nav.png)no-repeat;
+		background:url(../images/blog/nav.png)no-repeat;
 		display: inline-block;
 		float:right;
 		cursor: pointer;
