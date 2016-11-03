@@ -2,12 +2,13 @@
 
 @section('content')
     <div class="container" >
+        @include('flash::message')
         <div class="content" >
             <div class="col-md-8 col-md-offset-3">
                 <table class="table table-striped table-hover">
                     <tr>
                         <th>Avatar</th>
-                        <td><img src="images/avatars/{{$user->profile->avatar}}" alt=""></td>
+                        <td><img width="150px" height="150px" src="images/avatars/{{$user->profile->avatar}}" alt=""></td>
                     </tr>
                     <tr>
                         <th>UserName</th>
@@ -28,7 +29,7 @@
                     <tr>
                         <th>Actions</th>
                         <td>
-                            <a class="btn btn-info" href="/editProfile">Edit Profile</a>
+                            <button class="btn btn-info edit" >Edit Profile</button>
                             <a class="btn btn-danger" href="/deleteProfile">Delete Account</a>
                         </td>
                     </tr>
@@ -38,6 +39,9 @@
 
         </div>
     </div>
+
+    @include('partials/modal-profile-edit', ['user' => $user])
+
 @endsection
 {{--@if ($abc=='bitch')--}}
 {{--I love {{$abc}}es--}}

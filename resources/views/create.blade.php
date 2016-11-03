@@ -11,7 +11,7 @@
                 <h3>Create Article</h3>
                 <br>
                 {{--<form action="{{route('submit')}}" method="post">--}}
-                    {!! Form::open(array('url'=>route('submit'),'method'=>'POST', 'files'=>true)) !!}
+                    {!! Form::open(array('url'=>route('create-blog'),'method'=>'POST', 'files'=>true)) !!}
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" name="title" class="form-control" id="title">

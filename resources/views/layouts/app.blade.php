@@ -22,18 +22,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div class="logo">
             <a href="{{ url('/') }}"><h1>Blog</h1></a>
         </div>
-        {{--<div class="pages">--}}
-            {{--<ul>--}}
-                {{--<li><a class="active" href="index.html">Articles</a></li>--}}
-                {{--<li><a href="404.html">Tutorials</a></li>--}}
-            {{--</ul>--}}
-        {{--</div>--}}
         <div class="navigation">
 
             <ul class="nav navbar-nav">
                 <li><a class="active" href="{{ url('/') }}">Home</a></li>
                 {{--<li><a href="contact.html">Contact Us</a></li>--}}
-
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -49,7 +42,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </a>
 
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ url('/userProfile') }}">My Profile</a></li>
+                            <li><a href="{{ url('/profile') }}">My Profile</a></li>
                             <li><a href="{{ url('/logout') }}">Logout</a></li>
                         </ul>
                     </li>

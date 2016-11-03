@@ -32,9 +32,6 @@
     </div>
     <div class="container" ng-app="main" ng-controller="main" ng-cloak>
         <div class="content" >
-            {{--<ul ng-repeat="blog in blogs">--}}
-                {{--<li> <%blog.title%></li>--}}
-            {{--</ul>--}}
             <div class="col-md-7 content-left">
                 <h5 class="head">recent</h5>
 

@@ -3,52 +3,70 @@
 use App\Http\Controllers\Controller;
 use App\Blogs;
 use Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redirect;
 
 class BlogsController extends Controller {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index() {
 
-        $todos = Blogs::all();
-        return $todos;
+    public function index()
+    {
+        $blogs = \App\Blogs::with('category')->get();
+
+        return view('home');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @return Response
-     */
-    public function store() {
-        $todo = Blogs::create(Request::all());
-        return $todo;
+    public function blogView($id)
+    {
+        $blog=Blogs::find($id);
+
+        return view('view',['blog'=>$blog]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function update($id) {
-        $todo = Blogs::find($id);
-        $todo->done = Request::input('done');
-        $todo->save();
+    public function blogCreate()
+    {
+        $blogCategory= \App\BlogCategory::all();
 
-        return $todo;
-    }
+        if (!empty($_POST))
+        {
+            $user = Auth::user();
+            $blog= new \App\Blogs();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id) {
-        Blogs::destroy($id);
+            $blog->user_id=$user['id'];
+            $blog->title=$_POST['title'];
+            $blog->description=$_POST['desc'];
+            $blog->text=$_POST['text'];
+            $blog->category_id=$_POST['category'];
+
+
+            $file = array('image' => Input::file('image'));
+            $rules = array('image' => 'mimes:jpeg,bmp,png'); //mimes:jpeg,bmp,png and for max size max:10000
+
+            $validator = Validator::make($file, $rules);
+            if ($validator->fails()) {
+                // send back to the page with the input data and errors
+                return Redirect::to('create')->withInput()->withErrors($validator);
+            }
+            else
+            {
+                $destinationPath = 'images/blog'; // upload path
+                $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
+                $fileName = str_random(30).'.'.$extension; // renaming image
+
+                $blog->image=$fileName;
+                $blog->save();
+
+                Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+                // sending back with message
+                flash('Your article was created successfully!', 'success');
+                return redirect('/');
+            }
+
+        }
+
+        return view('create',['category' => $blogCategory]);
     }
 
 }

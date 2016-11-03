@@ -7,29 +7,37 @@
 //});
 //
 //
-Route::get('orders', function () {
+//Route::get('orders', function () {
+//    $users=App\UsersProfile::find(1);
+//    //foreach ($users as $blogs) {
+//        echo $users->users->name.' belongs to '.$users->firstname;
+//    //}
+//    //var_dump('<pre>', $users->users, '</pre>');
+//});
 
-    $users=App\UsersProfile::find(1);
-    //foreach ($users as $blogs) {
+Route::get('/', 'BlogsController@index');
 
-        echo $users->users->name.' belongs to '.$users->firstname;
+Route::get('/blog/{id}', 'BlogsController@blogView');
 
-    //}
 
-    //var_dump('<pre>', $users->users, '</pre>');
+
+
+
+Route::group(['middleware'=>'auth'], function()
+{
+    Route::get('/create', 'BlogsController@blogCreate');
+
+    Route::post('/create', 'BlogsController@blogCreate')->name('create-blog');
+
+    Route::get('/edit-article', 'BlogsController@blogCreate');
+
+    Route::get('/profile', 'UserController@userProfile')->name('profile');
+
+    Route::post('/edit-profile', 'UserController@editProfile')->name('edit-profile');
+
+    Route::delete('/delete-profile', 'UserController@deleteAccount')->name('delete');
 
 });
-
-Route::get('/', 'HomeController@index');
-
-
-Route::get('/blog/{id}', 'HomeController@blogView');
-
-Route::get('/create', 'HomeController@blogCreate')->middleware('auth');
-
-Route::post('/create', 'HomeController@blogCreate')->name('submit');
-
-Route::get('/profile', 'HomeController@userProfile')->name('profile');
 
 
 Route::get('/api/blogs',function() {
@@ -38,10 +46,6 @@ Route::get('/api/blogs',function() {
     return $blogs;
 });
 
-Route::get('/admin',function() {
-
-    echo "hey";
-});
 
 ////create
 //Route::post('test', function () {
