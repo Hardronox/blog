@@ -25,7 +25,6 @@ class UserController extends Controller
         $user_id = Auth::user();
 
         $user= User::with('profile')->find($user_id['id']);
-        //$user = User::with('profile')->get($user_id['id']);
 
         return view('profile',['user'=>$user]);
     }
@@ -46,7 +45,6 @@ class UserController extends Controller
 
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
-                // send back to the page with the input data and errors
                 return Redirect::to('/profile')->withInput()->withErrors($validator);
             }
             else
@@ -61,11 +59,28 @@ class UserController extends Controller
                 }
                 else
                     $array_to_update = ['firstname'=>$_POST['firstname'], 'lastname'=>$_POST['lastname']];
-                
-                UsersProfile::where(['user_id'=> $user_id['id']])
-                    ->update($array_to_update);
 
-                // sending back with message
+
+                $profile=UsersProfile::where(['user_id'=> $user_id['id']])->get();
+
+                if (sizeof($profile)===0)
+                {
+                    $userProfile= new UsersProfile();
+                    $userProfile->user_id=$user_id['id'];
+                    $userProfile->firstname=$_POST['firstname'];
+                    $userProfile->lastname=$_POST['lastname'];
+                    if(isset($fileName))
+                    {
+                        $userProfile->avatar=$fileName;
+                    }
+                    $userProfile->save();
+                }
+                else
+                {
+                    UsersProfile::where(['user_id'=> $user_id['id']])
+                        ->update($array_to_update);
+                }
+
                 flash('Your profile was edited successfully!', 'success');
                 return redirect('/profile');
             }
@@ -73,14 +88,13 @@ class UserController extends Controller
         return view('edit-profile',['user' => $user]);
     }
 
-    public function deleteAccount()
+    public function deleteProfile()
     {
         $user_id = Auth::user();
 
-        $user= User::with('profile')->find($user_id['id']);
-        //$user = User::with('profile')->get($user_id['id']);
+        $user= User::find($user_id['id']);
+        $user->delete();
 
-        return view('profile',['user'=>$user]);
+        return redirect('/');
     }
-
 }

@@ -43,6 +43,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($user) { // before delete() method call this
+            //var_dump('<pre>', 'kek', '</pre>');exit;
+            UsersProfile::where(['user_id'=> $user['id']])->delete();
+            // do the rest of the cleanup...
+        });
+    }
+
+
     public function blogs()
     {
         return $this->hasMany('App\Blogs');

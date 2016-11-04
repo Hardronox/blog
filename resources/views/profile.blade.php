@@ -1,36 +1,62 @@
 @extends('layouts.app')
 
 @section('content')
+    <script type="text/javascript">
+
+    </script>
+    {!!Html::script('js/profile.js')!!}
     <div class="container" >
         @include('flash::message')
         <div class="content" >
-            <div class="col-md-8 col-md-offset-3">
+            <div class="col-md-6 col-md-offset-3">
                 <table class="table table-striped table-hover">
                     <tr>
                         <th>Avatar</th>
-                        <td><img width="150px" height="150px" src="images/avatars/{{$user->profile->avatar}}" alt=""></td>
+                        <td>
+                            @if (isset($user->profile->avatar))
+                                <img width="150px" height="150px" src="images/avatars/{{$user->profile->avatar}}" alt="">
+                            @else
+                                <img width="150px" height="150px" src="images/avatars/no-image.png" alt="">
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>UserName</th>
-                        <td>{{$user->name}}</td>
+                        <td>
+                            {{$user->name}}
+                        </td>
                     </tr>
                     <tr>
                         <th>Email</th>
-                        <td>{{$user->email}}</td>
+                        <td>
+                            {{$user->email}}
+                        </td>
                     </tr>
                     <tr>
                         <th>FirstName</th>
-                        <td>{{$user->profile->firstname}}</td>
+                        <td>
+                            @if (isset($user->profile->firstname))
+                                {{$user->profile->firstname}}
+                            @else
+                                No information
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>LastName</th>
-                        <td>{{$user->profile->lastname}}</td>
+                        <td>
+                            @if (isset($user->profile->lastname))
+                                {{$user->profile->lastname}}
+                            @else
+                                No information
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>Actions</th>
                         <td>
                             <button class="btn btn-info edit" >Edit Profile</button>
-                            <a class="btn btn-danger" href="/deleteProfile">Delete Account</a>
+                            <a id="delete" class="btn btn-danger" href="/delete-profile" >Delete Account</a>
                         </td>
                     </tr>
 
@@ -43,9 +69,7 @@
     @include('partials/modal-profile-edit', ['user' => $user])
 
 @endsection
-{{--@if ($abc=='bitch')--}}
-{{--I love {{$abc}}es--}}
-{{--@endif--}}
+
 {{--@foreach($orders as $order)--}}
 {{--{{$order}}--}}
 {{--@endforeach--}}

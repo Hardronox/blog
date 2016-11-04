@@ -9,10 +9,9 @@
             <span class="menu"></span>
             <div class="list-nav">
                 <ul>
-                    <li><a href="3dprinting.html">Programming</a></li>|
-                    <li><a href="materials.html">Hardware</a></li>|
-                    <li><a href="printing.html">Economics</a></li>|
-                    <li><a href="filestoprint.html">Buiseness</a></li>|
+                    <li><a href="3dprinting.html">Backend</a></li>|
+                    <li><a href="materials.html">Frontend</a></li>|
+                    <li><a href="printing.html">Design</a></li>|
                 </ul>
                 <!-- Left Side Of Navbar -->
 

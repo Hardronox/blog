@@ -35,7 +35,7 @@ Route::group(['middleware'=>'auth'], function()
 
     Route::post('/edit-profile', 'UserController@editProfile')->name('edit-profile');
 
-    Route::delete('/delete-profile', 'UserController@deleteAccount')->name('delete');
+    Route::get('/delete-profile', 'UserController@deleteProfile')->name('delete');
 
 });
 
