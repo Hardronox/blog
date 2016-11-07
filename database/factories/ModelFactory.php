@@ -11,11 +11,22 @@
 |
 */
 
-$factory->define(App\User::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->safeEmail,
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
+    ];
+});
+
+
+$factory->define(App\Models\Blogs::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => 1,
+        'title' => $faker->name,
+        'description' => str_random(200),
+        'text' => str_random(500),
+
     ];
 });

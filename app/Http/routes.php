@@ -42,7 +42,7 @@ Route::group(['middleware'=>'auth'], function()
 
 Route::get('/api/blogs',function() {
 
-    $blogs = \App\Blogs::with('category')->get();
+    $blogs = \App\Models\Blogs::with('category')->get();
     return $blogs;
 });
 

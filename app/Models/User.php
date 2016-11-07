@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-
+//use Zizaco\Entrust\Traits\EntrustUserTrait;
 /**
  * App\User
  *
@@ -25,6 +25,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  */
 class User extends Authenticatable
 {
+    //use EntrustUserTrait;
+
     /**
      * The attributes that are mass assignable.
      *

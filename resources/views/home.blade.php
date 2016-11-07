@@ -39,7 +39,7 @@
                     <a target="_self" class="title" href="/blog/<%blog.id%>">
                         <%blog.title%>
                     </a>
-                    <img src="images/a1.jpg" alt="" />
+                    <img src="images/blog/a1.jpg" alt="" />
                     <p><%blog.description%></p>
                     <div class="pull-right"><%blog.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
                 </div>

@@ -12,7 +12,8 @@
         "vinelab/laravel-editor": "*",
         "unisharp/laravel-ckeditor": "^4.5",
         "laravelcollective/html": "~5.0",
-        "laracasts/flash": "^2.0"
+        "laracasts/flash": "^2.0",
+        "elasticsearch/elasticsearch": "~2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

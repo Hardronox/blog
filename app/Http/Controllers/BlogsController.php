@@ -1,7 +1,8 @@
 <?php namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Blogs;
+use App\Models\Blogs;
+use Elasticsearch\ClientBuilder;
 use Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
@@ -13,7 +14,28 @@ class BlogsController extends Controller {
 
     public function index()
     {
-        $blogs = \App\Blogs::with('category')->get();
+        $client = ClientBuilder::create()->build();
+
+//        $params = [
+//            'index' => 'my_index',
+//            'type' => 'my_type',
+//            'id' => '2',
+//            'body' => ['testField' => 'abc','test2'=>'blyaaa']
+//        ];
+//
+//        $response = $client->index($params);
+
+        $params = [
+            'index' => 'my_index',
+            'type' => 'my_type',
+            'id' => '2'
+        ];
+
+        $response = $client->get($params);
+
+        var_dump($response['_source']['test2']);
+
+        $blogs = \App\Models\Blogs::with('category')->get();
 
         return view('home');
     }
@@ -27,12 +49,12 @@ class BlogsController extends Controller {
 
     public function blogCreate()
     {
-        $blogCategory= \App\BlogCategory::all();
+        $blogCategory= \App\Models\BlogCategory::all();
 
         if (!empty($_POST))
         {
             $user = Auth::user();
-            $blog= new \App\Blogs();
+            $blog= new \App\Models\Blogs();
 
             $blog->user_id=$user['id'];
             $blog->title=$_POST['title'];
