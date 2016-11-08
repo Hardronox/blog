@@ -1,172 +1,62 @@
-angular.module('main').controller('main', function ($scope,$http)
+angular.module('main').controller('main', function ($scope,$http, $log, $location, $timeout)
 {
-    $http.get("/api/blogs").success(function(response){
-        $scope.blogs = response;
-        $scope.sorted= _.sortBy(response, function(i) { return i.views; });
-        //for(var i=0; i<=$scope.sorted.length; i++)
-        //{
-         // console.log($scope.sorted[i].views);
-        //}
-      });
+  $scope.blogs = [];
+  $scope.totalItems = 0;
 
-  //$scope.events = [];
-  //$scope.totalItems = 0;
-  //
-  //$timeout(function()
-  //{
-  //  if($location.search().page)
-  //  {
-  //    $scope.currentPage = $location.search().page;
-  //  }
-  //  else
-  //  {
-  //    $scope.currentPage = 0;
-  //  }
-  //  $scope.loadData(undefined,undefined,"*",$scope.city_id);
-  //});
-  //
-  //$scope.city_id=undefined;
-  //$scope.sort = function(sortBy)
-  //{
-  //
-  //  if ($scope.type==='desc')
-  //  {
-  //    $scope.type='asc';
-  //  }
-  //  else
-  //  {
-  //    $scope.type='desc';
-  //  }
-  //  $scope.sortBy=sortBy;
-  //  $scope.loadData($scope.sortBy,$scope.type, $scope.tags ,$scope.city_id);
-  //};
-  //
-  //$scope.maxSize = 10;
-  //$scope.itemsPerPage = 10;
-  //$scope.loadData = function(sortBy, type, tags, city_id){
-  //
-  //  sortBy= sortBy || 'id';
-  //  type = type || 'desc';
-  //  $scope.tags="*";
-  //
-  //
-  //  $scope.pageForSize =$scope.currentPage -1;
-  //  if ($scope.pageForSize== -1) $scope.currentPage=1;
-  //
-  //
-  //  if (city_id !== undefined || $location.search().city_id !== undefined)
-  //  {
-  //    $scope.city_id=city_id  ? city_id : $location.search().city_id;
-  //    $http.post("http://127.0.0.1:9200/event-elastics/_search?q=city_id:"+$scope.city_id+"&sort="+sortBy+":"+type, //q=tags:"+$scope.tags+"&
-  //      {
-  //        "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize,
-  //
-  //      }).success(function(response){
-  //        $location.search('city_id', city_id);
-  //        $scope.events = response.hits.hits;
-  //        $scope.totalItems = response.hits.total-$scope.itemsPerPage;
-  //      });
-  //  }
-  //  else
-  //  {
-  //    $http.post("http://127.0.0.1:9200/event-elastics/_search?sort="+sortBy+":"+type, //q=tags:"+$scope.tags+"&
-  //      {
-  //        "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize,
-  //
-  //      }).success(function(response){
-  //        $scope.count=response.hits.total;
-  //        $scope.events = response.hits.hits;
-  //        $scope.totalItems = response.hits.total-$scope.itemsPerPage;
-  //      });
-  //  }
-  //
-  //};
-  //
-  //$scope.pageChanged = function() {
-  //  $location.search('page', $scope.currentPage);
-  //  $location.search('city_id', $scope.city_id);
-  //  $scope.loadData($scope.sortBy, $scope.type, $scope.tags, $scope.city_id);
-  //};
+  $timeout(function()
+  {
+    if($location.search().page)
+    {
+      $scope.currentPage = $location.search().page;
+    }
+    else
+    {
+      $scope.currentPage = 0;
+    }
+    $scope.loadData();
+  });
 
+  $scope.maxSize = 5;
+  $scope.itemsPerPage = 5;
+  $scope.loadData = function(category){
+
+    $scope.category=category;
+    $scope.pageForSize =$scope.currentPage -1;
+    if ($scope.pageForSize== -1) $scope.currentPage=1;
+
+    if (category)
+    {
+      $http.post("http://127.0.0.1:9200/myblogs/_search",
+        {
+          "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize,
+          "query" : {
+            "match" : {
+              "category" : category
+            }
+          }
+        }).success(function(response){
+          $scope.blogs = response.hits.hits;
+          $scope.sorted = response.hits.hits;
+          $scope.totalItems = response.hits.total;
+        });
+    }
+    else
+    {
+      $http.post("http://127.0.0.1:9200/myblogs/_search",
+        {
+          "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize
+        }).success(function(response){
+          $scope.blogs = response.hits.hits;
+          $scope.sorted = response.hits.hits;
+          $scope.totalItems = response.hits.total;
+        });
+    }
+
+  };
+
+  $scope.pageChanged = function() {
+    $location.search('page', $scope.currentPage);
+    $scope.loadData($scope.category);
+  };
 
 });
-
-
-//$scope.events = [];
-//$scope.totalItems = 0;
-////
-//$timeout(function()
-//{
-//  if($location.search().page)
-//  {
-//    $scope.currentPage = $location.search().page;
-//  }
-//  else
-//  {
-//    $scope.currentPage = 0;
-//  }
-//  $scope.loadData(undefined,undefined,"*",$scope.city_id);
-//});
-//
-//$scope.city_id=undefined;
-//$scope.sort = function(sortBy)
-//{
-//
-//  if ($scope.type==='desc')
-//  {
-//    $scope.type='asc';
-//  }
-//  else
-//  {
-//    $scope.type='desc';
-//  }
-//  $scope.sortBy=sortBy;
-//  $scope.loadData($scope.sortBy,$scope.type, $scope.tags ,$scope.city_id);
-//};
-//
-//$scope.maxSize = 10;
-//$scope.itemsPerPage = 10;
-//$scope.loadData = function(sortBy, type, tags, city_id){
-//
-//  sortBy= sortBy || 'id';
-//  type = type || 'desc';
-//  $scope.tags="*";
-//
-//
-//  $scope.pageForSize =$scope.currentPage -1;
-//  if ($scope.pageForSize== -1) $scope.currentPage=1;
-//
-//
-//  if (city_id !== undefined || $location.search().city_id !== undefined)
-//  {
-//    $scope.city_id=city_id  ? city_id : $location.search().city_id;
-//    $http.post("http://127.0.0.1:9200/event-elastics/_search?q=city_id:"+$scope.city_id+"&sort="+sortBy+":"+type, //q=tags:"+$scope.tags+"&
-//      {
-//        "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize,
-//
-//      }).success(function(response){
-//        $location.search('city_id', city_id);
-//        $scope.events = response.hits.hits;
-//        $scope.totalItems = response.hits.total-$scope.itemsPerPage;
-//      });
-//  }
-//  else
-//  {
-//    $http.post("http://127.0.0.1:9200/event-elastics/_search?sort="+sortBy+":"+type, //q=tags:"+$scope.tags+"&
-//      {
-//        "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize,
-//
-//      }).success(function(response){
-//        $scope.count=response.hits.total;
-//        $scope.events = response.hits.hits;
-//        $scope.totalItems = response.hits.total-$scope.itemsPerPage;
-//      });
-//  }
-//
-//};
-//
-//$scope.pageChanged = function() {
-//  $location.search('page', $scope.currentPage);
-//  $location.search('city_id', $scope.city_id);
-//  $scope.loadData($scope.sortBy, $scope.type, $scope.tags, $scope.city_id);
-//};

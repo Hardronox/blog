@@ -1,4 +1,4 @@
-var main = angular.module('main', ['ui.router'], function($interpolateProvider) {
+var main = angular.module('main', ['ui.router', 'ui.bootstrap'], function($interpolateProvider) {
   $interpolateProvider.startSymbol('<%');
   $interpolateProvider.endSymbol('%>');
 });

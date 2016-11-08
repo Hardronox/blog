@@ -1,4 +1,6 @@
-<?php namespace App\Http\Controllers;
+<?php
+
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blogs;
@@ -14,31 +16,52 @@ class BlogsController extends Controller {
 
     public function index()
     {
+        return view('home');
+    }
+
+    public static function elastic()
+    {
         $client = ClientBuilder::create()->build();
+
+        $blogs=Blogs::with('category')->get();
+
+        foreach ($blogs as $key=>$blog) {
+
+            $params = [
+                'index' => 'myblogs',
+                'type' => 'myblogs',
+                'id' => $key+1,
+                'body' => [
+                        'title' => $blog->title,
+                        'description'=>$blog->description,
+                        'text'=>$blog->text,
+                        'category'=>$blog->category->name,
+                        'views'=>$blog->views,
+                        'image'=>$blog->image,
+                        'created_at'=>$blog->created_at
+                ]
+            ];
+
+            $client->index($params);
+        }
+
+
 
 //        $params = [
 //            'index' => 'my_index',
 //            'type' => 'my_type',
-//            'id' => '2',
-//            'body' => ['testField' => 'abc','test2'=>'blyaaa']
+//            'id' => '2'
 //        ];
-//
-//        $response = $client->index($params);
 
-        $params = [
-            'index' => 'my_index',
-            'type' => 'my_type',
-            'id' => '2'
-        ];
+        //$response = $client->get($params);
 
-        $response = $client->get($params);
+        //var_dump($response['_source']['test2']);
 
-        var_dump($response['_source']['test2']);
+        //$blogs = \App\Models\Blogs::with('category')->get();
 
-        $blogs = \App\Models\Blogs::with('category')->get();
-
-        return view('home');
+        //return view('home');
     }
+
 
     public function blogView($id)
     {

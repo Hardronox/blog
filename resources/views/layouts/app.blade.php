@@ -71,11 +71,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
 <script src="/angular_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="/angular_modules/ui-bootstrap-tpls-1.2.5.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="/js/angular/main.module.js"></script>
 <script src="/js/angular/main.config.js"></script>
 <script src="/js/angular/main.controller.js"></script>
-
 
 {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
 </body>

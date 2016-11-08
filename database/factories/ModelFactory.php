@@ -27,6 +27,10 @@ $factory->define(App\Models\Blogs::class, function (Faker\Generator $faker) {
         'title' => $faker->name,
         'description' => str_random(200),
         'text' => str_random(500),
+        'image' => 'a1.jpg',
+        'category_id' => 1,
+
+
 
     ];
 });

@@ -20,6 +20,7 @@ Route::get('/', 'BlogsController@index');
 Route::get('/blog/{id}', 'BlogsController@blogView');
 
 
+Route::get('/elastic', 'BlogsController@elastic');
 
 
 

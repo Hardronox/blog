@@ -8,7 +8,7 @@ class Blogs extends Model
 {
     public function category()
     {
-        return $this->hasOne('App\Models\BlogCategory','id');
+        return $this->hasOne('App\Models\BlogCategory','id', 'category_id');
     }
 
 }

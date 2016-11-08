@@ -204,12 +204,14 @@ a.title {
 .article {
 	padding: 0 0 2em 0;
     border-bottom: 1px solid #e6e6e6;
+    word-wrap: break-word;
 }
 .content-right {
 	padding:0;
 	border-left:1px solid #e6e6e6;
 }
-.editor { 
+.editor {
+    word-wrap: break-word;
 	border-bottom:1px solid #e6e6e6;
 	padding: 2.3em 1.5em 0 1.5em;
 }
@@ -1451,5 +1453,13 @@ p.span a {
 }
 .clear
 {
-    clear: both; height: 80px;
+    clear: both; height: 180px;
+}
+#crap
+{
+    display: none;
+}
+a[ng-click]
+{
+    cursor: pointer;
 }
