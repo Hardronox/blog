@@ -16,8 +16,7 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
     $scope.loadData();
   });
 
-  $scope.maxSize = 5;
-  $scope.itemsPerPage = 5;
+  $scope.itemsPerPage = 7;
   $scope.loadData = function(category){
 
     $scope.category=category;
@@ -28,7 +27,7 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
     {
       $http.post("http://127.0.0.1:9200/myblogs/_search",
         {
-          "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize,
+          "from" : $scope.itemsPerPage*($scope.currentPage -1) , "size" : $scope.itemsPerPage,
           "query" : {
             "match" : {
               "category" : category
@@ -39,17 +38,27 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
           $scope.sorted = response.hits.hits;
           $scope.totalItems = response.hits.total;
         });
+      $('a.heads').removeClass('heads');
+
+      $('a:contains('+category+')').addClass('heads');
     }
     else
     {
       $http.post("http://127.0.0.1:9200/myblogs/_search",
         {
-          "from" : $scope.maxSize*($scope.currentPage -1) , "size" : $scope.maxSize
+          "from" : $scope.itemsPerPage*($scope.currentPage -1) , "size" : $scope.itemsPerPage
         }).success(function(response){
           $scope.blogs = response.hits.hits;
-          $scope.sorted = response.hits.hits;
           $scope.totalItems = response.hits.total;
         });
+
+      $http.post("http://127.0.0.1:9200/myblogs/_search?sort=views:desc",
+        {
+          "from" : 0 , "size" : 10
+        }).success(function(response){
+          $scope.populars = response.hits.hits;
+        });
+
     }
 
   };

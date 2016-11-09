@@ -2,16 +2,17 @@
 
 @section('content')
     <div class="container" >
-        <div class="content" >
+        <div class="content">
             <div class="col-md-9 content-left">
-                <h5 class="head">recent</h5>
                 <div class="article">
                     <h6>{{$blog->category->name}} </h6>
                     <a class="title" href="single.html">
                         {{$blog->title}}
                     </a>
-                    <img src="/images/a1.jpg" alt="" />
+                    <img class="blog-image"  src="/images/blog/a1.jpg" alt="" />
                     <p>{{$blog->text}}</p>
+                    <div class="pull-right" style="margin-right: 10px">{{$blog->views}} <span class="glyphicon glyphicon-eye-open"></span></div>
+
                 </div>
 
             </div>

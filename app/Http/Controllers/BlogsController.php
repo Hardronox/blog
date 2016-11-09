@@ -32,6 +32,7 @@ class BlogsController extends Controller {
                 'type' => 'myblogs',
                 'id' => $key+1,
                 'body' => [
+                        'id'=>$blog->id,
                         'title' => $blog->title,
                         'description'=>$blog->description,
                         'text'=>$blog->text,

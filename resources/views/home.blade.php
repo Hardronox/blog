@@ -12,7 +12,7 @@
                     <ul>
                         <li><a ng-click="loadData('Backend')">Backend</a></li>|
                         <li><a ng-click="loadData('Frontend')">Frontend</a></li>|
-                        <li><a ng-click="loadData('Design')">Design</a></li>|
+                        <li><a ng-click="loadData('Design')">Design</a></li>
                     </ul>
                     <!-- Left Side Of Navbar -->
 
@@ -29,7 +29,7 @@
                     {
                         $('#crap').css('display','block');
                     }
-                    setTimeout(explode, 1000);
+                    setTimeout(explode, 1500);
                 </script>
                 <!-- script for menu -->
 
@@ -40,26 +40,25 @@
             <div class="content" >
                 <div class="col-md-7 content-left">
                     <h5 class="head">recent</h5>
-
                     <div class="article" ng-repeat="blog in blogs">
-                        <h6><%blog.category.name%> </h6>
-                        <a target="_self" class="title" href="/blog/<%blog.id%>">
+                        <h6><%blog._source.category%> </h6>
+                        <a target="_self" class="title" href="/blog/<%blog._source.id%>">
                             <%blog._source.title%>
                         </a>
-                        <img src="images/blog/a1.jpg" alt="" />
+                        <img class="blog-image" src="images/blog/a1.jpg" alt="" />
                         <p><%blog._source.description%></p>
-                        <div class="pull-right"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
+                        <div class="pull-right" style="margin-right: 10px"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
                     </div>
 
                 </div>
                 <div class="col-md-5 content-right">
                     <h5 class="head">Popular</h5>
-                    <div class="content-right-top" ng-repeat="sort in sorted">
-                        <a target="_self" href="/blog/<%sort.id%>">
+                    <div class="content-right-top" ng-repeat="popular in populars">
+                        <a target="_self" href="/blog/<%popular._source.id%>">
                             <div class="editor text-center">
-                                <h3><%sort._source.title%></h3>
-                                <p><%sort._source.description%></p>
-                                <label><%sort._source.created_at%> and:  </label><label><%sort._source.views%></label>
+                                <h3><%popular._source.title%></h3>
+                                <p><%popular._source.description%></p>
+                                <label><%popular._source.created_at.date%> and:  </label><label><%popular._source.views%></label>
                                 <span></span>
                             </div>
                         </a>
@@ -67,7 +66,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <uib-pagination ng-change="pageChanged()" ng-model="currentPage" total-items="50" max-size="10" items-per-page="10" class="pagination-sm" boundary-link-numbers="true" id="crap"></uib-pagination>
+            <uib-pagination ng-change="pageChanged()" ng-model="currentPage" total-items="totalItems" max-size="10" items-per-page="itemsPerPage" class="pagination-sm" boundary-link-numbers="true" id="crap"></uib-pagination>
 
         </div>
     </div>
