@@ -44,7 +44,7 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
     }
     else
     {
-      $http.post("http://127.0.0.1:9200/myblogs/_search",
+      $http.post("http://127.0.0.1:9200/myblogs/_search?sort=created_at.date:desc",
         {
           "from" : $scope.itemsPerPage*($scope.currentPage -1) , "size" : $scope.itemsPerPage
         }).success(function(response){

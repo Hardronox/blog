@@ -25,12 +25,13 @@ class BlogsController extends Controller {
 
         $blogs=Blogs::with('category')->get();
 
-        foreach ($blogs as $key=>$blog) {
+        //var_dump('<pre>', $blogs[3]->created_at, '</pre>');exit;
+        foreach ($blogs as $blog) {
 
             $params = [
                 'index' => 'myblogs',
                 'type' => 'myblogs',
-                'id' => $key+1,
+                'id' => $blog->id,
                 'body' => [
                         'id'=>$blog->id,
                         'title' => $blog->title,
@@ -67,6 +68,8 @@ class BlogsController extends Controller {
     public function blogView($id)
     {
         $blog=Blogs::find($id);
+
+        ServiceController::views($blog);
 
         return view('view',['blog'=>$blog]);
     }
