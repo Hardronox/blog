@@ -2,13 +2,10 @@
 <html>
 <head>
     <title>Blog</title>
-    <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <!-- Custom Theme files -->
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <!-- Custom Theme files -->
+    <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' /><link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Custom Theme files -->
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Konstructs Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -20,13 +17,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <div class="logo">
-            <a href="{{ url('/') }}"><h1>Blog</h1></a>
+            <a href="{{ url('/') }}"><h1>Face2WEB</h1></a>
         </div>
         <div class="navigation">
 
             <ul class="nav navbar-nav">
                 <li><a class="active" href="{{ url('/') }}">Home</a></li>
-                {{--<li><a href="contact.html">Contact Us</a></li>--}}
             </ul>
 
             <!-- Right Side Of Navbar -->

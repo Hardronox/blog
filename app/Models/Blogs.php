@@ -11,4 +11,8 @@ class Blogs extends Model
         return $this->hasOne('App\Models\BlogCategory','id', 'category_id');
     }
 
+    public function likes()
+    {
+        return $this->hasMany('App\Models\Likes','type_id', 'id')->where('type','=','Blog');
+    }
 }

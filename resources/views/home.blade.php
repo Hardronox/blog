@@ -25,11 +25,11 @@
                         });
                     });
 
-                    function explode()
+                    function showPagination()
                     {
-                        $('#crap').css('display','block');
+                        $('#pagi').css('display','block');
                     }
-                    setTimeout(explode, 1500);
+                    setTimeout(showPagination, 1500);
                 </script>
                 <!-- script for menu -->
 
@@ -66,7 +66,7 @@
                 </div>
                 <div class="clearfix"></div>
             </div>
-            <uib-pagination ng-change="pageChanged()" ng-model="currentPage" total-items="totalItems" max-size="10" items-per-page="itemsPerPage" class="pagination-sm" boundary-link-numbers="true" id="crap"></uib-pagination>
+            <uib-pagination ng-change="pageChanged()" ng-model="currentPage" total-items="totalItems" max-size="10" items-per-page="itemsPerPage" class="pagination-sm" boundary-link-numbers="true" id="pagi"></uib-pagination>
 
         </div>
     </div>

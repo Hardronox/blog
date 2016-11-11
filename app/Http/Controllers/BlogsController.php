@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blogs;
+use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
 use Request;
 use Illuminate\Support\Facades\Session;
@@ -67,11 +68,21 @@ class BlogsController extends Controller {
 
     public function blogView($id)
     {
-        $blog=Blogs::find($id);
+        $blog=Blogs::with('likes')->find($id);
+
+        $blogs=Likes::where(
+            [
+                ['type','=','Blog'],
+                ['user_id','=',1],
+                ['type_id','=',14],
+        ])->get();
+
+
+        //var_dump('<pre>', sizeof($blogs), '</pre>');exit;
 
         ServiceController::views($blog);
 
-        return view('view',['blog'=>$blog]);
+        return view('view',['blog'=>$blog, 'likes'=> sizeof($blog->likes)]);
     }
 
     public function blogCreate()

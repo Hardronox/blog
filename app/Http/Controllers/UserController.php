@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\User;
-use App\UsersProfile;
+use App\Models\UsersProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash;

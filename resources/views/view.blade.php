@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    {!!Html::script('js/likes.js')!!}
     <div class="container" >
         <div class="content">
             <div class="col-md-9 content-left">
@@ -11,8 +12,23 @@
                     </a>
                     <img class="blog-image"  src="/images/blog/a1.jpg" alt="" />
                     <p>{{$blog->text}}</p>
-                    <div class="pull-right" style="margin-right: 10px">{{$blog->views}} <span class="glyphicon glyphicon-eye-open"></span></div>
+                    <div style="margin-top: 10px">
+                        <div class="pull-right" style="margin-right: 10px">
+                            {{$blog->views}} <span class="glyphicon glyphicon-eye-open"></span>
+                        </div>
 
+                        @if (Auth::guest())
+                            <a class="a-hover">
+                                <span class="thumbs icon_wrap fa fa-thumbs-up likes">{{$likes}}</span>
+                            </a>
+                        @else
+                            <div style="margin-left: 30px">
+                                <a class="a-hover" onclick="like(this);"  data-type="Blog" data-post="{{$blog['id']}}">
+                                    <span class="likes">{{$likes}}</span><span class="glyphicon glyphicon-heart"></span>
+                                </a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
 
             </div>

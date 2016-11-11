@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blogs;
+use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
 use Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -50,42 +52,59 @@ class ServiceController extends Controller {
      * if no - increases by 1
      * updates it in DB and elastic
      */
-    public function actionLike()
+    public function likes()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        if (Request::ajax())
+        {
+            $user = Auth::user();
 
-        if (Yii::$app->request->isAjax) {
+            $blogs=Likes::where(
+                [
+                    ['type','=',$_GET['type']],
+                    ['type_id','=',$_GET['id']],
+                    ['user_id','=',$user['id']]
+                ])->get();
 
-            $owner_name=$_POST['type'];
-            $owner_id=$_POST['id'];
-            $user_id=Yii::$app->user->id;
 
-
-            if (empty($query =Yii::$app->db->createCommand("SELECT * FROM tbl_rating WHERE owner_name='$owner_name' AND owner_id=$owner_id AND user_id=$user_id")->queryAll()))
+            if (sizeof($blogs)===0)
             {
-                Yii::$app->db->createCommand("INSERT INTO tbl_rating (owner_name, owner_id, user_id)
-                                            VALUES ('$owner_name', $owner_id, $user_id)")->execute();
+                $like= new Likes();
+                $like->type=$_GET['type'];
+                $like->type_id=$_GET['id'];
+                $like->user_id=$user['id'];
+                $like->save();
 
 
-                $model=EventElastic::find()->where(['id'=>$owner_id])->one();
-                $model->rating+=1;
-                $model->update();
+//                $model=EventElastic::find()->where(['id'=>$owner_id])->one();
+//                $model->rating+=1;
+//                $model->update();
 
 
             }
             else
             {
-                Yii::$app->db->createCommand("DELETE FROM tbl_rating WHERE owner_name='$owner_name' AND owner_id=$owner_id AND user_id=$user_id")->execute();
+                Likes::where(
+                [
+                    ['type','=',$_GET['type']],
+                    ['type_id','=',$_GET['id']],
+                    ['user_id','=',$user['id']]
+                ])->delete();
 
-                $model=EventElastic::find()->where(['id'=>$owner_id])->one();
-                $model->rating-=1;
-                $model->update();
+
+//                $model=EventElastic::find()->where(['id'=>$owner_id])->one();
+//                $model->rating-=1;
+//                $model->update();
 
             }
 
-            $likes = Rating::find()->where(['owner_id'=>$owner_id ])->andWhere(['owner_name'=>$owner_name])->count();
+            $likes = Likes::where(
+                [
+                    ['type','=',$_GET['type']],
+                    ['type_id','=',$_GET['id']]
+                ])->count();
 
             return $likes;
+
         }
     }
 
@@ -95,7 +114,6 @@ class ServiceController extends Controller {
      */
     public function actionShowComment()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
 
         if (Yii::$app->request->isAjax) {
 
