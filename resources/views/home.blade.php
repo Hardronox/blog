@@ -10,9 +10,9 @@
                 <span class="menu"></span>
                 <div class="list-nav">
                     <ul>
-                        <li><a ng-click="loadData('Backend')">Backend</a></li>|
-                        <li><a ng-click="loadData('Frontend')">Frontend</a></li>|
-                        <li><a ng-click="loadData('Design')">Design</a></li>
+                        <li><a ng-click="loadData('Backend', 'true')">Backend</a></li>|
+                        <li><a ng-click="loadData('Frontend', 'true')">Frontend</a></li>|
+                        <li><a ng-click="loadData('Design', 'true')">Design</a></li>
                     </ul>
                     <!-- Left Side Of Navbar -->
 
@@ -48,6 +48,7 @@
                         <img class="blog-image" src="images/blog/a1.jpg" alt="" />
                         <p><%blog._source.description%></p>
                         <div class="pull-right" style="margin-right: 10px"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
+                        <span style="margin-left: 30px"><%blog._source.created_at.date%></span>
                     </div>
 
                 </div>

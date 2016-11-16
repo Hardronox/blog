@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blogs;
+use App\Models\Comments;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
 use Request;
@@ -58,28 +59,20 @@ class ServiceController extends Controller {
         {
             $user = Auth::user();
 
-            $blogs=Likes::where(
+            $likes=Likes::where(
                 [
                     ['type','=',$_GET['type']],
                     ['type_id','=',$_GET['id']],
                     ['user_id','=',$user['id']]
                 ])->get();
 
-
-            if (sizeof($blogs)===0)
+            if (sizeof($likes)===0)
             {
                 $like= new Likes();
                 $like->type=$_GET['type'];
                 $like->type_id=$_GET['id'];
                 $like->user_id=$user['id'];
                 $like->save();
-
-
-//                $model=EventElastic::find()->where(['id'=>$owner_id])->one();
-//                $model->rating+=1;
-//                $model->update();
-
-
             }
             else
             {
@@ -89,12 +82,6 @@ class ServiceController extends Controller {
                     ['type_id','=',$_GET['id']],
                     ['user_id','=',$user['id']]
                 ])->delete();
-
-
-//                $model=EventElastic::find()->where(['id'=>$owner_id])->one();
-//                $model->rating-=1;
-//                $model->update();
-
             }
 
             $likes = Likes::where(
@@ -104,7 +91,6 @@ class ServiceController extends Controller {
                 ])->count();
 
             return $likes;
-
         }
     }
 
@@ -115,12 +101,23 @@ class ServiceController extends Controller {
     public function actionShowComment()
     {
 
-        if (Yii::$app->request->isAjax) {
 
+        if (Request::ajax())
+        {
             $post = Yii::$app->request->post();
+
+            $user = Auth::user();
+
+            $comments = Comments::where(
+                [
+                    ['type','=',$_POST['type']],
+                    ['type_id','=',$_POST['id']],
+                    ['user_id','=',$user['id']]
+                ])->get();
 
             $comments = Comment::find()->where(['owner_name'=>$post['type']])
                 ->andWhere(['owner_id'=>$post['id']]);
+
 
             $comment = $comments->orderBy('created_at')
                 ->with('commentAuthor')
@@ -137,10 +134,8 @@ class ServiceController extends Controller {
      */
     public function actionSaveComment()
     {
-        Yii::$app->response->format = Response::FORMAT_JSON;
-
-        if (Yii::$app->request->isAjax) {
-
+        if (Request::ajax())
+        {
             $post = Yii::$app->request->post();
             if (isset($post['text']))
             {

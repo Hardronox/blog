@@ -26,25 +26,25 @@ class BlogsController extends Controller {
 
         $blogs=Blogs::with('category')->get();
 
-        //var_dump('<pre>', $blogs[3]->created_at, '</pre>');exit;
+
         foreach ($blogs as $blog) {
 
             $params = [
                 'index' => 'myblogs',
                 'type' => 'myblogs',
-                'id' => $blog->id,
+                'id' => (int)$blog->id,
                 'body' => [
-                        'id'=>$blog->id,
+                        'id'=>(int)$blog->id,
                         'title' => $blog->title,
                         'description'=>$blog->description,
                         'text'=>$blog->text,
                         'category'=>$blog->category->name,
-                        'views'=>$blog->views,
+                        'views'=>(int)$blog->views,
                         'image'=>$blog->image,
                         'created_at'=>$blog->created_at
                 ]
             ];
-
+            //var_dump('<pre>', $blog->created_at->date, '</pre>');exit;
             $client->index($params);
         }
 
@@ -70,12 +70,12 @@ class BlogsController extends Controller {
     {
         $blog=Blogs::with('likes')->find($id);
 
-        $blogs=Likes::where(
-            [
-                ['type','=','Blog'],
-                ['user_id','=',1],
-                ['type_id','=',14],
-        ])->get();
+//        $blogs=Likes::where(
+//            [
+//                ['type','=','Blog'],
+//                ['user_id','=',1],
+//                ['type_id','=',14],
+//        ])->get();
 
 
         //var_dump('<pre>', sizeof($blogs), '</pre>');exit;

@@ -2,6 +2,7 @@
 
 @section('content')
     {!!Html::script('js/likes.js')!!}
+    {!!Html::script('js/comments.js')!!}
     <div class="container" >
         <div class="content">
             <div class="col-md-9 content-left">
@@ -31,7 +32,67 @@
                     </div>
                 </div>
 
+                <ul class="media-list">
+                    <div id="blog_view_comment_content" data-id="<?= $blog->id ?>" data-type="<?= $type ?>">
+                        <script type="text/template" id="pageContent">
+                            <li class="media">
+                                <div id="m<%- comments.id %>">
+                                    <div class="media-left">
+                                        <% if (comments.commentAuthor.avatar !== "NULL") { %>
+                                        <img width="100px" height="100px" src="/images/avatar/thumb/<%= comments.commentAuthor.avatar %>"/>
+                                        <% } else { %>
+                                        <img width="100px" height="100px" src="/images/avatar/thumb/_no-image" />
+                                        <% } %>
+                                    </div>
+                                    <div class="media-body">
+                                        <a href=""><h5><%= comments.commentAuthor.firstname %> <%= comments.commentAuthor.lastname %></h5></a>
+                                        <p><%= comments.comment_text %></p>
+                                        <p><%= date %>
+                                            @if (Auth::guest())                                            <a class="a-hover pull-right">
+                                                <span class="thumbs icon_wrap fa fa-thumbs-up likes"><%= likes %></span>
+                                            </a>
+                                            @else
+                                            <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.commentAuthor.firstname %>" onclick="answer(this)"><?=Yii::t('app','Answer')?> </a>
+
+                                            <a class="a-hover pull-right" onclick="like(this);" data-type="Comment" data-post="<%- comments.id %>">
+                                                <span class="thumbs icon_wrap fa fa-thumbs-up likes"> <%= likes %></span>
+                                            </a>
+                                            @endif
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </script>
+                    </div>
+                </ul>
+
+
+                <div id="blog_comment_form">
+                    @if (Auth::guest())
+                        <b>Log in to leave a comment</b>
+                    @else
+                    <?php $form = ActiveForm::begin([
+                            'id' => 'comment_form'
+                    ]);
+                    ?>
+                    <p><b><?=Yii::t('app','Write comment here')?></b></p>
+                    <?= $form->field($comments, 'comment_text')->textArea(['rows'=>6,'id'=>'comment_text']) ?>
+
+                    <?= $form->field($comments, 'owner_name')->hiddenInput(['value'=> $type])->label(false)?>
+
+                    <div class="form-group">
+                        <button class="btn btn-raised btn-success pull-right" type="button" onclick="saveComment(this);">Отправить</button>
+                    </div>
+                    <?php ActiveForm::end(); ?>
+                    @endif
+                </div>
+
             </div>
+
+{{-----------------------------------------------------------------------------------------}}
+
+
+
             <div class="col-md-3 content-right">
                 <div class="content-right-top">
                     <a href="single.html">

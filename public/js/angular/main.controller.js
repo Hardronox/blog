@@ -17,7 +17,7 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
   });
 
   $scope.itemsPerPage = 7;
-  $scope.loadData = function(category){
+  $scope.loadData = function(category, changeCategory){
 
     $scope.category=category;
     $scope.pageForSize =$scope.currentPage -1;
@@ -35,18 +35,29 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
           }
         }).success(function(response){
           $scope.blogs = response.hits.hits;
-          $scope.sorted = response.hits.hits;
           $scope.totalItems = response.hits.total;
         });
-      $('a.heads').removeClass('heads');
+      $('a.category').removeClass('category');
 
-      $('a:contains('+category+')').addClass('heads');
+      $('a:contains('+category+')').addClass('category');
+
+      if(changeCategory)
+      {
+        $scope.currentPage=1;
+        $location.search('page', 1);
+      }
     }
     else
     {
-      $http.post("http://127.0.0.1:9200/myblogs/_search?sort=created_at.date:desc",
+      $http.post("http://127.0.0.1:9200/myblogs/_search",
         {
-          "from" : $scope.itemsPerPage*($scope.currentPage -1) , "size" : $scope.itemsPerPage
+          "from" : $scope.itemsPerPage*($scope.currentPage -1) , "size" : $scope.itemsPerPage,
+
+          "sort": {
+              "id": {
+                "order": "desc"
+              }
+          }
         }).success(function(response){
           $scope.blogs = response.hits.hits;
           $scope.totalItems = response.hits.total;
