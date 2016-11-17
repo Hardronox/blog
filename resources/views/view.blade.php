@@ -33,7 +33,7 @@
                 </div>
 
                 <ul class="media-list">
-                    <div id="blog_view_comment_content" data-id="<?= $blog->id ?>" data-type="<?= $type ?>">
+                    <div id="blog_view_comment_content" data-id="{{$blog->id}}">
                         <script type="text/template" id="pageContent">
                             <li class="media">
                                 <div id="m<%- comments.id %>">
@@ -52,11 +52,11 @@
                                                 <span class="thumbs icon_wrap fa fa-thumbs-up likes"><%= likes %></span>
                                             </a>
                                             @else
-                                            <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.commentAuthor.firstname %>" onclick="answer(this)"><?=Yii::t('app','Answer')?> </a>
+                                                <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.commentAuthor.firstname %>" onclick="answer(this)"><?=Yii::t('app','Answer')?> </a>
 
-                                            <a class="a-hover pull-right" onclick="like(this);" data-type="Comment" data-post="<%- comments.id %>">
-                                                <span class="thumbs icon_wrap fa fa-thumbs-up likes"> <%= likes %></span>
-                                            </a>
+                                                <a class="a-hover pull-right" onclick="like(this);" data-type="Comment" data-post="<%- comments.id %>">
+                                                    <span class="thumbs icon_wrap fa fa-thumbs-up likes"> <%= likes %></span>
+                                                </a>
                                             @endif
                                         </p>
                                     </div>
@@ -66,28 +66,7 @@
                     </div>
                 </ul>
 
-
-                <div id="blog_comment_form">
-                    @if (Auth::guest())
-                        <b>Log in to leave a comment</b>
-                    @else
-                    <?php $form = ActiveForm::begin([
-                            'id' => 'comment_form'
-                    ]);
-                    ?>
-                    <p><b><?=Yii::t('app','Write comment here')?></b></p>
-                    <?= $form->field($comments, 'comment_text')->textArea(['rows'=>6,'id'=>'comment_text']) ?>
-
-                    <?= $form->field($comments, 'owner_name')->hiddenInput(['value'=> $type])->label(false)?>
-
-                    <div class="form-group">
-                        <button class="btn btn-raised btn-success pull-right" type="button" onclick="saveComment(this);">Отправить</button>
-                    </div>
-                    <?php ActiveForm::end(); ?>
-                    @endif
                 </div>
-
-            </div>
 
 {{-----------------------------------------------------------------------------------------}}
 

@@ -5,6 +5,8 @@
     <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' /><link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -68,7 +70,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
 <script src="/angular_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
 <script src="/angular_modules/ui-bootstrap-tpls-1.2.5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
 <script src="/js/angular/main.module.js"></script>
 <script src="/js/angular/main.config.js"></script>
 <script src="/js/angular/main.controller.js"></script>

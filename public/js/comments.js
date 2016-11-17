@@ -1,14 +1,11 @@
 var id = location.search.slice(4);
-var type=$('#blog_view_comment_content').data("type");
 var templates = _.template($('#pageContent').html());
 
 $(document).ready(function()
 {
-
-  $.post('/service/show-comment',
+  $.post('/comments',
     {
-      id: id,
-      type: type
+      id: id
     },
     function (response) {
       $.each(response, function(key, comments){
@@ -28,7 +25,6 @@ function saveComment()
     $.post('/service/save-comment',
       {
         id: id,
-        type: type,
         text: text.val()
       },
       function (response) {

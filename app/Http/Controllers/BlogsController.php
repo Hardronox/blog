@@ -70,16 +70,6 @@ class BlogsController extends Controller {
     {
         $blog=Blogs::with('likes')->find($id);
 
-//        $blogs=Likes::where(
-//            [
-//                ['type','=','Blog'],
-//                ['user_id','=',1],
-//                ['type_id','=',14],
-//        ])->get();
-
-
-        //var_dump('<pre>', sizeof($blogs), '</pre>');exit;
-
         ServiceController::views($blog);
 
         return view('view',['blog'=>$blog, 'likes'=> sizeof($blog->likes)]);

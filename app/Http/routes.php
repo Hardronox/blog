@@ -24,7 +24,7 @@ Route::get('/elastic', 'BlogsController@elastic');
 
 Route::get('/likes', 'ServiceController@likes');
 
-Route::get('/comments', 'ServiceController@comments');
+Route::get('/comments', 'ServiceController@showComments');
 
 
 Route::group(['middleware'=>'auth'], function()

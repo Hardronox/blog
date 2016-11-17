@@ -14,13 +14,8 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 
-class ServiceController extends Controller {
-
-
-    public function index()
-    {
-        return view('home');
-    }
+class ServiceController extends Controller
+{
 
     public static function views($source)
     {
@@ -98,34 +93,15 @@ class ServiceController extends Controller {
     /**
      * on page load, by ajax shows comments of users if exists
      */
-    public function actionShowComment()
+    public function showComments()
     {
-
-
         if (Request::ajax())
         {
-            $post = Yii::$app->request->post();
 
-            $user = Auth::user();
+            $comments = Comments::where('blog_id','=',$_POST['blog_id'])
+                                ->orderBy('created_at', 'asc')->get();
 
-            $comments = Comments::where(
-                [
-                    ['type','=',$_POST['type']],
-                    ['type_id','=',$_POST['id']],
-                    ['user_id','=',$user['id']]
-                ])->get();
-
-            $comments = Comment::find()->where(['owner_name'=>$post['type']])
-                ->andWhere(['owner_id'=>$post['id']]);
-
-
-            $comment = $comments->orderBy('created_at')
-                ->with('commentAuthor')
-                ->with('likes')
-                ->asArray()
-                ->all();
-
-            return $comment;
+            return $comments;
         }
     }
 
