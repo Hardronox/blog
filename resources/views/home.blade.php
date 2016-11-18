@@ -45,7 +45,9 @@
                         <a target="_self" class="title" href="/blog/<%blog._source.id%>">
                             <%blog._source.title%>
                         </a>
-                        <img class="blog-image" src="images/blog/a1.jpg" alt="" />
+
+                        <img class="blog-image" src="images/blog/<% blog._source.image ? blog._source.image : 'no-image.jpg'%>" alt="" />
+
                         <p><%blog._source.description%></p>
                         <div class="pull-right" style="margin-right: 10px"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
                         <span style="margin-left: 30px"><%blog._source.created_at.date%></span>

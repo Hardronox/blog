@@ -9,3 +9,7 @@ tinymce.init({
   toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
   content_css: '//www.tinymce.com/css/codepen.min.css'
 });
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

@@ -8,6 +8,7 @@ use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
 use Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -22,32 +23,13 @@ class BlogsController extends Controller {
 
     public static function elastic()
     {
-        $client = ClientBuilder::create()->build();
-
         $blogs=Blogs::with('category')->get();
-
 
         foreach ($blogs as $blog) {
 
-            $params = [
-                'index' => 'myblogs',
-                'type' => 'myblogs',
-                'id' => (int)$blog->id,
-                'body' => [
-                        'id'=>(int)$blog->id,
-                        'title' => $blog->title,
-                        'description'=>$blog->description,
-                        'text'=>$blog->text,
-                        'category'=>$blog->category->name,
-                        'views'=>(int)$blog->views,
-                        'image'=>$blog->image,
-                        'created_at'=>$blog->created_at
-                ]
-            ];
-            //var_dump('<pre>', $blog->created_at->date, '</pre>');exit;
-            $client->index($params);
-        }
+            ServiceController::uploadToElastic($blog);
 
+        }
 
 
 //        $params = [
@@ -101,14 +83,20 @@ class BlogsController extends Controller {
             }
             else
             {
-                $destinationPath = 'images/blog'; // upload path
-                $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-                $fileName = str_random(30).'.'.$extension; // renaming image
+                if (Input::file('image'))
+                {
+                    $destinationPath = 'images/blog'; // upload path
+                    $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
+                    $fileName = str_random(30).'.'.$extension; // renaming image
 
-                $blog->image=$fileName;
+                    $blog->image=$fileName;
+                    Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+
+                }
                 $blog->save();
 
-                Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+                ServiceController::uploadToElastic($blog);
+
                 // sending back with message
                 flash('Your article was created successfully!', 'success');
                 return redirect('/');

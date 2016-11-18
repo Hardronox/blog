@@ -136,6 +136,31 @@ class ServiceController extends Controller
         }
     }
 
+
+    public static function uploadToElastic($src)
+    {
+        $client = ClientBuilder::create()->build();
+        
+        $params = [
+            'index' => 'myblogs',
+            'type' => 'myblogs',
+            'id' => (int)$src->id,
+            'body' => [
+                'id'=>(int)$src->id,
+                'title' => $src->title,
+                'description'=>$src->description,
+                'text'=>$src->text,
+                'category'=>$src->category->name,
+                'views'=>(int)$src->views,
+                'image'=>$src->image ? $src->image : NULL,
+                'created_at'=>$src->created_at
+            ]
+        ];
+        $client->index($params);
+        
+
+    }
+
     /**
      * filters inputs
      */

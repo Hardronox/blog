@@ -160,6 +160,8 @@ label{
 .blog-image
 {
     margin-left: 30px;
+    width:700px;
+    height:230px;
 }
 .content-left {
 	padding:0;

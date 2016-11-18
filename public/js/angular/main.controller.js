@@ -32,6 +32,11 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
             "match" : {
               "category" : category
             }
+          },
+          "sort": {
+            "id": {
+              "order": "desc"
+            }
           }
         }).success(function(response){
           $scope.blogs = response.hits.hits;
