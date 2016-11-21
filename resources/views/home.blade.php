@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Home')
+
 @section('content')
     <div ng-app="main" ng-controller="main" ng-cloak>
         <div class="container">

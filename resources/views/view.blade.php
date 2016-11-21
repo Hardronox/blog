@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', $blog->title)
+
 @section('content')
     {!!Html::script('js/likes.js')!!}
     {!!Html::script('js/comments.js')!!}

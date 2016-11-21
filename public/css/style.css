@@ -1481,3 +1481,8 @@ a[ng-click]
 {
     cursor: pointer;
 }
+
+.tbl_align
+{
+    text-align: center;
+}

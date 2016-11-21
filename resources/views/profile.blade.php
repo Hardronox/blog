@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'My Profile')
+
 @section('content')
     <script type="text/javascript">
 
@@ -55,7 +57,8 @@
                     <tr>
                         <th>Actions</th>
                         <td>
-                            <button class="btn btn-info edit" >Edit Profile</button>
+                            <a class="btn btn-info" href="/profile/articles" >My Articles</a>
+                            <button class="btn btn-warning edit" >Edit Profile</button>
                             <a id="delete" class="btn btn-danger" href="/delete-profile" >Delete Account</a>
                         </td>
                     </tr>

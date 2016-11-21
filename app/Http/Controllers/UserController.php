@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Blog;
 use App\Models\User;
 use App\Models\UsersProfile;
 use Illuminate\Support\Facades\Auth;
@@ -14,12 +15,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
-
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
     public function userProfile()
     {
         $user_id = Auth::user();
@@ -27,6 +22,16 @@ class UserController extends Controller
         $user= User::with('profile')->find($user_id['id']);
 
         return view('profile',['user'=>$user]);
+    }
+
+
+    public function myArticles()
+    {
+        $user= Auth::user();
+
+        $blog=Blog::where('user_id','=',$user['id'])->orderBy('created_at','desc')->get();
+
+        return view('my-articles',['blogs'=>$blog]);
     }
 
     public function editProfile()
@@ -87,6 +92,7 @@ class UserController extends Controller
         }
         return view('edit-profile',['user' => $user]);
     }
+
 
     public function deleteProfile()
     {

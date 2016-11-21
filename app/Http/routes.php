@@ -15,12 +15,12 @@
 //    //var_dump('<pre>', $users->users, '</pre>');
 //});
 
-Route::get('/', 'BlogsController@index');
+Route::get('/', 'BlogController@index');
 
-Route::get('/blog/{id}', 'BlogsController@blogView');
+Route::get('/blog/{id}', 'BlogController@articleView');
 
 
-Route::get('/elastic', 'BlogsController@elastic');
+Route::get('/elastic', 'BlogController@elastic');
 
 Route::get('/likes', 'ServiceController@likes');
 
@@ -29,11 +29,15 @@ Route::get('/comments', 'ServiceController@showComments');
 
 Route::group(['middleware'=>'auth'], function()
 {
-    Route::get('/create', 'BlogsController@blogCreate');
+    Route::get('/create', 'BlogController@articleCreate');
 
-    Route::post('/create', 'BlogsController@blogCreate')->name('create-blog');
+    Route::post('/create', 'BlogController@articleCreate')->name('create-article');
 
-    Route::get('/edit-article', 'BlogsController@blogCreate');
+    Route::get('/article/edit/{id}', 'BlogController@articleEdit');
+
+    Route::get('/article/status/{id}', 'BlogController@articleStatus');
+
+    Route::get('/article/delete/{id}', 'BlogController@articleDelete');
 
     Route::get('/profile', 'UserController@userProfile')->name('profile');
 
@@ -41,14 +45,15 @@ Route::group(['middleware'=>'auth'], function()
 
     Route::get('/delete-profile', 'UserController@deleteProfile')->name('delete');
 
+    Route::get('/profile/articles', 'UserController@myArticles');
 });
 
 
-Route::get('/api/blogs',function() {
-
-    $blogs = \App\Models\Blogs::with('category')->get();
-    return $blogs;
-});
+//Route::get('/api/blogs',function() {
+//
+//    $blogs = \App\Models\Blogs::with('category')->get();
+//    return $blogs;
+//});
 
 
 ////create

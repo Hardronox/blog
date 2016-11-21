@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Blog</title>
+    <title>@yield('pageTitle')</title>
     <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' /><link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

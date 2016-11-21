@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('pageTitle', 'Write an Article')
+
 @section('content')
     {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
@@ -8,9 +10,9 @@
     <div class="container" style="margin-top:35px">
         <div class="content" >
             <div class="col-md-9 col-md-offset-2">
-                <h3>Create Article</h3>
+                <h3>Write an Article</h3>
                 <br>
-                    {!! Form::open(array('url'=>route('create-blog'),'method'=>'POST', 'files'=>true)) !!}
+                    {!! Form::open(array('url'=>route('create-article'),'method'=>'POST', 'files'=>true)) !!}
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" name="title" class="form-control" id="title">

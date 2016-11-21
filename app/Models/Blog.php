@@ -4,8 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Blogs extends Model
+class Blog extends Model
 {
+    const STATUS_DRAFT = 0;
+    const STATUS_PUBLISHED = 1;
+
     public function category()
     {
         return $this->hasOne('App\Models\BlogCategory','id', 'category_id');
