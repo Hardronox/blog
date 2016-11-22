@@ -97,7 +97,6 @@ class ServiceController extends Controller
     {
         if (Request::ajax())
         {
-
             $comments = Comments::where('blog_id','=',$_POST['blog_id'])
                                 ->orderBy('created_at', 'asc')->get();
 
@@ -153,6 +152,7 @@ class ServiceController extends Controller
                 'category'=>$src->category->name,
                 'views'=>(int)$src->views,
                 'image'=>$src->image ? $src->image : NULL,
+                'status'=>'Published',
                 'created_at'=>$src->created_at
             ]
         ];

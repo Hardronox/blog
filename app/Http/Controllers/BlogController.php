@@ -87,6 +87,11 @@ class BlogController extends Controller {
 
         $article= Blog::find($id);
 
+        $blogCategory= BlogCategory::get(['name'])->toArray();
+
+        $category=array_flatten($blogCategory);
+
+
 
         if (!empty($_POST))
         {
@@ -137,32 +142,34 @@ class BlogController extends Controller {
                 return redirect('/profile');
             }
         }
-        return view('edit-profile',['user' => $user]);
+        return view('article-edit',[
+                                    'article' => $article,
+                                    'category' => $category
+        ]);
     }
 
-    public function articleStatus($id)
+    public function articleStatus()
     {
-        $article= Blog::find($id);
-        $user = Auth::user();
-
-
-        if ($article['user_id']==$user['id'])
+        if (Request::ajax())
         {
-            if($article->status==0)
-            {
-                $article->status=1;
-            }
-            else
-            {
-                $article->status=0;
-            }
-            $article->save();
+            $article = Blog::find($_GET['id']);
+            $user = Auth::user();
 
-            return redirect('/profile/articles');
-        }
-        else
-        {
-            abort(403, 'You are not allowed to perform this action');
+
+            if ($article['user_id'] == $user['id'])
+            {
+                if ($article->status == "Draft") {
+                    $article->status = "Published";
+                } else {
+                    $article->status = "Draft";
+                }
+                $article->save();
+
+
+                return $article->status;
+            } else {
+                abort(403, 'You are not allowed to perform this action');
+            }
         }
     }
 
@@ -175,7 +182,7 @@ class BlogController extends Controller {
         {
             $article->delete();
 
-            return redirect('/profile');
+            return redirect('/profile/articles');
         }
         else
         {

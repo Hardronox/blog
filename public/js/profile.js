@@ -1,6 +1,6 @@
-$(document).on('click', '#delete', function(e){
+$(document).on('click', '.delete', function(e){
 
-  if (confirm("Delete this item?"))
+  if (confirm("Delete this article?"))
   {
 
   }

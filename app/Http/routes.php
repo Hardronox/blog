@@ -35,7 +35,7 @@ Route::group(['middleware'=>'auth'], function()
 
     Route::get('/article/edit/{id}', 'BlogController@articleEdit');
 
-    Route::get('/article/status/{id}', 'BlogController@articleStatus');
+    Route::get('/article/status', 'BlogController@articleStatus');
 
     Route::get('/article/delete/{id}', 'BlogController@articleDelete');
 

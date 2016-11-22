@@ -21,13 +21,14 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 });
 
 
-$factory->define(App\Models\Blogs::class, function (Faker\Generator $faker) {
+$factory->define(App\Models\Blog::class, function (Faker\Generator $faker) {
     return [
         'user_id' => 1,
         'title' => $faker->name,
         'description' => $faker->realText(200),
         'text' => $faker->realText(4000),
         'image' => 'no_image.png',
+        'status' => 'Published',
         'category_id' => 3,
 
     ];
