@@ -23,7 +23,7 @@
                         <?php foreach ($blogs as $key => $blog):?>
                         <tr id="tr<?=$blog['id']?>">
                             <th class="col-md-1"><?=$key+1?></th>
-                            <td class="col-md-2"><a href="blog/view"><?=$blog['title']?></a></td>
+                            <td class="col-md-2"><a href="blog/view/<?=$blog['id']?>"><?=$blog['title']?></a></td>
                             <td class="col-md-4"><?=$blog['description']?></td>
                             <td class="col-md-1 tbl_align"><?=$blog['views']?></td>
                             <td class="col-md-1 tbl_align"><?=$blog['created_at']?></td>

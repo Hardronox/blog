@@ -48,7 +48,7 @@
                             <%blog._source.title%>
                         </a>
 
-                        <img class="blog-image" src="images/blog/<% blog._source.image ? blog._source.image : 'no-image.jpg'%>" alt="" />
+                        <img class="blog-image" src="images/blog/<% blog._source.image ? blog._source.image : 'no-image.png'%>" alt="" />
 
                         <p><%blog._source.description%></p>
                         <div class="pull-right" style="margin-right: 10px"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>

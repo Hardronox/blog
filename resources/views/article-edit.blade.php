@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('pageTitle', 'Write an Article')
+@section('pageTitle', 'Edit an Article')
 
 @section('content')
     {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
@@ -12,7 +12,7 @@
             <div class="col-md-9 col-md-offset-2">
                 <h3>Write an Article</h3>
                 <br>
-                {!! Form::open(array('url'=>route('create-article'),'method'=>'POST', 'files'=>true)) !!}
+                {!! Form::open(array('url'=>route("edit-article",['id'=>$article['id']]),'method'=>'POST', 'files'=>true)) !!}
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
                         {!! Form::text('title', $article['title'], ['class'=>'form-control','id'=>'title']) !!}
@@ -30,16 +30,9 @@
 
                     {!! Form::token() !!}
 
-
                     <div class="form-group">
                         {!! Form::label('sel1', 'Category') !!}
-                        {!! Form::select('category', array('L' => 'Large', 'S' => 'Small'), ['class'=>'form-control','id'=>'sel1']) !!}
-
-                        {{--<select class="form-control" name="category" id="sel1">--}}
-                            {{--@foreach($category as $cat)--}}
-                                {{--<option value="{{$cat->id}}">{{$cat->name}}</option>--}}
-                            {{--@endforeach--}}
-                        {{--</select>--}}
+                        {!! Form::select('category', $categories, ['class'=>'form-control','id'=>'sel1']) !!}
                     </div>
                     {!! Form::label('file', 'Main Blog Image') !!}
 

@@ -9,9 +9,7 @@ function status(elem) {
       id: id
     },
     success: function (response) {
-      console.log(response);
       $('#tr'+id).find('td.status').html(response);
-
     }
   });
 }

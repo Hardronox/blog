@@ -27,7 +27,7 @@ $factory->define(App\Models\Blog::class, function (Faker\Generator $faker) {
         'title' => $faker->name,
         'description' => $faker->realText(200),
         'text' => $faker->realText(4000),
-        'image' => 'no_image.png',
+        'image' => 'no-image.png',
         'status' => 'Published',
         'category_id' => 3,
 

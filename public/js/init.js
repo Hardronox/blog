@@ -12,4 +12,9 @@ tinymce.init({
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
-})
+});
+
+
+$(function () {
+  $('select[name=category]').addClass('form-control')
+});
