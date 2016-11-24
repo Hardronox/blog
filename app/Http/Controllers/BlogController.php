@@ -14,14 +14,20 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
 
-class BlogController extends Controller {
+class BlogController extends Controller
+{
 
-
+    /**
+     * displays home page(whole logic in angular(js/angular/main.controller.js) )
+     */
     public function index()
     {
         return view('home');
     }
 
+    /**
+     * displays single article
+     */
     public function articleView($id)
     {
         $blog=Blog::with('likes')->find($id);
@@ -31,13 +37,11 @@ class BlogController extends Controller {
         return view('view',['blog'=>$blog, 'likes'=> sizeof($blog->likes)]);
     }
 
+    /**
+     * displays create-article page and is form-create action(if $_POST isset)
+     */
     public function articleCreate()
     {
-        //$blogCategory= BlogCategory::all();
-
-        ServiceController::getCategories();
-
-        //var_dump('<pre>', ServiceController::getCategories(), '</pre>'); exit;
         if (!empty($_POST))
         {
             $user = Auth::user();
@@ -78,13 +82,15 @@ class BlogController extends Controller {
                 flash('Your article was created successfully!', 'success');
                 return redirect('/');
             }
-
         }
 
         return view('create',['categories' =>ServiceController::getCategories()
         ]);
     }
 
+    /**
+     * displays edit-article page(just like create above)
+     */
     public function articleEdit($id)
     {
         $article= Blog::find($id);
@@ -134,13 +140,15 @@ class BlogController extends Controller {
         ]);
     }
 
+    /**
+     * ajax-change status of article in profile/articles
+     */
     public function articleStatus()
     {
         if (Request::ajax())
         {
             $article = Blog::find($_GET['id']);
             $user = Auth::user();
-
 
             if ($article['user_id'] == $user['id'])
             {
@@ -159,6 +167,9 @@ class BlogController extends Controller {
         }
     }
 
+    /**
+     * deletes article(from db and elastic) in profile/articles
+     */
     public function articleDelete($id)
     {
         $article= Blog::find($id);
@@ -186,14 +197,15 @@ class BlogController extends Controller {
         }
     }
 
+    /**
+     *  adds all articles in elasticSearch
+     */
     public static function elastic()
     {
         $blogs=Blog::with('category')->get();
 
         foreach ($blogs as $blog) {
-
             ServiceController::uploadToElastic($blog);
-
         }
     }
 }

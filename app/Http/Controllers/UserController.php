@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Redirect;
 
 class UserController extends Controller
 {
+    /**
+     * displays profile page
+     */
     public function userProfile()
     {
         $user_id = Auth::user();
@@ -25,6 +28,9 @@ class UserController extends Controller
     }
 
 
+    /**
+     * displays all articles of current user
+     */
     public function myArticles()
     {
         $user= Auth::user();
@@ -34,12 +40,14 @@ class UserController extends Controller
         return view('my-articles',['blogs'=>$blog]);
     }
 
+    /**
+     * in user profile after click on Profile Edit button, modal window displays. after it, works similar to article edit\create
+     */
     public function editProfile()
     {
         $user_id = Auth::user();
 
         $user= User::find($user_id);
-
 
         if (!empty($_POST))
         {
@@ -94,6 +102,9 @@ class UserController extends Controller
     }
 
 
+    /**
+     * deletes profile from DB
+     */
     public function deleteProfile()
     {
         $user_id = Auth::user();

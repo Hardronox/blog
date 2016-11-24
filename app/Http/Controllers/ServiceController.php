@@ -93,7 +93,7 @@ class ServiceController extends Controller
 
 
     /**
-     * on page load, by ajax shows comments of users if exists
+     * returns array of categories for Select in create and update actions
      */
     public static function getCategories()
     {
@@ -111,7 +111,7 @@ class ServiceController extends Controller
 
 
     /**
-     * on page load, by ajax shows comments of users if exists
+     * on page load, by ajax shows comments of users if exists (unfinished)
      */
     public function showComments()
     {
@@ -125,7 +125,7 @@ class ServiceController extends Controller
     }
 
     /**
-     * onclick saves comment by ajax and shows it
+     * onclick saves comment by ajax and shows it (unfinished)
      */
     public function actionSaveComment()
     {
@@ -155,7 +155,9 @@ class ServiceController extends Controller
         }
     }
 
-
+    /**
+     * saves single article in elastic
+     */
     public static function uploadToElastic($src)
     {
         $client = ClientBuilder::create()->build();
