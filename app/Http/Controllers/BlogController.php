@@ -33,8 +33,11 @@ class BlogController extends Controller {
 
     public function articleCreate()
     {
-        $blogCategory= BlogCategory::all();
+        //$blogCategory= BlogCategory::all();
 
+        ServiceController::getCategories();
+
+        //var_dump('<pre>', ServiceController::getCategories(), '</pre>'); exit;
         if (!empty($_POST))
         {
             $user = Auth::user();
@@ -78,22 +81,13 @@ class BlogController extends Controller {
 
         }
 
-        return view('create',['category' => $blogCategory]);
+        return view('create',['categories' =>ServiceController::getCategories()
+        ]);
     }
 
     public function articleEdit($id)
     {
         $article= Blog::find($id);
-
-        $categoriesSelect=[];
-
-        $categoryDb= BlogCategory::get(['name'])->toArray();
-
-        $category=array_flatten($categoryDb);
-
-        foreach ($category as $key=> $cat) {
-            $categoriesSelect[$key+1]=$cat;
-        }
 
         if (!empty($_POST))
         {
@@ -123,13 +117,10 @@ class BlogController extends Controller {
                 }
 
 
-                //var_dump('<pre>', $array_to_update, '</pre>');exit;
-
                 Blog::find($id)
                     ->update($array_to_update);
 
                 Blog::editElastic($id, $_POST, $fileName);
-
 
 
                 flash('Your Article was edited successfully!', 'success');
@@ -138,7 +129,8 @@ class BlogController extends Controller {
         }
         return view('article-edit',[
                                     'article' => $article,
-                                    'categories' => $categoriesSelect
+                                    'categories' => ServiceController::getCategories()
+
         ]);
     }
 
@@ -176,6 +168,16 @@ class BlogController extends Controller {
         {
             $article->delete();
 
+            $client = ClientBuilder::create()->build();
+
+            $params = [
+                'index' => 'myblogs',
+                'type' => 'myblogs',
+                'id' => $id
+            ];
+
+            $client->delete($params);
+
             return redirect('/profile/articles');
         }
         else
@@ -193,21 +195,5 @@ class BlogController extends Controller {
             ServiceController::uploadToElastic($blog);
 
         }
-
-
-//        $params = [
-//            'index' => 'my_index',
-//            'type' => 'my_type',
-//            'id' => '2'
-//        ];
-
-        //$response = $client->get($params);
-
-        //var_dump($response['_source']['test2']);
-
-        //$blogs = \App\Models\Blogs::with('category')->get();
-
-        //return view('home');
     }
-
 }

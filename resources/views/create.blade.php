@@ -13,30 +13,28 @@
                 <h3>Write an Article</h3>
                 <br>
                     {!! Form::open(array('url'=>route('create-article'),'method'=>'POST', 'files'=>true)) !!}
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" class="form-control" id="title">
-                    </div>
+                <div class="form-group">
+                    {!! Form::label('title', 'Title') !!}
+                    {!! Form::text('title', '', ['class'=>'form-control','id'=>'title']) !!}
+                </div>
 
-                    <div class="form-group">
-                        <label for="desc">Description</label>
-                        <input type="text" name="desc" class="form-control" id="desc">
-                    </div>
-                    <div class="form-group">
-                        <label for="pwd" id="input">Text</label>
-                        <textarea name="text" id="input" ></textarea>
-                    </div>
-                    <input type="hidden" value="{{csrf_token()}}" name="_token">
+                <div class="form-group">
+                    {!! Form::label('desc', 'Description') !!}
+                    {!! Form::textarea('desc', '', ['class'=>'form-control','id'=>'desc']) !!}
+                </div>
 
-                    <div class="form-group">
-                        <label for="sel1">Category</label>
-                        <select class="form-control" name="category" id="sel1">
-                            @foreach($category as $cat)
-                                <option value="{{$cat->id}}">{{$cat->name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                <label for="file">Main Blog Image</label>
+                <div class="form-group">
+                    {!! Form::label('input', 'Text') !!}
+                    {!! Form::textarea('text', '', ['id'=>'input']) !!}
+                </div>
+
+                {!! Form::token() !!}
+
+                <div class="form-group">
+                    {!! Form::label('sel1', 'Category') !!}
+                    {!! Form::select('category', $categories, ['class'=>'form-control','id'=>'sel1']) !!}
+                </div>
+                {!! Form::label('file', 'Main Blog Image') !!}
 
                 <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="For better quality upload images with width 3 times more than height"></span>
 

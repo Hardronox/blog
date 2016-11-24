@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Elasticsearch\ClientBuilder;
 
+
 class Blog extends Model
 {
     protected $fillable = ['title', 'text', 'description', 'category_id','image'];
 
+    /**
+     * relations
+     */
     public function category()
     {
         return $this->hasOne('App\Models\BlogCategory','id', 'category_id');
@@ -18,6 +22,7 @@ class Blog extends Model
     {
         return $this->hasMany('App\Models\Likes','type_id', 'id')->where('type','=','Blog');
     }
+
 
     public static function editElastic($id, $src, $fileName)
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use App\Models\BlogCategory;
 use App\Models\Comments;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
@@ -87,6 +88,25 @@ class ServiceController extends Controller
 
             return $likes;
         }
+    }
+
+
+
+    /**
+     * on page load, by ajax shows comments of users if exists
+     */
+    public static function getCategories()
+    {
+        $categoriesSelect=[];
+
+        $categoryDb= BlogCategory::get(['name'])->toArray();
+
+        $category=array_flatten($categoryDb);
+
+        foreach ($category as $key=> $cat) {
+            $categoriesSelect[$key+1]=$cat;
+        }
+        return $categoriesSelect;
     }
 
 

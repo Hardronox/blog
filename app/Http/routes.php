@@ -51,18 +51,6 @@ Route::group(['middleware'=>'auth'], function()
 });
 
 
-//Route::get('/api/blogs',function() {
-//
-//    $blogs = \App\Models\Blogs::with('category')->get();
-//    return $blogs;
-//});
-
-
-////create
-//Route::post('test', function () {
-//    echo ' walking where dead ships dwell';
-//});
-//
 ////read
 //Route::get('test', function () {
 //    echo '<form action="test" method="post">';
@@ -71,13 +59,5 @@ Route::group(['middleware'=>'auth'], function()
 //    echo '<input type="hidden" name="_method" value="PUT">';
 //    echo '</form>';
 //});
-//
-////update
-//Route::put('test', function () {
-//    echo 'we updated dead ships';
-//});
-//
-//Route::delete('test', function ($name) {
-//    echo 'we deleted dead ships';
-//});
+
 Route::auth();
