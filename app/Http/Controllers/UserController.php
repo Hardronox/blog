@@ -112,6 +112,7 @@ class UserController extends Controller
         $user= User::find($user_id['id']);
         $user->delete();
 
+        flash('Your profile was deleted successfully!', 'success');
         return redirect('/');
     }
 }

@@ -3,9 +3,6 @@
 @section('pageTitle', 'My Profile')
 
 @section('content')
-    <script type="text/javascript">
-
-    </script>
     {!!Html::script('js/profile.js')!!}
     <div class="container" >
         @include('flash::message')

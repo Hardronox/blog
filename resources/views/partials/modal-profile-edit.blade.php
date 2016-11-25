@@ -6,7 +6,7 @@
     });
 </script>
 
-<!-- Modal HTML -->
+<!-- Modal edit-profile window -->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-lg" >
         <div class="modal-content">
@@ -16,7 +16,7 @@
                 {!! Form::open(array('url'=>route('edit-profile'),'method'=>'POST', 'files'=>true)) !!}
 
                 <div style="float: left;">
-                    <label for="file">Avatar</label>
+                    {!! Form::label('file', 'Avatar') !!}
                     {!! Form::file('image', array('id' =>'file')) !!}
                 </div>
 
@@ -27,26 +27,26 @@
                 @endif
 
                 <div class="form-group">
-                    <label for="firstname">FirstName</label>
+                    {!! Form::label('firstname', 'FirstName') !!}
 
                     @if (isset($user->profile->firstname))
-                        <input type="text" class="form-control" name="firstname" id="firstname" value="{{$user->profile->firstname}}">
+                        {!! Form::text('firstname', $user->profile->firstname, ['class'=>'form-control','id'=>'firstname']) !!}
                     @else
-                        <input type="text" class="form-control" name="firstname" id="firstname" value="">
+                        {!! Form::text('firstname', '', ['class'=>'form-control','id'=>'firstname']) !!}
                     @endif
                 </div>
 
                 <div class="form-group">
-                    <label for="lastname">LastName</label>
-                    @if (isset($user->profile->lastname))
-                        <input type="text" class="form-control" name="lastname" id="lastname" value="{{$user->profile->lastname}}">
-                    @else
-                        <input type="text" class="form-control" name="lastname" id="lastname" value="">
-                    @endif
+                    {!! Form::label('lastname', 'Lastname') !!}
 
+                    @if (isset($user->profile->lastname))
+                        {!! Form::text('lastname', $user->profile->lastname, ['class'=>'form-control','id'=>'lastname']) !!}
+                    @else
+                        {!! Form::text('lastname', '', ['class'=>'form-control','id'=>'lastname']) !!}
+                    @endif
                 </div>
 
-                <input type="hidden" value="{{csrf_token()}}" name="_token">
+                {!! Form::token() !!}
 
                 {!! Form::submit('Edit', array('class'=>'btn btn-success pull-right')) !!}
                 {!! Form::close() !!}

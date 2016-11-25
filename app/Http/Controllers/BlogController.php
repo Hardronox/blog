@@ -79,7 +79,7 @@ class BlogController extends Controller
                 ServiceController::uploadToElastic($blog);
 
                 // sending back with message
-                flash('Your article was created successfully!', 'success');
+                flash('Your Article was created successfully!', 'success');
                 return redirect('/');
             }
         }
@@ -189,6 +189,7 @@ class BlogController extends Controller
 
             $client->delete($params);
 
+            flash('Your Article was deleted successfully!', 'success');
             return redirect('/profile/articles');
         }
         else
