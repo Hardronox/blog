@@ -1,20 +1,5 @@
 <?php
 
-//Route::get('customer_name/', function () {
-//
-//    $customer=App\Customers::where('name','=','Tony')->first();
-//    echo $customer->id;
-//});
-//
-//
-//Route::get('orders', function () {
-//    $users=App\UsersProfile::find(1);
-//    //foreach ($users as $blogs) {
-//        echo $users->users->name.' belongs to '.$users->firstname;
-//    //}
-//    //var_dump('<pre>', $users->users, '</pre>');
-//});
-
 Route::get('/', 'BlogController@index');
 
 Route::get('/blog/{id}', 'BlogController@articleView');
@@ -49,15 +34,5 @@ Route::group(['middleware'=>'auth'], function()
 
     Route::get('/profile/articles', 'UserController@myArticles');
 });
-
-
-////read
-//Route::get('test', function () {
-//    echo '<form action="test" method="post">';
-//    echo '<input type="submit">';
-//    echo '<input type="hidden" value="' . csrf_token() .'" name="_token">';
-//    echo '<input type="hidden" name="_method" value="PUT">';
-//    echo '</form>';
-//});
 
 Route::auth();

@@ -10,13 +10,13 @@
             <div class="col-md-9 content-left">
                 <div class="article">
                     <h6>{{$blog->category->name}} </h6>
-                    <a class="title" href="single.html">
+                    <a class="title">
                         {{$blog->title}}
                     </a>
-                    <img class="blog-image"  src="/images/blog/a1.jpg" alt="" />
+                    <img class="blog-image"  src="/images/blog/{{$blog->image ? $blog->image : 'no-image.png'}}" alt="" />
                     <p>{{$blog->text}}</p>
-                    <div style="margin-top: 10px">
-                        <div class="pull-right" style="margin-right: 10px">
+                    <div class="views_likes">
+                        <div class="pull-right views">
                             {{$blog->views}} <span class="glyphicon glyphicon-eye-open"></span>
                         </div>
 
@@ -25,7 +25,7 @@
                                 <span class="thumbs icon_wrap fa fa-thumbs-up likes">{{$likes}}</span>
                             </a>
                         @else
-                            <div style="margin-left: 30px">
+                            <div class="likes_block">
                                 <a class="a-hover" onclick="like(this);"  data-type="Blog" data-post="{{$blog['id']}}">
                                     <span class="likes">{{$likes}}</span><span class="glyphicon glyphicon-heart"></span>
                                 </a>
@@ -50,9 +50,10 @@
                                         <a href=""><h5><%= comments.commentAuthor.firstname %> <%= comments.commentAuthor.lastname %></h5></a>
                                         <p><%= comments.comment_text %></p>
                                         <p><%= date %>
-                                            @if (Auth::guest())                                            <a class="a-hover pull-right">
-                                                <span class="thumbs icon_wrap fa fa-thumbs-up likes"><%= likes %></span>
-                                            </a>
+                                            @if (Auth::guest())
+                                                <a class="a-hover pull-right">
+                                                    <span class="thumbs icon_wrap fa fa-thumbs-up likes"><%= likes %></span>
+                                                </a>
                                             @else
                                                 <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.commentAuthor.firstname %>" onclick="answer(this)"><?=Yii::t('app','Answer')?> </a>
 
@@ -67,13 +68,10 @@
                         </script>
                     </div>
                 </ul>
-
-                </div>
-
-{{-----------------------------------------------------------------------------------------}}
+            </div>
 
 
-
+{{-- right column--}}
             <div class="col-md-3 content-right">
                 <div class="content-right-top">
                     <a href="single.html">
@@ -106,9 +104,3 @@
         </div>
     </div>
 @endsection
-{{--@if ($abc=='bitch')--}}
-{{--I love {{$abc}}es--}}
-{{--@endif--}}
-{{--@foreach($orders as $order)--}}
-{{--{{$order}}--}}
-{{--@endforeach--}}

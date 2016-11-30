@@ -5,9 +5,9 @@
 @section('content')
     {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
     <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
-    <script src="/js/init.js"></script>
+    {!!Html::script('js/init.js')!!}
 
-    <div class="container" style="margin-top:35px">
+    <div class="container container_tmargin">
         <div class="content" >
             <div class="col-md-9 col-md-offset-2">
                 <h3>Write an Article</h3>
@@ -41,9 +41,7 @@
                     {!! Form::file('image', array('id' =>'file')) !!}
                     {!! Form::submit('Submit', array('class'=>'send-btn btn btn-success pull-right')) !!}
                 {!! Form::close() !!}
-                {{--</form>--}}
             </div>
-
         </div>
     </div>
 

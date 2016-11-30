@@ -3,13 +3,13 @@
 @section('pageTitle', 'Home')
 
 @section('content')
+    {!!Html::script('js/home.js')!!}
     <div ng-app="main" ng-controller="main" ng-cloak>
         <div class="container">
             <div class="header-bottom">
                 <div class="type">
                     <h5>Article Types</h5>
                 </div>
-                <span class="menu"></span>
                 <div class="list-nav">
                     <ul>
                         <li><a ng-click="loadData('Backend', 'true')">Backend</a></li>|
@@ -17,23 +17,7 @@
                         <li><a ng-click="loadData('Design', 'true')">Design</a></li>
                     </ul>
                     <!-- Left Side Of Navbar -->
-
                 </div>
-                <!-- script for menu -->
-                <script>
-                    $( "span.menu" ).click(function() {
-                        $( ".list-nav" ).slideToggle( "slow", function() {
-                            // Animation complete.
-                        });
-                    });
-
-                    function showPagination()
-                    {
-                        $('#pagi').css('display','block');
-                    }
-                    setTimeout(showPagination, 1500);
-                </script>
-                <!-- script for menu -->
 
                 <div class="clearfix"></div>
             </div>
@@ -48,11 +32,11 @@
                             <%blog._source.title%>
                         </a>
 
-                        <img class="blog-image" src="images/blog/<% blog._source.image ? blog._source.image : 'no-image.png'%>" alt="" />
+                        <img class="blog_image" src="images/blog/<% blog._source.image ? blog._source.image : 'no-image.png'%>" alt="" />
 
                         <p><%blog._source.description%></p>
-                        <div class="pull-right" style="margin-right: 10px"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
-                        <span style="margin-left: 30px"><%blog._source.created_at.date%></span>
+                        <div class="pull-right blog_views"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"> </span></div>
+                        <span class="blog_date"><%blog._source.created_at.date%></span>
                     </div>
 
                 </div>
@@ -72,8 +56,6 @@
                 <div class="clearfix"></div>
             </div>
             <uib-pagination ng-change="pageChanged()" ng-model="currentPage" total-items="totalItems" max-size="10" items-per-page="itemsPerPage" class="pagination-sm" boundary-link-numbers="true" id="pagi"></uib-pagination>
-
         </div>
     </div>
-
 @endsection

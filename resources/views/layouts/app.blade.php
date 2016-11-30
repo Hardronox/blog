@@ -39,7 +39,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <ul class="dropdown-menu" role="menu" style="text-align: center">
+                        <ul class="dropdown-menu layout_menu" role="menu">
                             <li><a href="{{ url('/create') }}">Write an article</a></li>
                             <li><a href="{{ url('/profile') }}">My Profile</a></li>
                             <li><a href="{{ url('/logout') }}">Logout</a></li>

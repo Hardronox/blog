@@ -157,7 +157,7 @@ label{
 .navigation {
 	float:right;
 }
-.blog-image
+.blog_image
 {
     margin-left: 30px;
     width:700px;
@@ -1485,4 +1485,59 @@ a[ng-click]
 .tbl_align
 {
     text-align: center;
+}
+.blog_views
+{
+    margin-right: 10px;
+}
+.blog_date
+{
+    margin-left: 30px;
+}
+.blog_create_container
+{
+    margin-top:35px;
+}
+.layout_menu
+{
+    text-align: center;
+}
+.profile_avatar
+{
+    float: left;
+}
+.modal_content
+{
+    width: 70%; margin-left:15%;
+}
+.profile_image
+{
+    margin-left: 36%;
+    width:150px;
+    height:150px;
+}
+.modal_height
+{
+    height: 40px;
+}
+.container_tmargin
+{
+    margin-top:35px;
+}
+.image_proportions
+{
+    width:150px;
+    height:150px;
+}
+.views_likes
+{
+    margin-top: 10px;
+}
+.views
+{
+    margin-right: 10px;
+}
+.likes_block
+{
+    margin-left: 30px;
 }

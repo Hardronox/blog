@@ -13,9 +13,9 @@
                         <th>Avatar</th>
                         <td>
                             @if (isset($user->profile->avatar))
-                                <img width="150px" height="150px" src="images/avatars/{{$user->profile->avatar}}" alt="">
+                                <img class="image_proportions" src="images/avatars/{{$user->profile->avatar}}" alt="">
                             @else
-                                <img width="150px" height="150px" src="images/avatars/no-image.png" alt="">
+                                <img class="image_proportions" src="images/avatars/no-image.png" alt="">
                             @endif
                         </td>
                     </tr>
@@ -59,17 +59,11 @@
                             <a id="delete" class="btn btn-danger" href="/delete-profile" >Delete Account</a>
                         </td>
                     </tr>
-
                 </table>
             </div>
-
         </div>
     </div>
 
     @include('partials/modal-profile-edit', ['user' => $user])
 
 @endsection
-
-{{--@foreach($orders as $order)--}}
-{{--{{$order}}--}}
-{{--@endforeach--}}

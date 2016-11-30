@@ -1,29 +1,23 @@
-<script type="text/javascript">
-    $(document).ready(function(){
-        $(".edit").click(function(){
-            $("#myModal").modal('show');
-        });
-    });
-</script>
+{!!Html::script('js/modal.js')!!}
 
 <!-- Modal edit-profile window -->
 <div id="myModal" class="modal fade">
     <div class="modal-dialog modal-lg" >
         <div class="modal-content">
-            <div style="width: 70%; margin-left:15%;">
+            <div class="modal_content">
                 <h3>Edit Profile</h3>
                 <br>
                 {!! Form::open(array('url'=>route('edit-profile'),'method'=>'POST', 'files'=>true)) !!}
 
-                <div style="float: left;">
+                <div class="profile_avatar">
                     {!! Form::label('file', 'Avatar') !!}
                     {!! Form::file('image', array('id' =>'file')) !!}
                 </div>
 
                 @if (isset($user->profile->avatar))
-                    <img width="150px" height="150px" style="margin-left: 36%;" src="images/avatars/{{$user->profile->avatar}}" alt="">
+                    <img class="profile_image" src="images/avatars/{{$user->profile->avatar}}" alt="">
                 @else
-                    <img width="150px" height="150px" style="margin-left: 36%;" src="images/avatars/no-image.png" alt="">
+                    <img class="profile_image" src="images/avatars/no-image.png" alt="">
                 @endif
 
                 <div class="form-group">
@@ -50,8 +44,8 @@
 
                 {!! Form::submit('Edit', array('class'=>'btn btn-success pull-right')) !!}
                 {!! Form::close() !!}
-                <div style="height: 40px;"></div>
-        </div>
+                <div class="modal_height"></div>
+            </div>
         </div>
     </div>
 </div>
