@@ -87,9 +87,7 @@ label{
 	background: #f7f7f7;
 	border-bottom:none;
 }
-.navigation {
-	margin-top:0.8em;
-}
+
 .navigation ul li {
 	display:inline-block;
 }
@@ -109,13 +107,15 @@ label{
 }
 .logo {
 	float:left;
+    padding-top: 7px;
+    margin-bottom: 10px;
 }
-.logo a h1 {
+.logo span
+{
     font-family: 'Antonio-Regular';
-	text-transform:uppercase;
-	color:#fff;
-	font-size:3em;
-	font-weight:400;
+    color:#fff;
+    font-size:3em;
+    font-weight:400;
 }
 .logo a {
 	text-decoration:none;
@@ -227,6 +227,9 @@ a.title {
     word-wrap: break-word;
 	border-bottom:1px solid #e6e6e6;
 	padding: 2.3em 1.5em 0 1.5em;
+}
+.home_a:hover{
+    text-decoration: none;
 }
 .editor h3 {
 	color: #282828;

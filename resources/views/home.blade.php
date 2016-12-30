@@ -28,7 +28,7 @@
                     <h5 class="head">recent</h5>
                     <div class="article" ng-repeat="blog in blogs">
                         <h6><%blog._source.category%> </h6>
-                        <a target="_self" class="title" href="/blog/<%blog._source.id%>">
+                        <a target="_self" class="title home_a" href="/blog/<%blog._source.id%>">
                             <%blog._source.title%>
                         </a>
 
@@ -43,7 +43,7 @@
                 <div class="col-md-5 content-right">
                     <h5 class="head">Popular</h5>
                     <div class="content-right-top" ng-repeat="popular in populars">
-                        <a target="_self" href="/blog/<%popular._source.id%>">
+                        <a target="_self" class="home_a" href="/blog/<%popular._source.id%>">
                             <div class="editor text-center">
                                 <h3><%popular._source.title%></h3>
                                 <p><%popular._source.description%></p>

@@ -21,7 +21,7 @@
                 <div class="form-group">
                     {!! Form::label('desc', 'Description') !!}
                     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="Not required field, if empty - little part of text will become a description"></span>
-                    {!! Form::textarea('desc', '', ['class'=>'form-control','id'=>'desc']) !!}
+                    {!! Form::textarea('desc', '', ['class'=>'form-control','id'=>'desc','rows'=>3]) !!}
                 </div>
 
                 <div class="form-group">

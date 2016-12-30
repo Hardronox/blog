@@ -19,7 +19,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <div class="logo">
-            <a href="{{ url('/') }}"><h1>Face2WEB</h1></a>
+           <span>Face2WEB</span></h1>
         </div>
         <div class="navigation">
 
