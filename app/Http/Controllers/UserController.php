@@ -24,7 +24,7 @@ class UserController extends Controller
 
         $user= User::with('profile')->find($user_id['id']);
 
-        return view('profile',['user'=>$user]);
+        return view('/site/profile',['user'=>$user]);
     }
 
 
@@ -37,7 +37,7 @@ class UserController extends Controller
 
         $blog=Blog::where('user_id','=',$user['id'])->orderBy('created_at','desc')->get();
 
-        return view('my-articles',['blogs'=>$blog]);
+        return view('/site/my-articles',['blogs'=>$blog]);
     }
 
     /**
@@ -98,7 +98,7 @@ class UserController extends Controller
                 return redirect('/profile');
             }
         }
-        return view('edit-profile',['user' => $user]);
+        return view('/site/edit-profile',['user' => $user]);
     }
 
 

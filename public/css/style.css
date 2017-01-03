@@ -1504,7 +1504,13 @@ a[ng-click]
 .layout_menu
 {
     text-align: center;
+    background: black;
 }
+.navbar-nav li a:hover
+{
+    background: #282828;
+}
+
 .profile_avatar
 {
     float: left;

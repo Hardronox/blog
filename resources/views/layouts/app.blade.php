@@ -2,16 +2,15 @@
 <html>
 <head>
     <title>@yield('pageTitle')</title>
-    <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' /><link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <link href="/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <script src="/js/js_modules/jquery.min.js"></script>
+    <script src="/js/js_modules/underscore-min.js"></script>
 
     <link rel="icon" type="image/png" href="/images/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Konstructs Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <meta name="keywords" content="Blog, WEB, WEB-Development, Frontend, Backend, Design" />
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 </head>
 <body>
@@ -19,7 +18,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <div class="header">
     <div class="container">
         <div class="logo">
-           <span>Face2WEB</span></h1>
+           <span>Face2WEB</span>
         </div>
         <div class="navigation">
 
@@ -65,11 +64,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
         <!-- JavaScripts -->
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>--}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
-<script src="/angular_modules/angular-ui-router/release/angular-ui-router.min.js"></script>
-<script src="/angular_modules/ui-bootstrap-tpls-1.2.5.min.js"></script>
+<script src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/js_modules/angular.min.js"></script>
+<script src="/js/js_modules/angular-ui-router.min.js"></script>
+<script src="/js/js_modules/ui-bootstrap-tpls-1.2.5.min.js"></script>
 <script src="/js/angular/main.module.js"></script>
 <script src="/js/angular/main.config.js"></script>
 <script src="/js/angular/main.controller.js"></script>

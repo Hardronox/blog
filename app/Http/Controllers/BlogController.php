@@ -22,7 +22,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('/site/home');
     }
 
     /**
@@ -84,7 +84,7 @@ class BlogController extends Controller
             }
         }
 
-        return view('create',['categories' =>ServiceController::getCategories()
+        return view('/site/create',['categories' =>ServiceController::getCategories()
         ]);
     }
 
@@ -133,7 +133,7 @@ class BlogController extends Controller
                 return redirect('/profile/articles');
             }
         }
-        return view('article-edit',[
+        return view('/site/article-edit',[
                                     'article' => $article,
                                     'categories' => ServiceController::getCategories()
 
