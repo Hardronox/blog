@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Http\Controllers\BlogController;
 
 class BlogsTableSeeder extends Seeder
 {
@@ -11,6 +12,15 @@ class BlogsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Blog::class, 20)->create();
+        factory(App\Models\Blog::class, 80)->create();
+
+
+        $ch = curl_init('http://127.0.0.1:9200/myblogs/');
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
+
+        curl_exec($ch);
+
+
+        BlogController::elastic();
     }
 }
