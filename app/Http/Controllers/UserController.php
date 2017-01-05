@@ -115,4 +115,13 @@ class UserController extends Controller
         flash('Your profile was deleted successfully!', 'success');
         return redirect('/');
     }
+
+    public function subscribe()
+    {
+        $user_id = Auth::user();
+
+
+        return view('site.profile');
+    }
+
 }

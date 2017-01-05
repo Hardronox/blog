@@ -4,7 +4,7 @@
 
 @section('content')
     {!!Html::script('js/site/likes.js')!!}
-    {!!Html::script('js/site/comments.js')!!}
+    {{--{!!Html::script('js/site/comments.js')!!}--}}
     <div class="container" >
         <div class="content">
             <div class="col-md-9 content-left">
@@ -34,40 +34,7 @@
                     </div>
                 </div>
 
-                <ul class="media-list">
-                    <div id="blog_view_comment_content" data-id="{{$blog->id}}">
-                        <script type="text/template" id="pageContent">
-                            <li class="media">
-                                <div id="m<%- comments.id %>">
-                                    <div class="media-left">
-                                        <% if (comments.commentAuthor.avatar !== "NULL") { %>
-                                        <img width="100px" height="100px" src="/images/avatar/thumb/<%= comments.commentAuthor.avatar %>"/>
-                                        <% } else { %>
-                                        <img width="100px" height="100px" src="/images/avatar/thumb/_no-image" />
-                                        <% } %>
-                                    </div>
-                                    <div class="media-body">
-                                        <a href=""><h5><%= comments.commentAuthor.firstname %> <%= comments.commentAuthor.lastname %></h5></a>
-                                        <p><%= comments.comment_text %></p>
-                                        <p><%= date %>
-                                            @if (Auth::guest())
-                                                <a class="a-hover pull-right">
-                                                    <span class="thumbs icon_wrap fa fa-thumbs-up likes"><%= likes %></span>
-                                                </a>
-                                            @else
-                                                <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.commentAuthor.firstname %>" onclick="answer(this)"><?=Yii::t('app','Answer')?> </a>
 
-                                                <a class="a-hover pull-right" onclick="like(this);" data-type="Comment" data-post="<%- comments.id %>">
-                                                    <span class="thumbs icon_wrap fa fa-thumbs-up likes"> <%= likes %></span>
-                                                </a>
-                                            @endif
-                                        </p>
-                                    </div>
-                                </div>
-                            </li>
-                        </script>
-                    </div>
-                </ul>
             </div>
 
 

@@ -82,6 +82,13 @@ angular.module('main').controller('main', function ($scope,$http, $log, $locatio
   $scope.pageChanged = function() {
     $location.search('page', $scope.currentPage);
     $scope.loadData($scope.category);
-  };
 
+    (function($) {
+      $(document).ready(function() {
+        $('html, body').animate({
+          'scrollTop': $('#top').offset().top
+        }, 1000);
+      });
+    })(jQuery);
+  };
 });

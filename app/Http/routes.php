@@ -1,8 +1,12 @@
 <?php
 
+
+
+
+
 Route::get('/', 'BlogController@index');
 
-Route::get('/blog/{id}', 'BlogController@articleView');
+Route::get('/blog/{id}', 'BlogController@articleView')->middleware('subscriber');
 
 
 Route::get('/elastic', 'BlogController@elastic');
@@ -10,6 +14,9 @@ Route::get('/elastic', 'BlogController@elastic');
 Route::get('/likes', 'ServiceController@likes');
 
 Route::get('/comments', 'ServiceController@showComments');
+
+Route::get('/article-permissions/{id}', 'BlogController@articlePermissions');
+
 
 
 Route::group(['middleware'=>'auth'], function()
@@ -33,6 +40,9 @@ Route::group(['middleware'=>'auth'], function()
     Route::get('/delete-profile', 'UserController@deleteProfile')->name('delete');
 
     Route::get('/profile/articles', 'UserController@myArticles');
+
+    Route::get('/subscribe', 'UserController@subscribe');
+
 });
 
 Route::auth();

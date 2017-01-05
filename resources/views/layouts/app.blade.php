@@ -15,7 +15,7 @@
 </head>
 <body>
 <!-- header-section-starts -->
-<div class="header">
+<div class="header" id="top">
     <div class="container">
         <div class="logo">
            <span>Face2WEB</span>

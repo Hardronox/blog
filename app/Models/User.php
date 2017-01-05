@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
-//use Zizaco\Entrust\Traits\EntrustUserTrait;
 /**
  * App\User
  *
@@ -54,13 +53,47 @@ class User extends Authenticatable
         });
     }
 
-
     public function blogs()
     {
         return $this->hasMany('App\Models\Blogs');
     }
+
     public function profile()
     {
         return $this->hasOne('App\Models\UsersProfile');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('App\Role', 'user_role', 'user_id', 'role_id');
+    }
+
+    public function hasAnyRole($roles)
+    {
+        if(is_array($roles))
+        {
+            foreach ($roles as $role) {
+                $this->hasRole($role);
+                return true;
+            }
+        }
+        else
+        {
+            if($this->hasRole($roles))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function hasRole($role)
+    {
+        if($this->roles()->where('name',$role)->first())
+        {
+            return true;
+        }
+        return false;
+    }
+
 }

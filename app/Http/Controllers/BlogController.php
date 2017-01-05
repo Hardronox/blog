@@ -34,7 +34,7 @@ class BlogController extends Controller
 
         ServiceController::views($blog);
 
-        return view('view',['blog'=>$blog, 'likes'=> sizeof($blog->likes)]);
+        return view('/site/view',['blog'=>$blog, 'likes'=> sizeof($blog->likes)]);
     }
 
     /**
@@ -201,6 +201,13 @@ class BlogController extends Controller
     /**
      *  adds all articles in elasticSearch
      */
+
+    public function articlePermissions($id)
+    {
+        $article=Blog::find($id);
+        return view('site.permission', ['article'=>$article]);
+    }
+
     public static function elastic()
     {
         $blogs=Blog::with('category')->get();

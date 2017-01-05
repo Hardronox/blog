@@ -1550,3 +1550,45 @@ a[ng-click]
 {
     margin-left: 30px;
 }
+.subscribe_button {
+    background-color: red; /* Green */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 22px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 3px;
+    border: 2px solid red;
+    width: 70%;
+    margin-top: 10%;
+}
+
+.subscribe_button:hover {
+    text-decoration: none;
+    background-color: white; /* Green */
+    color: black;
+    border: 2px solid red;
+}
+.payment_method
+{
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.payment_button
+{
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 22px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
+    border-radius: 3px;
+    width: 70%;
+    margin-top: 10%;
+}
