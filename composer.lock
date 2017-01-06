@@ -4,8 +4,51 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "aa64bfb701af6aed1eb5f33552a2ec0b",
+    "content-hash": "2f12f798f2b73368895459d825f18209",
     "packages": [
+        {
+            "name": "anouar/paypalpayment",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/xroot/laravel-paypalpayment.git",
+                "reference": "2ae00b500f935be5a6602add3a1b00820b42a981"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/xroot/laravel-paypalpayment/zipball/2ae00b500f935be5a6602add3a1b00820b42a981",
+                "reference": "2ae00b500f935be5a6602add3a1b00820b42a981",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "illuminate/support": "~5.0",
+                "paypal/rest-api-sdk-php": "1.3.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Anouar\\Paypalpayment": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Anouar Abdessalam",
+                    "email": "dtekind@gmail.com"
+                }
+            ],
+            "description": "laravel-paypalpayment is simple package help you process direct credit card payments, stored credit card payments and PayPal account payments with your L4 projects using paypal REST API SDK.",
+            "time": "2015-07-05T13:05:00+00:00"
+        },
         {
             "name": "barryvdh/laravel-ide-helper",
             "version": "v2.2.2",
@@ -174,51 +217,6 @@
                 "preload"
             ],
             "time": "2016-09-16T12:50:15+00:00"
-        },
-        {
-            "name": "dcn/rbac",
-            "version": "1.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/DynamicCodeNinja/RBAC.git",
-                "reference": "cd824530389b0ec58120d18b50cf0ca79ed755d5"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/DynamicCodeNinja/RBAC/zipball/cd824530389b0ec58120d18b50cf0ca79ed755d5",
-                "reference": "cd824530389b0ec58120d18b50cf0ca79ed755d5",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/support": "~5.0",
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "DCN\\RBAC": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Will G",
-                    "email": "willg@cloudmy.it"
-                }
-            ],
-            "description": "Powerful RBAC package for Laravel 5.1",
-            "keywords": [
-                "auth",
-                "illuminate",
-                "laravel",
-                "permissions",
-                "rbac",
-                "roles"
-            ],
-            "time": "2015-08-21T01:14:05+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1650,6 +1648,54 @@
                 "random"
             ],
             "time": "2016-03-18T20:34:03+00:00"
+        },
+        {
+            "name": "paypal/rest-api-sdk-php",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/paypal/PayPal-PHP-SDK.git",
+                "reference": "7f51b58b69d8f0cbba5c79b64dd9bef5ef6fc753"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/paypal/PayPal-PHP-SDK/zipball/7f51b58b69d8f0cbba5c79b64dd9bef5ef6fc753",
+                "reference": "7f51b58b69d8f0cbba5c79b64dd9bef5ef6fc753",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PayPal": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache2"
+            ],
+            "authors": [
+                {
+                    "name": "PayPal",
+                    "homepage": "https://github.com/paypal/rest-api-sdk-php/contributors"
+                }
+            ],
+            "description": "PayPal's PHP SDK for REST APIs",
+            "homepage": "https://github.com/paypal/rest-api-sdk-php",
+            "keywords": [
+                "payments",
+                "paypal",
+                "rest",
+                "sdk"
+            ],
+            "time": "2015-02-27T22:45:52+00:00"
         },
         {
             "name": "psr/log",

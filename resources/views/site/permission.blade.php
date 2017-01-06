@@ -6,52 +6,70 @@
     {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
     {!!Html::script('js/site/subscribe.js')!!}
 
-<div class="container blog_create_container">
-    <div class="content">
-        <div class="row">
-            <div class="col-md-5 col-md-offset-4">
-                <div style="text-align: center;margin-left: -28%;">
-                    <h3><a href="/blog/{{$article->id}}">{{$article->title}}</a><br> Article is available only for subscribers.</h3>
-                </div>
-                <button class="subscribe_button">Become a Subscriber!</button>
-            </div>
-        </div>
 
+    <div class="body-content">
+
+        <h3>Payment form</h3>
+        <form action="/payment" method="post">
+            <input class="btn btn-success" type="submit" value="Pay">
+        </form>
+
+    </div>
+
+
+<div class="container blog_create_container">
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+            <div class="msg_subcribers">
+                <h3><a href="/blog/{{$article->id}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
+            </div>
+            <button class="subscribe_button">Become a Subscriber!</button>
+        </div>
+    </div>
+
+    <div class="content" >
         <div class="row">
-            <div class="col-md-5 col-md-offset-4" >
-                <div style="text-align: center;margin-left: -28%; background-color: #00a7ff; color: white;">
+            <div class="col-md-7 col-md-offset-2" >
+                <div class="become_subscriber">
                     <h4>
                         Become a subscriber and level up your skills!
 
-                        As a premium subscriber you will have access to all videos, posts, books, and much more premium content.
+                        As a premium subscriber you will have access to all videos, posts, and much more premium content.
+                        <br>
                         Signup for only $10 a month.
                     </h4>
                     <h2 >Choose payment method:</h2>
-                    <div>
-                        <span style="color: black;">Credit card</span>
-                        <span style="color: black;">PayPal</span>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <div class="col-md-6" style="border-left:1px solid #00a7ff; border-bottom:1px solid #00a7ff;">
-                            <div class="payment_method" data-type="card">
-
-                                <img width="250px" height="250px"  src="/images/credit_card.jpg" alt="">
-                            </div>
-                        </div>
-                        <div class="col-md-6 " style="border-right:1px solid #00a7ff; border-bottom:1px solid #00a7ff;">
-                            <div class="payment_method" data-type="paypal">
-                                <img width="250px" height="250px" src="/images/paypal_logo.png" alt="">
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
-                <div style="height: 150px; background-color: gainsboro">
-                    <a class="btn btn-success payment_button" href="#">Proceed to Payment!</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-md-offset-2" >
+                <div class="col-md-6 card_payment" >
+                    <div class="payment_method" data-type="card">
+                        <div class="payment_name">Credit card</div>
+                        <img width="250px" height="250px"  src="/images/credit_card.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 paypal_payment" >
+                    <div class="payment_method" data-type="paypal">
+                        <div class="payment_name">PayPal</div>
+                        <img width="250px" height="250px" src="/images/paypal_logo.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row" >
+                <div class="col-md-7 col-md-offset-2 " >
+                    <div class="panel_footer">
+                        <a class="btn btn-success payment_button" href="#">Proceed to Payment!</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
+{{-- client id        AZxoAZkS8ArNrjQO_8Od8Nzfi7kLn0eWM80eO6taCWI4NFpEFBHRD0mJ5URRnGIqgH8FR-yhnakpCxMB
+
+        secret       EFCPnVKwSXKGU7dUNFV9mWzgBYqIBwc3Vi8uy6injMXvsXwzcpXCNCjpWjsFoAWmWwwOuroPM2K13zsg
+  --}}
