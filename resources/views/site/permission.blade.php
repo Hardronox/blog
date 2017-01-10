@@ -6,17 +6,6 @@
     {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
     {!!Html::script('js/site/subscribe.js')!!}
 
-
-    <div class="body-content">
-
-        <h3>Payment form</h3>
-        <form action="/payment" method="post">
-            <input class="btn btn-success" type="submit" value="Pay">
-        </form>
-
-    </div>
-
-
 <div class="container blog_create_container">
     <div class="row">
         <div class="col-md-7 col-md-offset-2">
@@ -61,15 +50,12 @@
             <div class="row" >
                 <div class="col-md-7 col-md-offset-2 " >
                     <div class="panel_footer">
-                        <a class="btn btn-success payment_button" href="#">Proceed to Payment!</a>
+                        <form action="/payment" method="post">
+                            <input class="btn btn-success payment_button" type="submit" value="Proceed to Payment!" disabled="true">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-{{-- client id        AZxoAZkS8ArNrjQO_8Od8Nzfi7kLn0eWM80eO6taCWI4NFpEFBHRD0mJ5URRnGIqgH8FR-yhnakpCxMB
-
-        secret       EFCPnVKwSXKGU7dUNFV9mWzgBYqIBwc3Vi8uy6injMXvsXwzcpXCNCjpWjsFoAWmWwwOuroPM2K13zsg
-  --}}

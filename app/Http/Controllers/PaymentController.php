@@ -2,227 +2,194 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
 use PayPal\Api\Amount;
 use PayPal\Api\Details;
+use PayPal\Api\FundingInstrument;
+use PayPal\Api\InputFields;
 use PayPal\Api\Item;
 use PayPal\Api\ItemList;
 use PayPal\Api\Payer;
+use PayPal\Api\PayerInfo;
 use PayPal\Api\Payment;
+use PayPal\Api\PaymentCard;
 use PayPal\Api\RedirectUrls;
+use PayPal\Api\ShippingAddress;
 use PayPal\Api\Transaction;
+use PayPal\Api\WebProfile;
 use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Exception\PayPalConnectionException;
 use PayPal\Rest\ApiContext;
 
 class PaymentController extends Controller
 {
-    private $_apiContext;
-
-    /**
-     * Set the ClientId and the ClientSecret.
-     * @param
-     *string $_ClientId
-     *string $_ClientSecret
-     */
-    private $_ClientId='AZxoAZkS8ArNrjQO_8Od8Nzfi7kLn0eWM80eO6taCWI4NFpEFBHRD0mJ5URRnGIqgH8FR-yhnakpCxMB';
-    private $_ClientSecret='EFCPnVKwSXKGU7dUNFV9mWzgBYqIBwc3Vi8uy6injMXvsXwzcpXCNCjpWjsFoAWmWwwOuroPM2K13zsg';
-
-    /*
-     *   These construct set the SDK configuration dynamiclly,
-     *   If you want to pick your configuration from the sdk_config.ini file
-     *   make sure to update you configuration there then grape the credentials using this code :
-     *   $this->_cred= Paypalpayment::OAuthTokenCredential();
-    */
-    public function __construct()
-    {
-
-        // ### Api Context
-        // Pass in a `ApiContext` object to authenticate
-        // the call. You can also send a unique request id
-        // (that ensures idempotency). The SDK generates
-        // a request id if you do not pass one explicitly.
-
-        //$this->_apiContext = Paypalpayment::apiContext($this->_ClientId, $this->_ClientSecret);
-
-    }
-
-    /*
-   * Display form to process payment using credit card
-   */
-    public function create()
-    {
-        return View::make('payment.order');
-    }
-
-    /*
-    * Process payment using credit card
-    */
-//    public function store()
-//    {
-//        // ### Address
-//        // Base Address object used as shipping or billing
-//        // address in a payment. [Optional]
-//        $addr= Paypalpayment::address();
-//        $addr->setLine1("3909 Witmer Road");
-//        $addr->setLine2("Niagara Falls");
-//        $addr->setCity("Niagara Falls");
-//        $addr->setState("NY");
-//        $addr->setPostalCode("14305");
-//        $addr->setCountryCode("US");
-//        $addr->setPhone("716-298-1822");
-//
-//        // ### CreditCard
-//        $card = Paypalpayment::creditCard();
-//        $card->setType("visa")
-//            ->setNumber("4758411877817150")
-//            ->setExpireMonth("05")
-//            ->setExpireYear("2019")
-//            ->setCvv2("456")
-//            ->setFirstName("Joe")
-//            ->setLastName("Shopper");
-//
-//        // ### FundingInstrument
-//        // A resource representing a Payer's funding instrument.
-//        // Use a Payer ID (A unique identifier of the payer generated
-//        // and provided by the facilitator. This is required when
-//        // creating or using a tokenized funding instrument)
-//        // and the `CreditCardDetails`
-//        $fi = Paypalpayment::fundingInstrument();
-//        $fi->setCreditCard($card);
-//
-//        // ### Payer
-//        // A resource representing a Payer that funds a payment
-//        // Use the List of `FundingInstrument` and the Payment Method
-//        // as 'credit_card'
-//        $payer = Paypalpayment::payer();
-//        $payer->setPaymentMethod("credit_card")
-//            ->setFundingInstruments(array($fi));
-//
-//        $item1 = Paypalpayment::item();
-//        $item1->setName('Ground Coffee 40 oz')
-//            ->setDescription('Ground Coffee 40 oz')
-//            ->setCurrency('USD')
-//            ->setQuantity(1)
-//            ->setTax(0.3)
-//            ->setPrice(7.50);
-//
-//        $item2 = Paypalpayment::item();
-//        $item2->setName('Granola bars')
-//            ->setDescription('Granola Bars with Peanuts')
-//            ->setCurrency('USD')
-//            ->setQuantity(5)
-//            ->setTax(0.2)
-//            ->setPrice(2);
-//
-//
-//        $itemList = Paypalpayment::itemList();
-//        $itemList->setItems(array($item1,$item2));
-//
-//
-//        $details = Paypalpayment::details();
-//        $details->setShipping("1.2")
-//            ->setTax("1.3")
-//            //total of items prices
-//            ->setSubtotal("17.5");
-//
-//        //Payment Amount
-//        $amount = Paypalpayment::amount();
-//        $amount->setCurrency("USD")
-//            // the total is $17.8 = (16 + 0.6) * 1 ( of quantity) + 1.2 ( of Shipping).
-//            ->setTotal("20")
-//            ->setDetails($details);
-//
-//        // ### Transaction
-//        // A transaction defines the contract of a
-//        // payment - what is the payment for and who
-//        // is fulfilling it. Transaction is created with
-//        // a `Payee` and `Amount` types
-//
-//        $transaction = Paypalpayment::transaction();
-//        $transaction->setAmount($amount)
-//            ->setItemList($itemList)
-//            ->setDescription("Payment description")
-//            ->setInvoiceNumber(uniqid());
-//
-//        // ### Payment
-//        // A Payment Resource; create one using
-//        // the above types and intent as 'sale'
-//
-//        $payment = Paypalpayment::payment();
-//
-//        $payment->setIntent("sale")
-//            ->setPayer($payer)
-//            ->setTransactions(array($transaction));
-//
-//        try {
-//            // ### Create Payment
-//            // Create a payment by posting to the APIService
-//            // using a valid ApiContext
-//            // The return object contains the status;
-//            $payment->create($this->_apiContext);
-//        } catch (\PPConnectionException $ex) {
-//            return  "Exception: " . $ex->getMessage() . PHP_EOL;
-//            exit(1);
-//        }
-//
-//        dd($payment);
-//    }
-
-    public function store()
+    public function paypal()
     {
         define('SITE_URL', 'http://localhost:8000/');
-        $paypal= new ApiContext(new OAuthTokenCredential(
+        $paypal = new ApiContext(new OAuthTokenCredential(
             'AZxoAZkS8ArNrjQO_8Od8Nzfi7kLn0eWM80eO6taCWI4NFpEFBHRD0mJ5URRnGIqgH8FR-yhnakpCxMB',
             'EFCPnVKwSXKGU7dUNFV9mWzgBYqIBwc3Vi8uy6injMXvsXwzcpXCNCjpWjsFoAWmWwwOuroPM2K13zsg'));
 
-//        if (!isset($_POST['product'], $_POST['price'])){
-//            die();
-//        }
-        $product= "subscribe";
-        $price=10;
-        $shipping=0;
-        $total=$price + $shipping;
-        $payer= new Payer();
+        $product = "subscribe";
+        $price = 10;
+        $total = $price;
+
+
+        $payer = new Payer();
         $payer->setPaymentMethod('paypal');
-        $item= new Item();
+
+
+        $item = new Item();
         $item->setName($product)
-            ->setCurrency('EUR')
+            ->setCurrency('USD')
             ->setQuantity(1)
             ->setPrice($price);
-        $itemList= new ItemList();
+
+        $itemList = new ItemList();
         $itemList->setItems([$item]);
-        $details= new Details();
-        $details->setShipping($shipping)
-            ->setSubtotal($price);
-        $amount= new Amount();
-        $amount->setCurrency('EUR')
+
+        $details = new Details();
+        $details->setSubtotal($price);
+
+        $amount = new Amount();
+        $amount->setCurrency('USD')
             ->setTotal($total)
             ->setDetails($details);
+
         $transaction = new Transaction();
         $transaction->setAmount($amount)
             ->setItemList($itemList)
             ->setDescription('PayForSmth')
             ->setInvoiceNumber(uniqid());
-        $redirectUrls= new RedirectUrls();
-        $redirectUrls->setReturnUrl(SITE_URL)
+
+        $redirectUrls = new RedirectUrls();
+        $redirectUrls->setReturnUrl(SITE_URL.'payment/success')
             ->setCancelUrl(SITE_URL . 'site/pay?success=false');
-        $payment= new Payment();
+
+        $payment = new Payment();
         $payment->setIntent('sale')
             ->setPayer($payer)
             ->setRedirectUrls($redirectUrls)
             ->setTransactions([$transaction]);
-        try
-        {
+        try {
             $payment->create($paypal);
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e) {
             die($e);
         }
-        $approvalUrl= $payment->getApprovalLink();
+        $approvalUrl = $payment->getApprovalLink();
         return redirect($approvalUrl);
     }
 
+    public function card()
+    {
+        $paypal = new ApiContext(new OAuthTokenCredential(
+            'AZxoAZkS8ArNrjQO_8Od8Nzfi7kLn0eWM80eO6taCWI4NFpEFBHRD0mJ5URRnGIqgH8FR-yhnakpCxMB',
+            'EFCPnVKwSXKGU7dUNFV9mWzgBYqIBwc3Vi8uy6injMXvsXwzcpXCNCjpWjsFoAWmWwwOuroPM2K13zsg'));
 
+        // ### PaymentCard
+// A resource representing a payment card that can be
+// used to fund a payment.
+        $card = new PaymentCard();
+        $card->setType("visa")
+            ->setNumber("4024007123477282")
+            ->setExpireMonth("11")
+            ->setExpireYear("2019")
+            ->setCvv2("012")
+            ->setFirstName("Joe")
+            ->setBillingCountry("US")
+            ->setLastName("Shopper");
+// ### FundingInstrument
+// A resource representing a Payer's funding instrument.
+// For direct credit card payments, set the CreditCard
+// field on this object.
+        $fi = new FundingInstrument();
+        $fi->setPaymentCard($card);
+// ### Payer
+// A resource representing a Payer that funds a payment
+// For direct credit card payments, set payment method
+// to 'credit_card' and add an array of funding instruments.
+        $payer = new Payer();
+        $payer->setPaymentMethod("credit_card")
+            ->setFundingInstruments(array($fi));
+// ### Itemized information
+// (Optional) Lets you specify item wise
+// information
+        $item1 = new Item();
+        $item1->setName('Ground Coffee 40 oz')
+            ->setDescription('Ground Coffee 40 oz')
+            ->setCurrency('USD')
+            ->setQuantity(1)
+            ->setPrice(10);
+
+        $itemList = new ItemList();
+        $itemList->setItems([$item1]);
+// ### Additional payment details
+// Use this optional field to set additional
+// payment information such as tax, shipping
+// charges etc.
+        $details = new Details();
+        $details->setSubtotal(10);
+// ### Amount
+// Lets you specify a payment amount.
+// You can also specify additional details
+// such as shipping, tax.
+        $amount = new Amount();
+        $amount->setCurrency("USD")
+            ->setTotal(10)
+            ->setDetails($details);
+// ### Transaction
+// A transaction defines the contract of a
+// payment - what is the payment for and who
+// is fulfilling it.
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($itemList)
+            ->setDescription("Payment description")
+            ->setInvoiceNumber(uniqid());
+// ### Payment
+// A Payment Resource; create one using
+// the above types and intent set to sale 'sale'
+        $payment = new Payment();
+        $payment->setIntent("sale")
+            ->setPayer($payer)
+            ->setTransactions(array($transaction));
+// For Sample Purposes Only.
+        $request = clone $payment;
+// ### Create Payment
+// Create a payment by calling the payment->create() method
+// with a valid ApiContext (See bootstrap.php for more on `ApiContext`)
+// The return object contains the state.
+        try {
+            $payment->create($paypal);
+        } catch (PayPalConnectionException $ex) {
+            var_dump(json_decode($ex->getData()));
+            exit(1);
+        }
+// NOTE: PLEASE DO NOT USE RESULTPRINTER CLASS IN YOUR ORIGINAL CODE. FOR SAMPLE ONLY
+        //\ResultPrinter::printResult('Create Payment Using Credit Card', 'Payment', $payment->getId(), $request, $payment);
+        //return $payment;
+    }
+
+
+    public function successPayment(Request $request)
+    {
+        $article_id = $request->session()->get('article_id');
+
+        $user = Auth::user();
+
+        if(!$user->hasRole('subscriber'))
+        {
+            $user->roles()->attach(2);
+        }
+        else
+            return redirect("/blog/$article_id");
+
+
+        $article=Blog::find(intval($article_id));
+
+        return view('site.success-payment', ['article'=>$article]);
+    }
 }

@@ -14,6 +14,10 @@ $(document).on('click', '.payment_method', function(){
   $('.payment_method').css('border','2px solid white');
   $(this).css({'border':'2px solid orange', 'border-radius':'5px'});
 
-  $('.payment_button').attr('href','/payment/'+type)
+
+  $('.payment_button').prop("disabled", false);
+
+
+  $('.payment_button').parents('form:first').attr('action','/payment/'+type);
 
 });

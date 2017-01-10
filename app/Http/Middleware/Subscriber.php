@@ -17,15 +17,14 @@ class Subscriber
      */
     public function handle($request, Closure $next)
     {
-
         $id=$request->route('id');
-        $paid=Blog::find($id);
+        $article=Blog::find($id);
 
-        if(intval($paid->paid_content)===1)
+        if(intval($article->premium_content)===1)
         {
             if (!$user = Auth::user())
             {
-                return redirect("/article-permissions/$id");
+                return redirect("/login");
             }
             else
             {

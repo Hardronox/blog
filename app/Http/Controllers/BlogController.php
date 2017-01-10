@@ -7,7 +7,7 @@ use App\Models\Blog;
 use App\Models\BlogCategory;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
-use Request;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -202,9 +202,11 @@ class BlogController extends Controller
      *  adds all articles in elasticSearch
      */
 
-    public function articlePermissions($id)
+    public function articlePermissions(Request $request, $id)
     {
         $article=Blog::find($id);
+        $request->session()->put('article_id', $article->id);
+
         return view('site.permission', ['article'=>$article]);
     }
 

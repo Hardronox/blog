@@ -17,11 +17,6 @@ Route::get('/comments', 'ServiceController@showComments');
 
 Route::get('/article-permissions/{id}', 'BlogController@articlePermissions');
 
-Route::resource('/payment','PaymentController');
-
-Route::post('/create', 'BlogController@articleCreate')->name('create-article');
-
-
 
 Route::group(['middleware'=>'auth'], function()
 {
@@ -46,6 +41,13 @@ Route::group(['middleware'=>'auth'], function()
     Route::get('/profile/articles', 'UserController@myArticles');
 
     Route::get('/subscribe', 'UserController@subscribe');
+
+    Route::post('/payment/paypal', 'PaymentController@paypal');
+
+    Route::post('/payment/card', 'PaymentController@card');
+
+    Route::get('/payment/success', 'PaymentController@successPayment');
+
 
 });
 

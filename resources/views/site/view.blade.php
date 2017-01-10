@@ -13,7 +13,7 @@
                     <a class="title">
                         {{$blog->title}}
                     </a>
-                    <img class="blog-image"  src="/images/blog/{{$blog->image ? $blog->image : 'no-image.png'}}" alt="" />
+                    <img class="blog-image" height="300px" src="/images/blog/{{$blog->image ? $blog->image : 'no-image.png'}}" alt="" />
                     <p>{{$blog->text}}</p>
                     <div class="views_likes">
                         <div class="pull-right views">
