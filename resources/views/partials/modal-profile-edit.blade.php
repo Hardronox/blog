@@ -1,4 +1,4 @@
-{!!Html::script('js/modal.js')!!}
+{!!Html::script('js/site/modal.js')!!}
 
 <!-- Modal edit-profile window -->
 <div id="myModal" class="modal fade">

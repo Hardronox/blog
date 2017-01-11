@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Elasticsearch\ClientBuilder;
 
 
-class Blog extends Model
+class Articles extends Model
 {
     protected $fillable = ['title', 'text', 'description', 'category_id','image'];
 
@@ -15,7 +15,7 @@ class Blog extends Model
      */
     public function category()
     {
-        return $this->hasOne('App\Models\BlogCategory','id', 'category_id');
+        return $this->hasOne('App\Models\ArticleCategory','id', 'category_id');
     }
 
     public function likes()

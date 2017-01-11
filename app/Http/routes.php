@@ -13,7 +13,7 @@ Route::get('/elastic', 'BlogController@elastic');
 
 Route::get('/likes', 'ServiceController@likes');
 
-Route::get('/comments', 'ServiceController@showComments');
+Route::post('/comments', 'ServiceController@showComments');
 
 Route::get('/article-permissions/{id}', 'BlogController@articlePermissions');
 

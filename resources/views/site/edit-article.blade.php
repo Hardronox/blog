@@ -3,8 +3,7 @@
 @section('pageTitle', 'Edit an Article')
 
 @section('content')
-    {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    {!!Html::script('/js/vendor/tinymce/js/tinymce/tinymce.min.js')!!}
     {!!Html::script('js/site/init.js')!!}
 
     <div class="container container_tmargin">
@@ -20,7 +19,7 @@
 
                     <div class="form-group">
                         {!! Form::label('desc', 'Description') !!}
-                        {!! Form::textarea('desc', $article['description'], ['class'=>'form-control','id'=>'desc']) !!}
+                        {!! Form::textarea('desc', $article['description'], ['class'=>'form-control','id'=>'desc','rows'=>3]) !!}
                     </div>
 
                     <div class="form-group">

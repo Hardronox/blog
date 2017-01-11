@@ -13,6 +13,11 @@ class Comments extends Model
 
     public function likes()
     {
-        return $this->hasMany('App\Models\Likes','type_id', 'id')->where('type','=','Blog');
+        return $this->hasMany('App\Models\Likes','type_id', 'id')->where('type','=','Comment');
+    }
+
+    public function commentAuthor()
+    {
+        return $this->hasOne('App\Models\UsersProfile','user_id', 'user_id');
     }
 }

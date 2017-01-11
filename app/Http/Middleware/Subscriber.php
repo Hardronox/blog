@@ -2,7 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Models\Blog;
+use App\Models\Articles;
 use Illuminate\Support\Facades\Auth;
 use Closure;
 
@@ -18,7 +18,7 @@ class Subscriber
     public function handle($request, Closure $next)
     {
         $id=$request->route('id');
-        $article=Blog::find($id);
+        $article=Articles::find($id);
 
         if(intval($article->premium_content)===1)
         {

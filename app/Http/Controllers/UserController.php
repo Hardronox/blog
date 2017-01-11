@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use App\Models\Blog;
+use App\Models\Articles;
 use App\Models\User;
 use App\Models\UsersProfile;
 use Illuminate\Support\Facades\Auth;
@@ -35,7 +35,7 @@ class UserController extends Controller
     {
         $user= Auth::user();
 
-        $blog=Blog::where('user_id','=',$user['id'])->orderBy('created_at','desc')->get();
+        $blog=Articles::where('user_id','=',$user['id'])->orderBy('created_at','desc')->get();
 
         return view('/site/my-articles',['blogs'=>$blog]);
     }

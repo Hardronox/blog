@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\BlogCategory;
+use App\Models\Articles;
+use App\Models\ArticleCategory;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class BlogController extends Controller
      */
     public function articleView($id)
     {
-        $blog=Blog::with('likes')->find($id);
+        $blog=Articles::with('likes')->find($id);
 
         ServiceController::views($blog);
 
@@ -45,7 +45,7 @@ class BlogController extends Controller
         if (!empty($_POST))
         {
             $user = Auth::user();
-            $blog= new Blog();
+            $blog= new Articles();
 
             $blog->user_id=$user['id'];
             $blog->title=$_POST['title'];
@@ -84,7 +84,7 @@ class BlogController extends Controller
             }
         }
 
-        return view('/site/create',['categories' =>ServiceController::getCategories()
+        return view('/site/write-article',['categories' =>ServiceController::getCategories()
         ]);
     }
 
@@ -93,7 +93,7 @@ class BlogController extends Controller
      */
     public function articleEdit($id)
     {
-        $article= Blog::find($id);
+        $article= Articles::find($id);
 
         if (!empty($_POST))
         {
@@ -123,17 +123,17 @@ class BlogController extends Controller
                 }
 
 
-                Blog::find($id)
+                Articles::find($id)
                     ->update($array_to_update);
 
-                Blog::editElastic($id, $_POST, $fileName);
+                Articles::editElastic($id, $_POST, $fileName);
 
 
                 flash('Your Article was edited successfully!', 'success');
                 return redirect('/profile/articles');
             }
         }
-        return view('/site/article-edit',[
+        return view('/site/edit-article',[
                                     'article' => $article,
                                     'categories' => ServiceController::getCategories()
 
@@ -145,9 +145,9 @@ class BlogController extends Controller
      */
     public function articleStatus()
     {
-        if (Request::ajax())
+        if (\Illuminate\Support\Facades\Request::ajax())
         {
-            $article = Blog::find($_GET['id']);
+            $article = Articles::find($_GET['id']);
             $user = Auth::user();
 
             if ($article['user_id'] == $user['id'])
@@ -172,7 +172,7 @@ class BlogController extends Controller
      */
     public function articleDelete($id)
     {
-        $article= Blog::find($id);
+        $article= Articles::find($id);
         $user = Auth::user();
 
         if ($article['user_id']==$user['id'])
@@ -204,7 +204,7 @@ class BlogController extends Controller
 
     public function articlePermissions(Request $request, $id)
     {
-        $article=Blog::find($id);
+        $article=Articles::find($id);
         $request->session()->put('article_id', $article->id);
 
         return view('site.permission', ['article'=>$article]);
@@ -212,7 +212,7 @@ class BlogController extends Controller
 
     public static function elastic()
     {
-        $blogs=Blog::with('category')->get();
+        $blogs=Articles::with('category')->get();
 
         foreach ($blogs as $blog) {
             ServiceController::uploadToElastic($blog);

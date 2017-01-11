@@ -3,8 +3,7 @@
 @section('pageTitle', 'Write an Article')
 
 @section('content')
-    {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
-    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    {!!Html::script('/js/vendor/tinymce/js/tinymce/tinymce.min.js')!!}
     {!!Html::script('js/site/init.js')!!}
 
     <div class="container blog_create_container">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Blog;
+use App\Models\Articles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests;
@@ -76,7 +76,7 @@ class PaymentController extends Controller
             ->setTransactions([$transaction]);
         try {
             $payment->create($paypal);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             die($e);
         }
         $approvalUrl = $payment->getApprovalLink();
@@ -188,7 +188,7 @@ class PaymentController extends Controller
             return redirect("/blog/$article_id");
 
 
-        $article=Blog::find(intval($article_id));
+        $article=Articles::find(intval($article_id));
 
         return view('site.success-payment', ['article'=>$article]);
     }

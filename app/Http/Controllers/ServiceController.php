@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
-use App\Models\BlogCategory;
+use App\Models\ArticleCategory;
+use App\Models\Articles;
 use App\Models\Comments;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
+use Illuminate\Support\Facades\DB;
 use Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -53,40 +54,49 @@ class ServiceController extends Controller
     {
         if (Request::ajax())
         {
-            $user = Auth::user();
+//            $user = Auth::user();
+//
+//            $type=$_GET['type'];
+//            $type_id=intval($_GET['id']);
+//            $user_id=$user['id'];
+//            $results = DB::select("select type_id from likes where type='$type' AND type_id=$type_id AND user_id=$user_id");
 
-            $likes=Likes::where(
-                [
-                    ['type','=',$_GET['type']],
-                    ['type_id','=',$_GET['id']],
-                    ['user_id','=',$user['id']]
-                ])->get();
+//            var_dump('<pre>', $results, '</pre>');
+//            exit;
+//
+//            $likes=Likes::where(
+//                [
+//                    ['type','=',$_GET['type']],
+//                    ['type_id','=',$_GET['id']],
+//                    ['user_id','=',$user['id']]
+//                ])->first();
+//
+////            var_dump('<pre>', $likes, '</pre>');
+////            exit;
+//
+//            if ($likes===NULL)
+//            {
+//                $like= new Likes();
+//                $like->type=$_GET['type'];
+//                $like->type_id=$_GET['id'];
+//                $like->user_id=$user['id'];
+//                $like->save();
+//            }
+//            else
+//            {
+//                $likes->delete();
+//            }
+//
+//            $likes = Likes::where(
+//                [
+//                    ['type','=',$_GET['type']],
+//                    ['type_id','=',$_GET['id']]
+//                ])->count();
 
-            if (sizeof($likes)===0)
-            {
-                $like= new Likes();
-                $like->type=$_GET['type'];
-                $like->type_id=$_GET['id'];
-                $like->user_id=$user['id'];
-                $like->save();
-            }
-            else
-            {
-                Likes::where(
-                [
-                    ['type','=',$_GET['type']],
-                    ['type_id','=',$_GET['id']],
-                    ['user_id','=',$user['id']]
-                ])->delete();
-            }
 
-            $likes = Likes::where(
-                [
-                    ['type','=',$_GET['type']],
-                    ['type_id','=',$_GET['id']]
-                ])->count();
 
-            return $likes;
+
+            return rand(0,2);
         }
     }
 
@@ -99,7 +109,7 @@ class ServiceController extends Controller
     {
         $categoriesSelect=[];
 
-        $categoryDb= BlogCategory::get(['name'])->toArray();
+        $categoryDb= ArticleCategory::get(['name'])->toArray();
 
         $category=array_flatten($categoryDb);
 
@@ -117,7 +127,7 @@ class ServiceController extends Controller
     {
         if (Request::ajax())
         {
-            $comments = Comments::where('blog_id','=',$_POST['blog_id'])
+            $comments = Comments::with(['commentAuthor','likes'])->where('blog_id','=',$_POST['article_id'])
                                 ->orderBy('created_at', 'asc')->get();
 
             return $comments;
