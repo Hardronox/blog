@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comments extends Model
 {
+    const UPDATED_AT = NULL;
+    const CREATED_AT = NULL;
+
+
     public function category()
     {
         return $this->hasOne('App\Models\BlogCategory','id', 'category_id');
@@ -18,6 +22,6 @@ class Comments extends Model
 
     public function commentAuthor()
     {
-        return $this->hasOne('App\Models\UsersProfile','user_id', 'user_id');
+        return $this->hasOne('App\Models\UsersProfile','user_id', 'author_id');
     }
 }

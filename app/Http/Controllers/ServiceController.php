@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 
 class ServiceController extends Controller
 {
@@ -121,13 +122,13 @@ class ServiceController extends Controller
 
 
     /**
-     * on page load, by ajax shows comments of users if exists (unfinished)
+     * on page load, by ajax shows comments of users if exists
      */
     public function showComments()
     {
         if (Request::ajax())
         {
-            $comments = Comments::with(['commentAuthor','likes'])->where('blog_id','=',$_POST['article_id'])
+            $comments = Comments::with(['commentAuthor','likes'])->where('article_id','=',$_POST['article_id'])
                                 ->orderBy('created_at', 'asc')->get();
 
             return $comments;
@@ -135,33 +136,24 @@ class ServiceController extends Controller
     }
 
     /**
-     * onclick saves comment by ajax and shows it (unfinished)
+     * onclick saves comment by ajax and shows it
      */
-    public function actionSaveComment()
+    public function saveComment()
     {
         if (Request::ajax())
         {
-            $post = Yii::$app->request->post();
-            if (isset($post['text']))
-            {
-                $model = new Comment();
-                $model->comment_text=$post['text'];
-                $model->owner_name=$post['type'];
-                $model->owner_id=$post['id'];
-                $model->creator_id=Yii::$app->user->id;
-                $model->created_at=mktime();
-                $model->save();
-            }
+            $user = Auth::user();
 
-            $comments = Comment::find()->where(['id'=>$model->id])
-                ->andWhere(['owner_id'=>$post['id']]);
+            $comment = new Comments();
+            $comment->comment_text=$_POST['text'];
+            $comment->article_id=$_POST['id'];
+            $comment->author_id=$user['id'];
+            $comment->created_at=Carbon::now('Europe/Kiev');
+            $comment->save();
 
-            $comment = $comments
-                ->with(['likes','commentAuthor'])
-                ->asArray()
-                ->one();
+            $response_comment = Comments::with(['commentAuthor','likes'])->where('id','=',$comment->id)->first();
 
-            return $comment;
+            return $response_comment;
         }
     }
 

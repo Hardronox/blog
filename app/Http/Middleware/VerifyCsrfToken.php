@@ -14,6 +14,8 @@ class VerifyCsrfToken extends BaseVerifier
     protected $except = [
         '/payment/paypal',
         '/payment/card',
-        '/comments'
+        '/comments',
+        '/comment-save'
+
     ];
 }

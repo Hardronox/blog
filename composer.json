@@ -14,7 +14,8 @@
         "laravelcollective/html": "~5.0",
         "laracasts/flash": "^2.0",
         "elasticsearch/elasticsearch": "~2.0",
-        "anouar/paypalpayment": "~1.0"
+        "anouar/paypalpayment": "~1.0",
+        "stripe/stripe-php": "^4.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

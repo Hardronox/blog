@@ -1,11 +1,9 @@
-$(function(){
-
-  var templates = _.template($('#pageContent').html());
-  var text=$('#comment_text');
-  var url = $(location).attr('href').split("/");
+var text=$('#comment_text');
+var url = $(location).attr('href').split("/");
 
   $(document).ready(function()
   {
+
     $.post('/comments',
       {
         article_id: url[4]
@@ -19,37 +17,14 @@ $(function(){
       });
   });
 
-  function saveComment()
-  {
 
-    if (text.val() !=0)
-    {
-      $.post('/service/save-comment',
-        {
-          id: id,
-          text: text.val()
-        },
-        function (response) {
-          response_partial(response);
 
-        }, 'json');
-    }
-    else return false;
-    text.val('');
-  }
 
-  function response_partial(server_answer)
-  {
-    //функция из moment js
-    var likes =server_answer.likes.length;
-
-    $('#blog_view_comment_content').append(templates({comments:server_answer,likes: likes}));
-
-  }
 
   function answer(elem) //онклик на кнопку: Ответить
   {
     var name=$(elem).data('name');
+
     $('html, body').animate({
       scrollTop: text.offset().top
     }, 800);
@@ -63,4 +38,33 @@ $(function(){
       $('#comment_text').val('');
     }
   });
-});
+
+
+function saveComment()
+{
+var text=$('#comment_text').val();
+  if (text !=0)
+  {
+    $.post('/comment-save',
+      {
+        id: url[4],
+        text: text
+      },
+      function (response) {
+        response_partial(response);
+
+      }, 'json');
+  }
+  else return false;
+  $('#comment_text').val('');
+}
+
+function response_partial(server_answer)
+{
+  var templates = _.template($('#pageContent').html());
+  //функция из moment js
+  var likes =server_answer.likes.length;
+
+  $('#blog_view_comment_content').append(templates({comments:server_answer,likes: likes}));
+
+}

@@ -14,7 +14,7 @@
         <?= $form->field($comments, 'owner_name')->hiddenInput(['value'=> $type])->label(false)?>
 
         <div class="form-group">
-            <button class="btn btn-raised btn-success pull-right" type="button" onclick="saveComment(this);">Отправить</button>
+            <button class="btn btn-raised btn-success pull-right" type="button" onclick="sav">Отправить</button>
         </div>
         {!! Form::button('Submit', array('class'=>'send-btn btn btn-success pull-right', 'onclick'=>"saveComment(this);")) !!}
         {!! Form::close() !!}

@@ -170,6 +170,18 @@ label{
 	width:95%;
 	margin-bottom:1em;
 }
+#blog-image
+{
+    width:100%;
+    height:300px;
+    margin-bottom:1em;
+}
+
+#blog_view_comment_content
+{
+    margin-left: -30px;
+    width: 99%;
+}
 h5.head {
 	color:#fff;
 	font-size:1.35em;
@@ -201,6 +213,24 @@ a.title {
 	display:block;
 	line-height: 1.25em;
 }
+.view-title {
+    color: #282828;
+    font-size: 1.85em;
+    text-decoration:none;
+    font-weight: 400;
+    margin: 0.85em 1.2em 0.9em 0;
+    font-family: 'Antonio-Regular';
+    display:block;
+    line-height: 1.25em;
+}
+
+#view-h6 {
+    color: #1ac7c3;
+    font-size: 1.3em;
+    font-weight: 400;
+    font-family: 'Antonio-Regular';
+}
+
 .article p {
 	color: #798184;
 	font-size: 1.15em;
@@ -211,14 +241,28 @@ a.title {
 	font-style:italic;
 	margin-top:1.5em;
 }
+
+#view-article {
+    color: #798184;
+    font-size: 1.15em;
+    font-weight: 400;
+    line-height:1.5em;
+    font-family: 'Times-Italic';
+    font-style:italic;
+    margin-top:1.5em;
+}
+#margin-top
+{
+    margin-top: 3%;
+}
 .article {
     border-bottom: 1px solid #e6e6e6;
     word-wrap: break-word;
     margin-top: -20px;
     margin-left: -30px;
     margin-right: 30px;
-
 }
+
 .content-right {
 	padding:0;
 	border-left:1px solid #e6e6e6;
@@ -1546,10 +1590,7 @@ a[ng-click]
 {
     margin-right: 10px;
 }
-.likes_block
-{
-    margin-left: 30px;
-}
+
 .subscribe_button {
     background-color: red; /* Green */
     color: white;
@@ -1638,4 +1679,10 @@ a[ng-click]
     color: black;
     text-align: center;
     font-size: 18px;
+}
+.comment_image
+{
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
 }
