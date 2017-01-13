@@ -3,7 +3,6 @@ var url = $(location).attr('href').split("/");
 
   $(document).ready(function()
   {
-
     $.post('/comments',
       {
         article_id: url[4]
@@ -17,32 +16,29 @@ var url = $(location).attr('href').split("/");
       });
   });
 
-
-
-
-
   function answer(elem) //онклик на кнопку: Ответить
   {
     var name=$(elem).data('name');
-
+    var text=$('#comment_text');
     $('html, body').animate({
       scrollTop: text.offset().top
-    }, 800);
+    }, 600);
     text.val(name+", ");
     text.attr('data-name',name+", ");
   }
 
-  text.on('blur', function(e) {
-    if (text.val() == text.attr('data-name'))
-    {
-      $('#comment_text').val('');
-    }
-  });
+  //text.on('blur', function(e) {
+  //  if (text.val() == text.attr('data-name'))
+  //  {
+  //    $('#comment_text').val('');
+  //  }
+  //});
 
 
 function saveComment()
 {
-var text=$('#comment_text').val();
+  var text=$('#comment_text').val();
+
   if (text !=0)
   {
     $.post('/comment-save',
@@ -62,9 +58,7 @@ var text=$('#comment_text').val();
 function response_partial(server_answer)
 {
   var templates = _.template($('#pageContent').html());
-  //функция из moment js
   var likes =server_answer.likes.length;
 
   $('#blog_view_comment_content').append(templates({comments:server_answer,likes: likes}));
-
 }

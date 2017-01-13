@@ -512,6 +512,7 @@ p.comment-form-author {
 	text-transform: uppercase;
 	  font-family: 'Georgia Italic';
 }
+
 .contact-form input[type="text"] {
 	padding: 10px;
 	width: 95%;
@@ -1653,7 +1654,10 @@ a[ng-click]
     border-top:1px solid #00a7ff;
     color: white;
 }
-
+#subscribe
+{
+    display: none;
+}
 .card_payment
 {
     border-left:1px solid #00a7ff;
@@ -1685,4 +1689,8 @@ a[ng-click]
     border-radius: 50%;
     height: 50px;
     width: 50px;
+}
+.comment_button
+{
+    cursor: pointer;
 }

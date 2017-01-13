@@ -41,20 +41,40 @@ class Articles extends Model
                 break;
         }
 
-        $params = [
-            'index' => 'myblogs',
-            'type' => 'myblogs',
-            'id' => $id,
-            'body' => [
-                'doc' => [
-                    'title'=>$src['title'],
-                    'description'=>$src['desc'],
-                    'text'=>$src['text'],
-                    'category'=>$category,
-                    'image' =>$fileName
+        if($fileName=='')
+        {
+            $params = [
+                'index' => 'myblogs',
+                'type' => 'myblogs',
+                'id' => $id,
+                'body' => [
+                    'doc' => [
+                        'title'=>$src['title'],
+                        'description'=>$src['desc'],
+                        'text'=>$src['text'],
+                        'category'=>$category
+                    ]
                 ]
-            ]
-        ];
+            ];
+        }
+        else
+        {
+            $params = [
+                'index' => 'myblogs',
+                'type' => 'myblogs',
+                'id' => $id,
+                'body' => [
+                    'doc' => [
+                        'title'=>$src['title'],
+                        'description'=>$src['desc'],
+                        'text'=>$src['text'],
+                        'category'=>$category,
+                        'image' =>$fileName
+                    ]
+                ]
+            ];
+        }
+
 
         $client->update($params);
     }

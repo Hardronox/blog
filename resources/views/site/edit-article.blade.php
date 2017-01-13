@@ -9,7 +9,7 @@
     <div class="container container_tmargin">
         <div class="content" >
             <div class="col-md-9 col-md-offset-2">
-                <h3>Write an Article</h3>
+                <h3>Edit an Article</h3>
                 <br>
                 {!! Form::open(array('url'=>route("edit-article",['id'=>$article['id']]),'method'=>'POST', 'files'=>true)) !!}
                     <div class="form-group">

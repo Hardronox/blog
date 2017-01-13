@@ -121,7 +121,8 @@ class BlogController extends Controller
                     Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
                     $array_to_update = array_add($array_to_update, 'image', $fileName);
                 }
-
+                else
+                    $fileName='';
 
                 Articles::find($id)
                     ->update($array_to_update);
@@ -204,6 +205,7 @@ class BlogController extends Controller
 
     public function articlePermissions(Request $request, $id)
     {
+
         $article=Articles::find($id);
         $request->session()->put('article_id', $article->id);
 

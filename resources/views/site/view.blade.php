@@ -7,12 +7,7 @@
 {!!Html::script('js/site/comments.js')!!}
 <div class="container" >
     <div class="content">
-        {{--<form action="textarea1.php" method="post">--}}
-            {{--<p><b>Введите ваш отзыв:</b></p>--}}
-            {{--<p><textarea rows="3" cols="35" name="text"></textarea></p>--}}
-            {{--<p><input type="submit" value="Отправить"></p>--}}
-        {{--</form>--}}
-        <div class="col-md-9 content-left">
+        <div class="col-md-8 col-md-offset-1 content-left">
             <div id="margin-top" class="article">
                 <span id="view-h6">{{$blog->category->name}} </span>
                 <a class="view-title">
@@ -40,7 +35,7 @@
                 </div>
             </div>
             <ul class="media-list">
-                <div id="blog_view_comment_content" data-id="50" data-type="kek">
+                <div id="blog_view_comment_content">
                     <script type="text/template" id="pageContent">
                         <li class="media">
                             <div id="m<%- comments.id %>">
@@ -72,7 +67,6 @@
                 @if (Auth::guest())
                     <b>Log in to leave a comment</b>
                 @else
-
                     {!! Form::open(array('method'=>'POST', 'id'=>'comment_form')) !!}
 
                     <div class="form-group">

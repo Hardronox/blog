@@ -13,21 +13,11 @@
                 <h3><a href="/blog/{{$article->id}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
             </div>
             <button class="subscribe_button">Become a Subscriber!</button>
-            <form action="/payment/card" method="POST">
-                <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="pk_test_8CpwqO3s62lYAD4tUBlPfK8u{{config('services.stripe.key')}}"
-                        data-amount="2500"
-                        data-name="Subscription"
-                        data-description="Some Description here"
-                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                        data-locale="auto">
-                </script>
-            </form>
+
         </div>
     </div>
 
-    <div class="content" >
+    <div class="content" id="subscribe">
         <div class="row">
             <div class="col-md-7 col-md-offset-2" >
                 <div class="become_subscriber">
@@ -64,6 +54,15 @@
                 <div class="col-md-7 col-md-offset-2 " >
                     <div class="panel_footer">
                         <form action="/payment" method="post">
+                            <script
+                                src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                data-key="pk_test_8CpwqO3s62lYAD4tUBlPfK8u"
+                                data-amount="1000"
+                                data-name="Subscription"
+                                data-description="Subscription Payment!"
+                                data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                data-locale="auto">
+                            </script>
                             <input class="btn btn-success payment_button" type="submit" value="Proceed to Payment!" disabled="true">
                         </form>
                     </div>

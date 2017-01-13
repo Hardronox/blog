@@ -200,11 +200,12 @@ class ServiceController extends Controller
     /**
      * filters inputs
      */
-    public static function filterMainText($text)
+    public static function filterComment($text)
     {
-        $main_text = preg_replace('#<script[^>]*>.*?</script>#is', '', $text);
+        $first = preg_replace('/</', '&lt;', $text);
+        $final = preg_replace('/>/', '&gt;', $first);
 
-        return $main_text;
+        return $final;
     }
 
 
