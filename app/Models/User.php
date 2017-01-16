@@ -96,4 +96,13 @@ class User extends Authenticatable
         return false;
     }
 
+    public static function createBySocialProvider($providerUser)
+    {
+        return self::create([
+            'email' => $providerUser->getEmail(),
+            'username' => $providerUser->getNickname(),
+            'name' => $providerUser->getName(),
+        ]);
+    }
+
 }

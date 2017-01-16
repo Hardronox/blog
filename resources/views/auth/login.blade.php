@@ -50,6 +50,11 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
+
+                                <a href="/auth/facebook"><img width="35px" height="35px" src="/images/facebook.png" alt=""></a>
+
+                                <a href="/auth/vkontakte"><img width="35px" height="35px" src="/images/facebook.png" alt=""></a>
+
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-sign-in"></i> Login
                                 </button>

@@ -15,7 +15,8 @@
         "laracasts/flash": "^2.0",
         "elasticsearch/elasticsearch": "~2.0",
         "anouar/paypalpayment": "~1.0",
-        "stripe/stripe-php": "^4.3"
+        "stripe/stripe-php": "^4.3",
+        "socialiteproviders/vkontakte": "^1.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -34,5 +34,16 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
+    'vkontakte' => [
+        'client_id' => env('VKONTAKTE_KEY'),
+        'client_secret' => env('VKONTAKTE_SECRET'),
+        'redirect' => env('VKONTAKTE_REDIRECT_URI'),
+    ],
+    'facebook' => [
+        'client_id' => '1770307853244780',
+        'client_secret' => '27575af7ad2fa431e9f6755b19ecf1c3',
+        'redirect' => 'http://localhost:8000/auth/facebook/callback',
+    ],
+
 
 ];
