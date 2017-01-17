@@ -1,6 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+<?php
+    $url = 'http://oauth.vk.com/authorize';
+
+    $params = array(
+            'client_id'     => config('services.vkontakte.client_id'),
+            'redirect_uri'  => config('services.vkontakte.redirect'),
+            'scope'=> 'notify,email',
+            'response_type' => 'code'
+    );
+?>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -9,7 +19,6 @@
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
-
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
@@ -53,13 +62,15 @@
 
                                 <a href="/auth/facebook"><img width="35px" height="35px" src="/images/facebook.png" alt=""></a>
 
-                                <a href="/auth/vkontakte"><img width="35px" height="35px" src="/images/facebook.png" alt=""></a>
+                                <a href={{$url . '?' . urldecode(http_build_query($params))}}><img width="35px" height="35px" src="/images/vk.png" alt=""></a>
 
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fa fa-btn fa-sign-in"></i> Login
-                                </button>
+                                <div class="pull-right">
+                                    <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
 
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                                    <button type="submit" class="btn btn-primary">
+                                        Login
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </form>

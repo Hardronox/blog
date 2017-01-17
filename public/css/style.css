@@ -109,6 +109,7 @@ label{
 	float:left;
     padding-top: 7px;
     margin-bottom: 10px;
+
 }
 .logo span
 {
@@ -117,6 +118,11 @@ label{
     font-size:3em;
     font-weight:400;
 }
+.logo span a{
+
+    color: white;
+}
+
 .logo a {
 	text-decoration:none;
 }
@@ -1693,4 +1699,10 @@ a[ng-click]
 .comment_button
 {
     cursor: pointer;
+}
+#profile_info
+{
+    margin-top: 1%;
+    margin-left: 49%;
+    font-size: 24px;
 }

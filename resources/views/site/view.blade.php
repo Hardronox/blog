@@ -86,27 +86,38 @@
 {{-- right column--}}
         <div class="col-md-3 content-right">
             <div class="content-right-top">
-                <a href="single.html">
+                <a href="https://laravel.com/">
                     <div class="editor text-center">
-                        Advertisement1
+                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/laravel.png" alt="">
+                        The PHP Framework For Web Artisans
                         <span></span>
                     </div>
                 </a>
-                <a href="single.html">
+                <a href="https://angularjs.org/">
                     <div class="editor text-center">
-                        Advertisement2
+                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/angular.png" alt="">
+                        HTML enhanced for web apps!
                         <span></span>
                     </div>
                 </a>
-                <a href="single.html">
+                <a href="http://getbootstrap.com/">
                     <div class="editor text-center">
-                        Advertisement3
+                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/bootstrap.png" alt="">
+                        The most popular HTML, CSS, and JS framework
                         <span></span>
                     </div>
                 </a>
-                <a href="single.html">
+                <a href="https://www.jetbrains.com/phpstorm/">
                     <div class="editor text-center">
-                        Advertisement4
+                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/PhpStorm.png" alt="">
+                        Lightning-smart PHP IDE
+                        <span></span>
+                    </div>
+                </a>
+                <a href="http://www.w3schools.com/">
+                    <div class="editor text-center">
+                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/w3schools.png" alt="">
+                        THE WORLD'S LARGEST WEB DEVELOPER SITE
                         <span></span>
                     </div>
                 </a>

@@ -94,9 +94,15 @@ class UserController extends Controller
                         ->update($array_to_update);
                 }
 
+                if(isset($_POST['password']))
+                {
+                    User::where(['id'=> $user_id['id']])
+                        ->update(['password'=>bcrypt($_POST['password'])]);
+                }
                 flash('Your profile was edited successfully!', 'success');
                 return redirect('/profile');
             }
+            // $2y$10$8JRycTHASYoV4CC/NCEYeOhgplO4tELV51UaSPfdPRUfVt0FekQBa
         }
         return view('/site/edit-profile',['user' => $user]);
     }

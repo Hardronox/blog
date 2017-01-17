@@ -39,7 +39,13 @@
                         {!! Form::text('lastname', '', ['class'=>'form-control','id'=>'lastname']) !!}
                     @endif
                 </div>
+                @if ($user->password=='new users password')
+                <div class="form-group">
+                    {!! Form::label('pass', 'New password') !!}
 
+                    {!! Form::password('password', ['class'=>'form-control','id'=>'pass']) !!}
+                </div>
+                @endif
                 {!! Form::token() !!}
 
                 {!! Form::submit('Edit', array('class'=>'btn btn-success pull-right')) !!}

@@ -91,7 +91,48 @@ class AuthController extends Controller
     {
         $user = Socialite::driver($provider)->user();
 
-        $db_user=User::where('email','=',$user->email)->first();
+        $this->loginAfterSocial($user->name, $user->email);
+
+        return redirect('/');
+    }
+
+    public function vk()
+    {
+        if (isset($_GET['code'])) {
+            $params = array(
+                'client_id' => config('services.vkontakte.client_id'),
+                'client_secret' => config('services.vkontakte.client_secret'),
+                'code' => $_GET['code'],
+                'redirect_uri' => config('services.vkontakte.redirect')
+            );
+
+            $token = json_decode(file_get_contents('https://oauth.vk.com/access_token' . '?' . urldecode(http_build_query($params))), true);
+
+            if (isset($token['access_token'])) {
+                $params = array(
+                    'uids'         => $token['user_id'],
+                    'fields'       => 'uid,first_name,last_name,screen_name,sex,bdate,photo_big,email',
+                    'access_token' => $token['access_token']
+                );
+            }
+            $userInfo = json_decode(file_get_contents('https://api.vk.com/method/users.get' . '?' . urldecode(http_build_query($params))), true);
+            if (isset($userInfo['response'][0]['uid'])) {
+
+	            $userInfo = $userInfo['response'][0];
+
+	        }
+            $name=$userInfo['first_name']. ' '. $userInfo['last_name'];
+
+            $this->loginAfterSocial($name, $token['email']);
+
+            return redirect('/');
+        }
+
+    }
+
+    public function loginAfterSocial($name, $email)
+    {
+        $db_user=User::where('email','=',$email)->first();
 
         if (isset($db_user))
         {
@@ -100,21 +141,14 @@ class AuthController extends Controller
         else
         {
             $new_user=User::create([
-                'name' => $user,
-                'email' => $user->email,
+                'name' => $name,
+                'email' => $email,
                 'password' => 'new users password',
             ]);
 
             Auth::login($new_user);
 
         }
-//        var_dump('<pre>', $db_user, '</pre>');
-//        exit;
 
-
-
-        return redirect('/');
-        // $user->token;
     }
-
 }

@@ -35,9 +35,9 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
     'vkontakte' => [
-        'client_id' => env('VKONTAKTE_KEY'),
-        'client_secret' => env('VKONTAKTE_SECRET'),
-        'redirect' => env('VKONTAKTE_REDIRECT_URI'),
+        'client_id' => '5605709',
+        'client_secret' => '8DNggVj10tMLb57TEDKC',
+        'redirect' => 'http://localhost:8000/vk/auth',
     ],
     'facebook' => [
         'client_id' => '1770307853244780',
