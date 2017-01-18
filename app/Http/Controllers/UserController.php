@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Articles;
+use App\Models\Comments;
 use App\Models\User;
 use App\Models\UsersProfile;
 use Illuminate\Support\Facades\Auth;
@@ -102,11 +103,9 @@ class UserController extends Controller
                 flash('Your profile was edited successfully!', 'success');
                 return redirect('/profile');
             }
-            // $2y$10$8JRycTHASYoV4CC/NCEYeOhgplO4tELV51UaSPfdPRUfVt0FekQBa
         }
         return view('/site/edit-profile',['user' => $user]);
     }
-
 
     /**
      * deletes profile from DB
@@ -122,12 +121,29 @@ class UserController extends Controller
         return redirect('/');
     }
 
-    public function subscribe()
+
+    public function adminUsers()
     {
-        $user_id = Auth::user();
+        $users=User::with('profile')->orderBy('created_at','desc')->paginate(20);
 
+        return view('/admin/users',['users'=>$users]);
 
-        return view('site.profile');
+    }
+
+    public function adminArticles()
+    {
+        $articles=Articles::orderBy('created_at','desc')->paginate(10);
+
+        return view('/admin/articles',['articles'=>$articles]);
+
+    }
+
+    public function adminComments()
+    {
+        $comments=Comments::orderBy('created_at','desc')->paginate(30);
+
+        return view('/admin/comments',['comments'=>$comments]);
+
     }
 
 }

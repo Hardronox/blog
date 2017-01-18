@@ -9,10 +9,9 @@ class Comments extends Model
     const UPDATED_AT = NULL;
     const CREATED_AT = NULL;
 
-
-    public function category()
+    public function article()
     {
-        return $this->hasOne('App\Models\BlogCategory','id', 'category_id');
+        return $this->hasOne('App\Models\Articles','id', 'article_id');
     }
 
     public function likes()
@@ -20,7 +19,12 @@ class Comments extends Model
         return $this->hasMany('App\Models\Likes','type_id', 'id')->where('type','=','Comment');
     }
 
-    public function commentAuthor()
+    public function author()
+    {
+        return $this->hasOne('App\Models\User','id', 'author_id');
+    }
+
+    public function authorProfile()
     {
         return $this->hasOne('App\Models\UsersProfile','user_id', 'author_id');
     }

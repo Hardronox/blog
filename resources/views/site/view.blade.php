@@ -40,17 +40,17 @@
                         <li class="media">
                             <div id="m<%- comments.id %>">
                                 <div class="media-left">
-                                    <img class="comment_image" src="/images/avatars/<%= comments.comment_author.avatar ? comments.comment_author.avatar : 'no-image.png'%>"/>
+                                    <img class="comment_image" src="/images/avatars/<%= comments.author_profile.avatar ? comments.author_profile.avatar : 'no-image.png'%>"/>
                                 </div>
-                                <div class="media-body">
-                                    <a href=""><h5><%= comments.comment_author.firstname %> <%= comments.comment_author.lastname %></h5></a>
-                                    <p><%= comments.comment_text %></p>
+                                <div class="media-body" style="border-bottom: 1px solid #e6e6e6;">
+                                    <a href=""><h5><%= comments.author_profile.firstname %> <%= comments.author_profile.lastname %></h5></a>
+                                    <p><%= comments.text %></p>
                                     <p><%= comments.created_at %>
                                         @if (Auth::guest())
                                             <a class="a-hover pull-right">
                                             <span id="likes">{{$likes}}</span><span class="glyphicon glyphicon-heart likes"><%= likes %></span>                                            </a>
                                         @else
-                                            <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.comment_author.firstname %>" onclick="answer(this)">Answer</a>
+                                            <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.author_profile.firstname %>" onclick="answer(this)">Answer</a>
 
                                             <a class="a-hover pull-right" onclick="like(this);" data-type="Comment" data-post="<%- comments.id %>">
                                                 <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
@@ -63,7 +63,7 @@
                     </script>
                 </div>
             </ul>
-            <div id="blog_comment_form" style="width: 93%; margin-left: 30px;">
+            <div id="blog_comment_form">
                 @if (Auth::guest())
                     <b>Log in to leave a comment</b>
                 @else

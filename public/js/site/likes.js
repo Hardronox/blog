@@ -6,10 +6,10 @@ function like(elem) {
   $.ajax({
     url: '/likes',
     type: 'get',
-    //data: {
-    //  id: id,
-    //  type: type
-    //},
+    data: {
+      id: id,
+      type: type
+    },
     dataType: 'json',
     success: function (response) {
 

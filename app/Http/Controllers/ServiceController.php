@@ -55,52 +55,37 @@ class ServiceController extends Controller
     {
         if (Request::ajax())
         {
-//            $user = Auth::user();
-//
-//            $type=$_GET['type'];
-//            $type_id=intval($_GET['id']);
-//            $user_id=$user['id'];
-//            $results = DB::select("select type_id from likes where type='$type' AND type_id=$type_id AND user_id=$user_id");
+            $user = Auth::user();
 
-//            var_dump('<pre>', $results, '</pre>');
-//            exit;
-//
-//            $likes=Likes::where(
-//                [
-//                    ['type','=',$_GET['type']],
-//                    ['type_id','=',$_GET['id']],
-//                    ['user_id','=',$user['id']]
-//                ])->first();
-//
-////            var_dump('<pre>', $likes, '</pre>');
-////            exit;
-//
-//            if ($likes===NULL)
-//            {
-//                $like= new Likes();
-//                $like->type=$_GET['type'];
-//                $like->type_id=$_GET['id'];
-//                $like->user_id=$user['id'];
-//                $like->save();
-//            }
-//            else
-//            {
-//                $likes->delete();
-//            }
-//
-//            $likes = Likes::where(
-//                [
-//                    ['type','=',$_GET['type']],
-//                    ['type_id','=',$_GET['id']]
-//                ])->count();
+            $likes=Likes::where(
+                [
+                    ['type','=',$_GET['type']],
+                    ['type_id','=',$_GET['id']],
+                    ['user_id','=',$user['id']]
+                ])->first();
 
+            if ($likes===NULL)
+            {
+                $like= new Likes();
+                $like->type=$_GET['type'];
+                $like->type_id=$_GET['id'];
+                $like->user_id=$user['id'];
+                $like->save();
+            }
+            else
+            {
+                $likes->delete();
+            }
 
+            $likes = Likes::where(
+                [
+                    ['type','=',$_GET['type']],
+                    ['type_id','=',$_GET['id']]
+                ])->count();
 
-
-            return rand(0,2);
+            return $likes;
         }
     }
-
 
 
     /**
@@ -128,7 +113,7 @@ class ServiceController extends Controller
     {
         if (Request::ajax())
         {
-            $comments = Comments::with(['commentAuthor','likes'])->where('article_id','=',$_POST['article_id'])
+            $comments = Comments::with(['authorProfile','likes'])->where('article_id','=',$_POST['article_id'])
                                 ->orderBy('created_at', 'asc')->get();
 
             return $comments;
@@ -145,13 +130,13 @@ class ServiceController extends Controller
             $user = Auth::user();
 
             $comment = new Comments();
-            $comment->comment_text=$_POST['text'];
+            $comment->text=$this->filterComment($_POST['text']);
             $comment->article_id=$_POST['id'];
             $comment->author_id=$user['id'];
             $comment->created_at=Carbon::now('Europe/Kiev');
             $comment->save();
 
-            $response_comment = Comments::with(['commentAuthor','likes'])->where('id','=',$comment->id)->first();
+            $response_comment = Comments::with(['authorProfile','likes'])->where('id','=',$comment->id)->first();
 
             return $response_comment;
         }
@@ -176,7 +161,7 @@ class ServiceController extends Controller
                 'category'=>$src->category->name,
                 'views'=>(int)$src->views,
                 'image'=>$src->image ? $src->image : NULL,
-                'status'=>'Published',
+                'status'=>$src->status,
                 'created_at'=>$src->created_at
             ]
         ];
@@ -202,11 +187,11 @@ class ServiceController extends Controller
      */
     public static function filterComment($text)
     {
-        $first = preg_replace('/</', '&lt;', $text);
-        $final = preg_replace('/>/', '&gt;', $first);
+        $first = preg_replace('/<script/', '&lt;script', $text);
+        $final = strip_tags(preg_replace('/script>/', 'script&gt;', $first));
+
 
         return $final;
     }
-
 
 }
