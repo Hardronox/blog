@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Articles;
 use App\Models\ArticleCategory;
 use App\Models\Likes;
@@ -32,9 +33,11 @@ class BlogController extends Controller
     {
         $blog=Articles::with('likes')->find($id);
 
+        $ads=Advertisement::get();
+
         ServiceController::views($blog);
 
-        return view('/site/view',['blog'=>$blog, 'likes'=> sizeof($blog->likes)]);
+        return view('/site/view',['blog'=>$blog, 'ads'=>$ads, 'likes'=> sizeof($blog->likes)]);
     }
 
     /**

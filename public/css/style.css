@@ -229,6 +229,11 @@ a.title {
     display:block;
     line-height: 1.25em;
 }
+.editor img
+{
+    max-width: 100%;
+    max-height: 100%;
+}
 
 #view-h6 {
     color: #1ac7c3;
@@ -236,7 +241,10 @@ a.title {
     font-weight: 400;
     font-family: 'Antonio-Regular';
 }
-
+div.media-body
+{
+    border-bottom: 1px solid #e6e6e6;
+}
 .article p {
 	color: #798184;
 	font-size: 1.15em;

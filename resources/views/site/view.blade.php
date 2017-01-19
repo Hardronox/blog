@@ -10,9 +10,9 @@
         <div class="col-md-8 col-md-offset-1 content-left">
             <div id="margin-top" class="article">
                 <span id="view-h6">{{$blog->category->name}} </span>
-                <a class="view-title">
+                <span class="view-title">
                     {{$blog->title}}
-                </a>
+                </span>
                 <div>
                     <img id="blog-image" src="/images/blog/{{$blog->image ? $blog->image : 'no-image.png'}}" alt="" />
                 </div>
@@ -42,8 +42,8 @@
                                 <div class="media-left">
                                     <img class="comment_image" src="/images/avatars/<%= comments.author_profile.avatar ? comments.author_profile.avatar : 'no-image.png'%>"/>
                                 </div>
-                                <div class="media-body" style="border-bottom: 1px solid #e6e6e6;">
-                                    <a href=""><h5><%= comments.author_profile.firstname %> <%= comments.author_profile.lastname %></h5></a>
+                                <div class="media-body">
+                                    <a href="#"><h5><%= comments.author_profile.firstname %> <%= comments.author_profile.lastname %></h5></a>
                                     <p><%= comments.text %></p>
                                     <p><%= comments.created_at %>
                                         @if (Auth::guest())
@@ -73,7 +73,6 @@
                         {!! Form::label('comment_text', 'Write comment here') !!}
                         {!! Form::textarea('text', '', ['class'=>'form-control', 'id'=>'comment_text', 'rows'=>3]) !!}
                     </div>
-
                     <div class="form-group">
                         <button class="btn btn-raised btn-success pull-right" type="button" onclick="saveComment(this);">Отправить</button>
                     </div>
@@ -83,44 +82,18 @@
 
         </div>
 
-{{-- right column--}}
+{{-- right ad column--}}
         <div class="col-md-3 content-right">
             <div class="content-right-top">
-                <a href="https://laravel.com/">
-                    <div class="editor text-center">
-                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/laravel.png" alt="">
-                        The PHP Framework For Web Artisans
-                        <span></span>
-                    </div>
-                </a>
-                <a href="https://angularjs.org/">
-                    <div class="editor text-center">
-                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/angular.png" alt="">
-                        HTML enhanced for web apps!
-                        <span></span>
-                    </div>
-                </a>
-                <a href="http://getbootstrap.com/">
-                    <div class="editor text-center">
-                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/bootstrap.png" alt="">
-                        The most popular HTML, CSS, and JS framework
-                        <span></span>
-                    </div>
-                </a>
-                <a href="https://www.jetbrains.com/phpstorm/">
-                    <div class="editor text-center">
-                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/PhpStorm.png" alt="">
-                        Lightning-smart PHP IDE
-                        <span></span>
-                    </div>
-                </a>
-                <a href="http://www.w3schools.com/">
-                    <div class="editor text-center">
-                        <img style="max-width: 100%; max-height: 100%;" src="/images/advertisement/w3schools.png" alt="">
-                        THE WORLD'S LARGEST WEB DEVELOPER SITE
-                        <span></span>
-                    </div>
-                </a>
+                @foreach($ads as $ad)
+                    <a href="{{$ad->website}}">
+                        <div class="editor text-center">
+                            <img src="/images/advertisement/{{$ad->image}}" alt="">
+                            {{$ad->title}}
+                            <span></span>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
         <div class="clearfix"></div>

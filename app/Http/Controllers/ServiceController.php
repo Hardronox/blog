@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\ArticleCategory;
-use App\Models\Articles;
 use App\Models\Comments;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
-use Illuminate\Support\Facades\DB;
 use Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Redirect;
 use Carbon\Carbon;
 
 class ServiceController extends Controller
@@ -168,18 +161,6 @@ class ServiceController extends Controller
         $client->index($params);
         
 
-    }
-
-    /**
-     * filters inputs
-     */
-    public static function filter($text)
-    {
-        $out = strip_tags(Html::decode($text));
-        $out = preg_replace('#<script[^>]*>.*?</script>#is', '', $out);
-        $out = trim(html_entity_decode($out), chr(0xC2).chr(0xA0));
-
-        return $out;
     }
 
     /**

@@ -1,7 +1,7 @@
 function like(elem) {
 
-  //var id = $(elem).data('post');
-  //var type = $(elem).data('type');
+  var id = $(elem).data('post');
+  var type = $(elem).data('type');
 
   $.ajax({
     url: '/likes',
