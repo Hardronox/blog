@@ -1,6 +1,9 @@
 $(document).on('click', '.delete', function(e){
 
-  if (confirm("Delete this article?"))
+  var attr=$(this).attr('href');
+  var text_type=attr.substr(1,(attr.indexOf('/',2)-1));
+
+  if (confirm("Delete this "+text_type+"?"))
   {
 
   }
@@ -10,5 +13,4 @@ $(document).on('click', '.delete', function(e){
     e.stopImmediatePropagation();
     return false;
   }
-
 });

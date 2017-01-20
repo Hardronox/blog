@@ -308,6 +308,14 @@ div.media-body
     cursor: pointer;
     text-decoration: none;
 }
+.guest-hover:hover
+{
+    text-decoration: none;
+}
+table tr td.active
+{
+    vertical-align: middle;
+}
 .editor label {
 	color: #cbcbcb;
 	font-size: 1.1em;

@@ -3,8 +3,7 @@
 @section('pageTitle', 'Admin')
 
 @section('content')
-{!!Html::script('js/site/my-articles.js')!!}
-{!!Html::script('js/site/profile.js')!!}
+{!!Html::script('js/site/deleteObject.js')!!}
 <div class="container" >
     @include('flash::message')
     <div class="content" >
@@ -35,8 +34,7 @@
                                 <td class="col-md-1">{{$user['created_at']}}</td>
                                 <td class="col-md-1 active">
                                     <div class="btn-group-vertical">
-                                        <a href="/profile/edit/{{$user['id']}}" class="btn btn-warning">Edit</a>
-                                        <a href="/profile/delete/{{$user['id']}}" class="btn btn-danger delete">Delete</a>
+                                        <a href="/profile/delete?id={{$user['id']}}" class="btn btn-danger delete">Delete</a>
                                     </div>
                                 </td>
                             </tr>

@@ -22,9 +22,11 @@
                         {{$blog->views}} <span class="glyphicon glyphicon-eye-open"></span>
                     </div>
                     @if (Auth::guest())
-                        <a class="a-hover">
-                            <span class="thumbs icon_wrap fa fa-thumbs-up likes">{{$likes}}</span>
-                        </a>
+                        <div class="likes_block">
+                            <a class="guest-hover">
+                                <span id="likes">{{$likes}}</span><span class="glyphicon glyphicon-heart"></span>
+                            </a>
+                        </div>
                     @else
                         <div class="likes_block">
                             <a class="a-hover" onclick="like(this);"  data-type="Blog" data-post="{{$blog['id']}}">
@@ -47,8 +49,8 @@
                                     <p><%= comments.text %></p>
                                     <p><%= comments.created_at %>
                                         @if (Auth::guest())
-                                            <a class="a-hover pull-right">
-                                            <span id="likes">{{$likes}}</span><span class="glyphicon glyphicon-heart likes"><%= likes %></span>                                            </a>
+                                            <a class="guest-hover pull-right">
+                                            <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
                                         @else
                                             <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.author_profile.firstname %>" onclick="answer(this)">Answer</a>
 

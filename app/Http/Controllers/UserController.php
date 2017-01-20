@@ -10,6 +10,7 @@ use App\Models\UsersProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Laracasts\Flash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Redirect;
@@ -110,15 +111,29 @@ class UserController extends Controller
     /**
      * deletes profile from DB
      */
-    public function deleteProfile()
+    public function deleteProfile(Request $request)
     {
-        $user_id = Auth::user();
+        $logged_user = Auth::user();
+//        var_dump('<pre>', , '</pre>');
+//        exit;
+        if ($request->input('id') && $logged_user->hasRole('admin')) //for security reasons
+        {
+            $user_id=intval($request->input('id'));
+            $msg='This';
+            $redirectTo='/admin/users';
+        }
+        else
+        {
+            $user_id=$logged_user['id'];
+            $msg='Your';
+            $redirectTo='/';
+        }
 
-        $user= User::find($user_id['id']);
+        $user= User::find($user_id);
         $user->delete();
 
-        flash('Your profile was deleted successfully!', 'success');
-        return redirect('/');
+        flash("$msg profile was deleted successfully!", 'success');
+        return redirect($redirectTo);
     }
 
 
@@ -140,7 +155,7 @@ class UserController extends Controller
 
     public function adminComments()
     {
-        $comments=Comments::orderBy('created_at','desc')->paginate(30);
+        $comments=Comments::orderBy('created_at','desc')->paginate(20);
 
         return view('/admin/comments',['comments'=>$comments]);
 
