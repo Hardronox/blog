@@ -16,7 +16,7 @@
                         <br>
                     </h3>
 
-                    <img style="margin-top: 20px;" width="250px" height="250px" src="/images/access-granted.jpg" alt="">
+                    <img id="access_granted" src="/images/access-granted.jpg" alt="">
                 </div>
             </div>
         </div>

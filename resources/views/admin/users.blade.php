@@ -9,6 +9,7 @@
     <div class="content" >
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @include('partials/admin-tabs', ['active' => 'users'])
                 <div class="table-responsive">
                     <table class="table table-striped table-hover profile">
                         <tr>
@@ -34,7 +35,7 @@
                                 <td class="col-md-1">{{$user['created_at']}}</td>
                                 <td class="col-md-1 active">
                                     <div class="btn-group-vertical">
-                                        <a href="/profile/delete?id={{$user['id']}}" class="btn btn-danger delete">Delete</a>
+                                        <a href="{{ url("/profile/delete?id=".$user['id']."")}}" class="btn btn-danger delete">Delete</a>
                                     </div>
                                 </td>
                             </tr>

@@ -88,7 +88,7 @@
         <div class="col-md-3 content-right">
             <div class="content-right-top">
                 @foreach($ads as $ad)
-                    <a href="{{$ad->website}}">
+                    <a href="{{ url($ad->website)}}">
                         <div class="editor text-center">
                             <img src="/images/advertisement/{{$ad->image}}" alt="">
                             {{$ad->title}}

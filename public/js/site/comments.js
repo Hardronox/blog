@@ -41,7 +41,7 @@ function saveComment()
 
   if (text !=0)
   {
-    $.post('/comment-save',
+    $.post('/comment/save',
       {
         id: url[4],
         text: text

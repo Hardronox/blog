@@ -316,11 +316,20 @@ table tr td.active
 {
     vertical-align: middle;
 }
+.btn_group_align
+{
+    margin-left: 20%;
+}
+
 .editor label {
 	color: #cbcbcb;
 	font-size: 1.1em;
 	font-weight: 400;
 	font-style:italic;
+}
+ul.nav li a:first-letter
+{
+    text-transform:capitalize;
 }
 .editor span{
 	display:block;
@@ -1586,6 +1595,12 @@ table.profile tr td,th
 .profile_avatar
 {
     float: left;
+}
+#access_granted
+{
+    margin-top: 20px;
+    width:250px;
+    height:250px;
 }
 .modal_content
 {

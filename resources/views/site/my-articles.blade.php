@@ -10,29 +10,29 @@
         <div class="content" >
             <div class="row">
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover" width="100%">
+                    <table class="table table-striped table-hover profile" width="100%">
                         <tr>
                             <th>№</th>
                             <th >Title</th>
-                            <th class="tbl_align">Description</th>
-                            <th class="tbl_align">Views</th>
-                            <th class="tbl_align">Date</th>
-                            <th class="tbl_align">Status</th>
-                            <th class="tbl_align">Actions</th>
+                            <th>Description</th>
+                            <th>Views</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                         @foreach ($blogs as $key => $blog)
                             <tr id="tr{{$blog['id']}}">
                                 <th class="col-md-1">{{$key+1}}</th>
                                 <td class="col-md-2"><a href="/blog/view/{{$blog['id']}}">{{$blog['title']}}</a></td>
                                 <td class="col-md-4">{{$blog['description']}}</td>
-                                <td class="col-md-1 tbl_align">{{$blog['views']}}</td>
-                                <td class="col-md-1 tbl_align">{{$blog['created_at']}}</td>
-                                <td class="col-md-1 tbl_align status">{{$blog['status']}}</td>
-                                <td class="col-md-2 active tbl_align">
+                                <td class="col-md-1">{{$blog['views']}}</td>
+                                <td class="col-md-1">{{$blog['created_at']}}</td>
+                                <td class="col-md-1 status">{{$blog['status']}}</td>
+                                <td class="col-md-1 active">
                                     <div class="btn-group-vertical">
-                                        <button  class="btn btn-info" data-id="{{$blog['id']}}" onclick="status(this);">Change Status</button>
-                                        <a href="/article/edit/{{$blog['id']}}" class="btn btn-warning">Edit</a>
-                                        <a href="/article/delete/{{$blog['id']}}" class="btn btn-danger delete">Delete</a>
+                                        <button class="btn btn-info" data-id="{{$blog['id']}}" onclick="status(this);">Change Status</button>
+                                        <a href="{{ url("/article/edit/".$blog['id']."")}}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ url("/article/delete/".$blog['id']."")}}" class="btn btn-danger delete">Delete</a>
                                     </div>
                                 </td>
                             </tr>

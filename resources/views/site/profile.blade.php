@@ -12,7 +12,7 @@
                 <span id="profile_info" class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top"
                       title="Test account has been created for you! You can edit your personal information and choose new password. After that, you can login via social and this new account!"></span>
             @endif
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover profile" >
                 <tr>
                     <th>Avatar</th>
                     <td>
@@ -46,9 +46,9 @@
                 <tr>
                     <th>Actions</th>
                     <td>
-                        <a class="btn btn-info" href="/profile/articles" >My Articles</a>
+                        <a class="btn btn-info" href="{{ url("/profile/articles")}}" >My Articles</a>
                         <button class="btn btn-warning edit" >Edit Profile</button>
-                        <a id="delete" class="btn btn-danger" href="/profile/delete" >Delete Account</a>
+                        <a id="delete" class="btn btn-danger" href="{{ url("/profile/delete")}}" >Delete Account</a>
                     </td>
                 </tr>
             </table>

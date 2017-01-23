@@ -9,6 +9,7 @@
     <div class="content" >
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
+                @include('partials/admin-tabs', ['active' => 'comments'])
                 <div class="table-responsive">
                     <table class="table table-striped table-hover profile">
                         <tr>
@@ -27,7 +28,7 @@
                                 <td class="col-md-2">{{$comment['author']['name']}}</td>
                                 <td class="col-md-1">{{$comment['created_at']}}</td>
                                 <td class="col-md-1 active">
-                                    <a href="/comment/delete/{{$comment['id']}}" class="btn btn-danger delete">Delete</a>
+                                    <a href="{{ url("/comment/delete/".$comment['id']."")}}" class="btn btn-danger delete">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

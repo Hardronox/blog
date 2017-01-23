@@ -179,12 +179,7 @@ class BlogController extends Controller
         $article= Articles::find($id);
         $user = Auth::user();
 
-        if($user->hasRole('admin'))
-            $redirectTo='/admin/articles';
-        else
-            $redirectTo='/profile/articles';
-
-        if ($article['user_id']==$user['id'])
+        if ($article['user_id']==$user['id'] || $user->hasRole('admin'))
         {
             $article->delete();
 
@@ -195,11 +190,10 @@ class BlogController extends Controller
                 'type' => 'myblogs',
                 'id' => $id
             ];
-;
             $client->delete($params);
 
             flash('Your Article was deleted successfully!', 'success');
-            return redirect($redirectTo);
+            return redirect(url()->previous());
         }
         else
         {

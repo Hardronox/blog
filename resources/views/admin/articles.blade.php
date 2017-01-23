@@ -9,30 +9,31 @@
         @include('flash::message')
         <div class="content" >
             <div class="row">
+                @include('partials/admin-tabs', ['active' => 'articles'])
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover" width="100%">
+                    <table class="table table-striped table-hover profile" width="100%">
                         <tr>
                             <th>№</th>
                             <th >Title</th>
-                            <th class="tbl_align">Description</th>
-                            <th class="tbl_align">Views</th>
-                            <th class="tbl_align">Date</th>
-                            <th class="tbl_align">Status</th>
-                            <th class="tbl_align">Actions</th>
+                            <th >Description</th>
+                            <th >Views</th>
+                            <th >Date</th>
+                            <th >Status</th>
+                            <th >Actions</th>
                         </tr>
                         @foreach ($articles as $key => $article)
                             <tr id="tr{{$article['id']}}">
                                 <th class="col-md-1">{{$key+1}}</th>
-                                <td class="col-md-2"><a href="/blog/view/{{$article['id']}}">{{$article['title']}}</a></td>
+                                <td class="col-md-2"><a href="{{ url("/blog/view/".$article['id']."")}}">{{$article['title']}}</a></td>
                                 <td class="col-md-4">{{$article['description']}}</td>
-                                <td class="col-md-1 tbl_align">{{$article['views']}}</td>
-                                <td class="col-md-1 tbl_align">{{$article['created_at']}}</td>
-                                <td class="col-md-1 tbl_align status">{{$article['status']}}</td>
-                                <td class="col-md-2 active tbl_align">
+                                <td class="col-md-1">{{$article['views']}}</td>
+                                <td class="col-md-1">{{$article['created_at']}}</td>
+                                <td class="col-md-1 status">{{$article['status']}}</td>
+                                <td class="col-md-1 active">
                                     <div class="btn-group-vertical">
-                                        <button  class="btn btn-info" data-id="{{$article['id']}}" onclick="status(this);">Change Status</button>
-                                        <a href="/article/edit/{{$article['id']}}" class="btn btn-warning">Edit</a>
-                                        <a href="/article/delete/{{$article['id']}}" class="btn btn-danger delete">Delete</a>
+                                        <button class="btn btn-info" data-id="{{$article['id']}}" onclick="status(this);">Change Status</button>
+                                        <a href="{{ url("/article/edit/".$article['id']."")}}" class="btn btn-warning">Edit</a>
+                                        <a href="{{ url("/article/delete/".$article['id']."")}}" class="btn btn-danger delete">Delete</a>
                                     </div>
                                 </td>
                             </tr>

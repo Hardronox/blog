@@ -114,13 +114,12 @@ class UserController extends Controller
     public function deleteProfile(Request $request)
     {
         $logged_user = Auth::user();
-//        var_dump('<pre>', , '</pre>');
-//        exit;
+
         if ($request->input('id') && $logged_user->hasRole('admin')) //for security reasons
         {
             $user_id=intval($request->input('id'));
             $msg='This';
-            $redirectTo='/admin/users';
+            $redirectTo=url()->previous();
         }
         else
         {
@@ -159,6 +158,30 @@ class UserController extends Controller
 
         return view('/admin/comments',['comments'=>$comments]);
 
+    }
+
+    public function deleteComment($id)
+    {
+        $logged_user = Auth::user();
+
+        $comment= Comments::find(intval($id));
+
+        if ($logged_user->hasRole('admin')) //for security reasons
+        {
+            $msg='This';
+        }
+        elseif($logged_user['id'] === intval($comment->author_id))
+        {
+            $msg='Your';
+        }
+        else
+            abort(403);
+
+
+        $comment->delete();
+
+        flash("$msg comment was deleted successfully!", 'success');
+        return redirect(url()->previous());
     }
 
 }

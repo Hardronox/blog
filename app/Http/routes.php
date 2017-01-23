@@ -36,7 +36,10 @@ Route::group(['middleware'=>'auth'], function()
 
     Route::get('/payment/success', 'PaymentController@successPayment');
 
-    Route::post('/comment-save', 'ServiceController@saveComment');
+    Route::post('/comment/save', 'ServiceController@saveComment');
+
+    Route::get('/comment/delete/{id}', 'UserController@deleteComment');
+
 
 });
 
