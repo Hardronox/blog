@@ -1,9 +1,5 @@
 <?php
 
-
-
-
-
 Route::get('/', 'BlogController@index');
 
 Route::get('/blog/{id}', 'BlogController@articleView')->middleware('subscriber');
@@ -39,7 +35,6 @@ Route::group(['middleware'=>'auth'], function()
     Route::post('/comment/save', 'ServiceController@saveComment');
 
     Route::get('/comment/delete/{id}', 'UserController@deleteComment');
-
 
 });
 

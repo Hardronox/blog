@@ -172,7 +172,8 @@ class BlogController extends Controller
     }
 
     /**
-     * deletes article(from db and elastic) in profile/articles
+     * deletes article(from db and elastic)
+     * can be used by both owner of article and an admin
      */
     public function articleDelete($id)
     {
@@ -201,19 +202,21 @@ class BlogController extends Controller
         }
     }
 
-    /**
-     *  adds all articles in elasticSearch
-     */
 
+    /**
+     *  when non-premium user attempts to read premium article - he's redirected to this page
+     */
     public function articlePermissions(Request $request, $id)
     {
-
         $article=Articles::find($id);
         $request->session()->put('article_id', $article->id);
 
         return view('site.permission', ['article'=>$article]);
     }
 
+    /**
+     *  adds all articles in elasticSearch
+     */
     public static function elastic()
     {
         $blogs=Articles::with('category')->get();

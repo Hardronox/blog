@@ -5,13 +5,13 @@
 @section('content')
     {!!Html::script('/js/vendor/tinymce/js/tinymce/tinymce.min.js')!!}
     {!!Html::script('js/site/init.js')!!}
-
     <div class="container container_tmargin">
-        <div class="content" >
+        <div class="content">
             <div class="col-md-9 col-md-offset-2">
                 <h3>Edit an Article</h3>
                 <br>
                 {!! Form::open(array('url'=>route("edit-article",['id'=>$article['id']]),'method'=>'POST', 'files'=>true)) !!}
+                    {!! Form::token() !!}
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
                         {!! Form::text('title', $article['title'], ['class'=>'form-control','id'=>'title']) !!}
@@ -27,15 +27,14 @@
                         {!! Form::textarea('text', $article['text'], ['id'=>'input']) !!}
                     </div>
 
-                    {!! Form::token() !!}
-
                     <div class="form-group">
                         {!! Form::label('sel1', 'Category') !!}
-                        {!! Form::select('category', $categories, ['class'=>'form-control','id'=>'sel1']) !!}
+                        {!! Form::select('category', $categories, ['class'=>'form-control','id'=>'sel1','selected'=>$article['category_id']]) !!}
                     </div>
                     {!! Form::label('file', 'Main Blog Image') !!}
 
-                    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top" title="For better quality upload images with width 3 times more than height"></span>
+                    <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top"
+                          title="For better quality upload images with width 3 times more than height"></span>
 
                     {!! Form::file('image', array('id' =>'file')) !!}
                     {!! Form::submit('Submit', array('class'=>'send-btn btn btn-success pull-right')) !!}
@@ -43,6 +42,5 @@
             </div>
         </div>
     </div>
-
 @endsection
 

@@ -1,8 +1,8 @@
 {!!Html::script('js/site/modal.js')!!}
 
-<!-- Modal edit-profile window -->
+        <!-- Modal edit-profile window -->
 <div id="myModal" class="modal fade">
-    <div class="modal-dialog modal-lg" >
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal_content">
                 <h3>Edit Profile</h3>
@@ -40,11 +40,11 @@
                     @endif
                 </div>
                 @if ($user->password=='new users password')
-                <div class="form-group">
-                    {!! Form::label('pass', 'New password') !!}
+                    <div class="form-group">
+                        {!! Form::label('pass', 'New password') !!}
 
-                    {!! Form::password('password', ['class'=>'form-control','id'=>'pass']) !!}
-                </div>
+                        {!! Form::password('password', ['class'=>'form-control','id'=>'pass']) !!}
+                    </div>
                 @endif
                 {!! Form::token() !!}
 

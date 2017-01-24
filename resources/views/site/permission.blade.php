@@ -13,7 +13,6 @@
                 <h3><a href="{{ url("/blog/$article->id")}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
             </div>
             <button class="subscribe_button">Become a Subscriber!</button>
-
         </div>
     </div>
 
@@ -29,8 +28,6 @@
                         Signup for only $10 a month.
                     </h4>
                     <h2 >Choose payment method:</h2>
-
-
                 </div>
             </div>
         </div>

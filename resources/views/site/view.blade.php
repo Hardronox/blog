@@ -36,8 +36,8 @@
                     @endif
                 </div>
             </div>
-            <ul class="media-list">
-                <div id="blog_view_comment_content">
+            <div id="comment_block">
+                <ul class="media-list">
                     <script type="text/template" id="pageContent">
                         <li class="media">
                             <div id="m<%- comments.id %>">
@@ -63,21 +63,20 @@
                             </div>
                         </li>
                     </script>
-                </div>
-            </ul>
+                </ul>
+            </div>
             <div id="blog_comment_form">
                 @if (Auth::guest())
                     <b>Log in to leave a comment</b>
                 @else
                     {!! Form::open(array('method'=>'POST', 'id'=>'comment_form')) !!}
-
-                    <div class="form-group">
-                        {!! Form::label('comment_text', 'Write comment here') !!}
-                        {!! Form::textarea('text', '', ['class'=>'form-control', 'id'=>'comment_text', 'rows'=>3]) !!}
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-raised btn-success pull-right" type="button" onclick="saveComment(this);">Отправить</button>
-                    </div>
+                        <div class="form-group">
+                            {!! Form::label('comment_text', 'Write comment here') !!}
+                            {!! Form::textarea('text', '', ['class'=>'form-control', 'id'=>'comment_text', 'rows'=>3]) !!}
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-raised btn-success pull-right" type="button" onclick="saveComment(this);">Отправить</button>
+                        </div>
                     {!! Form::close() !!}
                 @endif
             </div>

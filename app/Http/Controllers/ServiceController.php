@@ -12,7 +12,9 @@ use Carbon\Carbon;
 
 class ServiceController extends Controller
 {
-
+    /**
+     * when someone opens /blog/123 page - he increments number of views
+     */
     public static function views($source)
     {
         //increments views in DB
@@ -159,18 +161,15 @@ class ServiceController extends Controller
             ]
         ];
         $client->index($params);
-        
-
     }
 
     /**
-     * filters inputs
+     * filters comment input
      */
     public static function filterComment($text)
     {
         $first = preg_replace('/<script/', '&lt;script', $text);
-        $final = strip_tags(preg_replace('/script>/', 'script&gt;', $first));
-
+        $final = strip_tags(preg_replace('/<\/script>/', '&lt;/script>', $first));
 
         return $final;
     }

@@ -1,15 +1,15 @@
-function status(elem) {
+function changeStatus(elem) {
 
-  var id = $(elem).data('id');
+	var id = $(elem).data('id');
 
-  $.ajax({
-    url: '/article/status',
-    type: 'get',
-    data: {
-      id: id
-    },
-    success: function (response) {
-      $('#tr'+id).find('td.status').html(response);
-    }
-  });
+	$.ajax({
+		url: '/article/status',
+		type: 'get',
+		data: {
+			id: id
+		},
+		success: function (response) {
+			$('#tr' + id).find('td.status').html(response);
+		}
+	});
 }

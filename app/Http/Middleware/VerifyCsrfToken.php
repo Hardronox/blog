@@ -15,7 +15,7 @@ class VerifyCsrfToken extends BaseVerifier
         '/payment/paypal',
         '/payment/card',
         '/comments',
-        '/comment-save'
+        '/comment/save'
 
     ];
 }

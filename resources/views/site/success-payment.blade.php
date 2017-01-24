@@ -12,7 +12,7 @@
                 <div class="msg_subcribers">
                     <h3>
                         Congratulations! You're a subscriber now! You now have access to all premium content on this site!
-                        Get back to this Article!<br> <a href="/blog/{{$article->id}}">{{$article->title}}</a>
+                        Get back to this Article!<br> <a href="{{ url("/blog/$article->id") }}">{{$article->title}}</a>
                         <br>
                     </h3>
 
