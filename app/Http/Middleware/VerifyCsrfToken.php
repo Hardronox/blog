@@ -12,10 +12,9 @@ class VerifyCsrfToken extends BaseVerifier
      * @var array
      */
     protected $except = [
-        '/payment/paypal',
-        '/payment/card',
-        '/comments',
-        '/comment/save'
-
+		'/payment/paypal',
+		'/payment/card',
+		'/comments',
+		'/comment/save'
     ];
 }

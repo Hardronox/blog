@@ -16,7 +16,7 @@
                         <br>
                     </h3>
 
-                    <img id="access_granted" src="/images/access-granted.jpg" alt="">
+                    <img id="access_granted" src="/images/site/access-granted.jpg" alt="">
                 </div>
             </div>
         </div>

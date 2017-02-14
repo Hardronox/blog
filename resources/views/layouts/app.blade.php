@@ -7,7 +7,7 @@
     <script src="/js/js_modules/jquery.min.js"></script>
     <script src="/js/js_modules/underscore-min.js"></script>
 
-    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="icon" type="image/png" href="/images/site/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
     <meta name="keywords" content="Blog, WEB, WEB-Development, Frontend, Backend, Design" />

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 /**
- * App\User
+ * App\Models\User
  *
  * @mixin \Eloquent
  * @property integer $id

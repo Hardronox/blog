@@ -60,9 +60,9 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
 
-                                <a href="/auth/facebook"><img width="35px" height="35px" src="/images/facebook.png" alt=""></a>
+                                <a href="/auth/facebook"><img width="35px" height="35px" src="/images/site/facebook.png" alt=""></a>
 
-                                <a href={{$url . '?' . urldecode(http_build_query($params))}}><img width="35px" height="35px" src="/images/vk.png" alt=""></a>
+                                <a href={{$url . '?' . urldecode(http_build_query($params))}}><img width="35px" height="35px" src="/images/site/vk.png" alt=""></a>
 
                                 <div class="pull-right">
                                     <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>

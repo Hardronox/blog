@@ -36,13 +36,13 @@
                 <div class="col-md-6 card_payment" >
                     <div class="payment_method" data-type="card">
                         <div class="payment_name">Credit card</div>
-                        <img width="250px" height="250px"  src="/images/credit_card.jpg" alt="">
+                        <img width="250px" height="250px"  src="/images/site/credit_card.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 paypal_payment" >
                     <div class="payment_method" data-type="paypal">
                         <div class="payment_name">PayPal</div>
-                        <img width="250px" height="250px" src="/images/paypal_logo.png" alt="">
+                        <img width="250px" height="250px" src="/images/site/paypal_logo.png" alt="">
                     </div>
                 </div>
             </div>
