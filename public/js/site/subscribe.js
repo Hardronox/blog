@@ -1,8 +1,8 @@
-$(document).ready(function () {
+$(document).ready( () => {
 	$('.stripe-button-el').css('display', 'none');
 });
 
-$(document).on('click', '.subscribe_button', function () {
+$(document).on('click', '.subscribe_button', () => {
 
 	$(".content").fadeIn(500);
 
@@ -14,7 +14,7 @@ $(document).on('click', '.subscribe_button', function () {
 
 $(document).on('click', '.payment_method', function () {
 
-	var type = $(this).data('type');
+	let type = $(this).data('type');
 	$('.payment_method').css('border', '2px solid white');
 	$(this).css({'border': '2px solid orange', 'border-radius': '5px'});
 
@@ -26,9 +26,9 @@ $(document).on('click', '.payment_method', function () {
 });
 
 
-$(document).on('click', '.payment_button', function () {
+$(document).on('click', '.payment_button', () => {
 
-	var action = $('.payment_button').parents('form:first').attr('action');
+	let action = $('.payment_button').parents('form:first').attr('action');
 
 	if (action == '/payment') {
 		return false;

@@ -1,17 +1,17 @@
 function like(elem) {
 
-	var id = $(elem).data('post');
-	var type = $(elem).data('type');
+	let id = $(elem).data('post');
+	let type = $(elem).data('type');
 
 	$.ajax({
 		url: '/likes',
 		type: 'get',
 		data: {
-			id: id,
-			type: type
+			id,
+			type
 		},
 		dataType: 'json',
-		success: function (response) {
+		success: (response) => {
 
 			$(elem).find('span#likes').html(response);
 

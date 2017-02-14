@@ -1,13 +1,13 @@
-var text = $('#comment_text');
-var url = $(location).attr('href').split("/");
+let text = $('#comment_text');
+let url = $(location).attr('href').split("/");
 
-$(document).ready(function () {
+$(document).ready( () => {
 	$.post('/comments',
 		{
 			article_id: url[4]
 		},
-		function (response) {
-			$.each(response, function (key, comments) {
+		(response) => {
+			$.each(response, (key, comments) => {
 
 				response_partial(comments);
 
@@ -18,8 +18,8 @@ $(document).ready(function () {
 //onclick on the answer button
 function answer(elem)
 {
-	var name = $(elem).data('name');
-	var text = $('#comment_text');
+	let name = $(elem).data('name');
+	let text = $('#comment_text');
 
 	$('html, body').animate({
 		scrollTop: text.offset().top
@@ -30,15 +30,15 @@ function answer(elem)
 }
 
 function saveComment() {
-	var text = $('#comment_text').val();
+	let text = $('#comment_text').val();
 
 	if (text != 0) {
 		$.post('/comment/save',
 			{
 				id: url[4],
-				text: text
+				text
 			},
-			function (response) {
+			(response) => {
 				response_partial(response);
 			}, 'json');
 	}
@@ -47,8 +47,8 @@ function saveComment() {
 }
 
 function response_partial(server_answer) {
-	var templates = _.template($('#pageContent').html());
-	var likes = server_answer.likes.length;
+	let templates = _.template($('#pageContent').html());
+	let likes = server_answer.likes.length;
 
-	$('#comment_block').append(templates({comments: server_answer, likes: likes}));
+	$('#comment_block').append(templates({comments: server_answer, likes}));
 }

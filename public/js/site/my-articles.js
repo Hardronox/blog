@@ -1,6 +1,6 @@
 function changeStatus(elem) {
 
-	var id = $(elem).data('id');
+	let id = $(elem).data('id');
 
 	$.ajax({
 		url: '/article/status',
@@ -8,7 +8,7 @@ function changeStatus(elem) {
 		data: {
 			id: id
 		},
-		success: function (response) {
+		success: (response) => {
 			$('#tr' + id).find('td.status').html(response);
 		}
 	});

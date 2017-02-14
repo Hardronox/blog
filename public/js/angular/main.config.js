@@ -1,4 +1,4 @@
-main.config(function ($locationProvider, $stateProvider) {
+main.config( ($locationProvider, $stateProvider) => {
 
 	$locationProvider.html5Mode({
 		enabled: true,

@@ -1,8 +1,8 @@
-angular.module('main').controller('main', function ($scope, $http, $log, $location, $timeout) {
+angular.module('main').controller('main', ($scope, $http, $log, $location, $timeout) => {
 	$scope.blogs = [];
 	$scope.totalItems = 0;
 
-	$timeout(function () {
+	$timeout( () => {
 		if ($location.search().page) {
 			$scope.currentPage = $location.search().page;
 		}
@@ -13,7 +13,7 @@ angular.module('main').controller('main', function ($scope, $http, $log, $locati
 	});
 
 	$scope.itemsPerPage = 7;
-	$scope.loadData = function (category, changeCategory) {
+	$scope.loadData = (category, changeCategory) => {
 
 		$scope.category = category;
 		$scope.pageForSize = $scope.currentPage - 1;
@@ -33,7 +33,7 @@ angular.module('main').controller('main', function ($scope, $http, $log, $locati
 							"order": "desc"
 						}
 					}
-				}).success(function (response) {
+				}).success( (response) => {
 					$scope.blogs = response.hits.hits;
 					$scope.totalItems = response.hits.total;
 				});
@@ -56,7 +56,7 @@ angular.module('main').controller('main', function ($scope, $http, $log, $locati
 							"order": "desc"
 						}
 					}
-				}).success(function (response) {
+				}).success( (response) => {
 					$scope.blogs = response.hits.hits;
 					$scope.totalItems = response.hits.total;
 				});
@@ -64,7 +64,7 @@ angular.module('main').controller('main', function ($scope, $http, $log, $locati
 			$http.post("http://127.0.0.1:9200/myblogs/_search?sort=views:desc",
 				{
 					"from": 0, "size": 10
-				}).success(function (response) {
+				}).success( (response) => {
 					$scope.populars = response.hits.hits;
 				});
 
@@ -72,12 +72,12 @@ angular.module('main').controller('main', function ($scope, $http, $log, $locati
 
 	};
 
-	$scope.pageChanged = function () {
+	$scope.pageChanged = () => {
 		$location.search('page', $scope.currentPage);
 		$scope.loadData($scope.category);
 
-		(function ($) {
-			$(document).ready(function () {
+		( ($) => {
+			$(document).ready( () => {
 				$('html, body').animate({
 					'scrollTop': $('#top').offset().top
 				}, 1000);
