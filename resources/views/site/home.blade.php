@@ -3,7 +3,6 @@
 @section('pageTitle', 'Home')
 
 @section('content')
-    {!!Html::script('js/site//home.js')!!}
     <div ng-app="main" ng-controller="main" ng-cloak>
         <div class="container">
             <div class="header-bottom">

@@ -1,4 +1,4 @@
-main.config( ($locationProvider, $stateProvider) => {
+angular.module('main').config( ($locationProvider, $stateProvider) => {
 
 	$locationProvider.html5Mode({
 		enabled: true,

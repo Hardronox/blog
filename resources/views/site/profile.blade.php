@@ -3,7 +3,6 @@
 @section('pageTitle', 'My Profile')
 
 @section('content')
-{!!Html::script('js/site/deleteObject.js')!!}
 <div class="container" >
     @include('flash::message')
     <div class="content" >

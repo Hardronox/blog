@@ -10,11 +10,3 @@ tinymce.init({
 	content_css: '//www.tinymce.com/css/codepen.min.css'
 });
 
-$( () => {
-	$('[data-toggle="tooltip"]').tooltip()
-});
-
-
-$( () => {
-	$('select[name=category]').addClass('form-control')
-});

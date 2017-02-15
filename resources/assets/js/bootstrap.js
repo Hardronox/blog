@@ -17,7 +17,21 @@ require('bootstrap-sass');
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Vue = require('vue');
+window.Noty = require('noty');
+
+require ("./js_modules/angular.min.js");
+require ("./js_modules/angular-ui-router.min.js");
+require ("./js_modules/ui-bootstrap-tpls-1.2.5.min.js");
+
+require ("./angular/main.module.js");
+require ("./angular/main.config.js");
+require ("./angular/main.controller.js");
+require ("./site/deleteObject.js");
+require ("./site/home.js");
+require ("./site/likes.js");
+require ("./site/modal.js");
+require ("./site/my-articles.js");
+require ("./site/subscribe.js");
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -25,12 +39,12 @@ window.Vue = require('vue');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+//window.axios = require('axios');
 
-window.axios.defaults.headers.common = {
-    'X-CSRF-TOKEN': window.Laravel.csrfToken,
-    'X-Requested-With': 'XMLHttpRequest'
-};
+//window.axios.defaults.headers.common = {
+//    'X-CSRF-TOKEN': window.Laravel.csrfToken,
+//    'X-Requested-With': 'XMLHttpRequest'
+//};
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening

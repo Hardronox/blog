@@ -4,8 +4,8 @@
     <title>@yield('pageTitle')</title>
     <link href="/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
     <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <script src="/js/js_modules/jquery.min.js"></script>
-    <script src="/js/js_modules/underscore-min.js"></script>
+    {{--<script src="/js/js_modules/jquery.min.js"></script>--}}
+    {{--<script src="/js/js_modules/underscore-min.js"></script>--}}
 
     <link rel="icon" type="image/png" href="/images/site/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -56,7 +56,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="copyrights">
-                <p>Konstructs © 2015 All rights reserved | Template by  <a href="http://w3layouts.com">  W3layouts</a></p>
+                <p class="text-center">Face2WEB © 2017 All rights reserved </p>
             </div>
         </div>
     </div>
@@ -64,15 +64,15 @@
 
 
         <!-- JavaScripts -->
-<script src="/bootstrap/js/bootstrap.min.js"></script>
-<script src="/js/js_modules/angular.min.js"></script>
-<script src="/js/js_modules/angular-ui-router.min.js"></script>
-<script src="/js/js_modules/ui-bootstrap-tpls-1.2.5.min.js"></script>
-<script src="/js/angular/main.module.js"></script>
-<script src="/js/angular/main.config.js"></script>
-<script src="/js/angular/main.controller.js"></script>
+{{--<script src="/bootstrap/js/bootstrap.min.js"></script>--}}
+{{--<script src="/js/js_modules/angular.min.js"></script>--}}
+{{--<script src="/js/js_modules/angular-ui-router.min.js"></script>--}}
+{{--<script src="/js/js_modules/ui-bootstrap-tpls-1.2.5.min.js"></script>--}}
+{{--<script src="/js/angular/main.module.js"></script>--}}
+{{--<script src="/js/angular/main.config.js"></script>--}}
+{{--<script src="/js/angular/main.controller.js"></script>--}}
 
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+<script src="/js/app.js"></script>
 </body>
 </html>
 

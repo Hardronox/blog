@@ -3,11 +3,10 @@
 @section('pageTitle', $blog->title)
 
 @section('content')
-{!!Html::script('js/site/likes.js')!!}
-{!!Html::script('js/site/comments.js')!!}
+{!!Html::script('js/comments.js')!!}
 <div class="container" >
     <div class="content">
-        <div class="col-md-8 col-md-offset-1 content-left">
+        <div class="col-md-7 col-md-offset-1 content-left">
             <div id="margin-top" class="article">
                 <span id="view-h6">{{$blog->category->name}} </span>
                 <span class="view-title">

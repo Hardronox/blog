@@ -3,8 +3,6 @@
 @section('pageTitle', 'My Articles')
 
 @section('content')
-    {!!Html::script('js/site/my-articles.js')!!}
-    {!!Html::script('js/site/deleteObject.js')!!}
     <div class="container" >
         @include('flash::message')
         <div class="content" >
@@ -30,7 +28,7 @@
                                 <td class="col-md-1 status">{{$blog['status']}}</td>
                                 <td class="col-md-1 active">
                                     <div class="btn-group-vertical">
-                                        <button class="btn btn-info" data-id="{{$blog['id']}}" onclick="changeStatus(this);">Change Status</button>
+                                        <button class="btn btn-info change-status" data-id="{{$blog['id']}}">Change Status</button>
                                         <a href="{{ url("/article/edit/".$blog['id']."")}}" class="btn btn-warning">Edit</a>
                                         <a href="{{ url("/article/delete/".$blog['id']."")}}" class="btn btn-danger delete">Delete</a>
                                     </div>

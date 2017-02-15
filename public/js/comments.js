@@ -1,6 +1,6 @@
-let text = $('#comment_text');
-let url = $(location).attr('href').split("/");
-
+var text = $('#comment_text');
+var url = $(location).attr('href').split("/");
+//console.log(url[0]);
 $(document).ready( () => {
 	$.post('/comments',
 		{

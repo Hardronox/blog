@@ -3,8 +3,8 @@
 @section('pageTitle', 'Write an Article')
 
 @section('content')
-    {!!Html::script('/js/vendor/tinymce/js/tinymce/tinymce.min.js')!!}
-    {!!Html::script('js/site/init.js')!!}
+    {!!Html::script('/js/tinymce/js/tinymce/tinymce.min.js')!!}
+    {!!Html::script('js/tinymce/init.js')!!}
     <div class="container blog_create_container">
         <div class="content">
             <div class="col-md-9 col-md-offset-2">
