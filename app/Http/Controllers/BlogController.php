@@ -7,6 +7,7 @@ use App\Models\Advertisement;
 use App\Models\Articles;
 use App\Models\ArticleCategory;
 use App\Models\Likes;
+use Carbon\Carbon;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -55,6 +56,8 @@ class BlogController extends Controller
             $blog->description=$_POST['desc'];
             $blog->text=$_POST['text'];
             $blog->category_id=$_POST['category'];
+            $blog->created_at=Carbon::now('Europe/Kiev');;
+
 
 
             $file = array('image' => Input::file('image'));

@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 16);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10310,7 +10310,7 @@ __webpack_require__(6);
 /* 2 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
+throw new Error("Module build failed: Error\n    at factoryCallback (/home/pinchuk_a/Projects/blog/node_modules/webpack/lib/Compilation.js:259:39)\n    at /home/pinchuk_a/Projects/blog/node_modules/webpack/lib/NormalModuleFactory.js:234:19\n    at onDoneResolving (/home/pinchuk_a/Projects/blog/node_modules/webpack/lib/NormalModuleFactory.js:59:20)\n    at /home/pinchuk_a/Projects/blog/node_modules/webpack/lib/NormalModuleFactory.js:126:20\n    at /home/pinchuk_a/Projects/blog/node_modules/async/dist/async.js:3694:9\n    at /home/pinchuk_a/Projects/blog/node_modules/async/dist/async.js:356:16\n    at iteratorCallback (/home/pinchuk_a/Projects/blog/node_modules/async/dist/async.js:934:13)\n    at /home/pinchuk_a/Projects/blog/node_modules/async/dist/async.js:840:16\n    at /home/pinchuk_a/Projects/blog/node_modules/async/dist/async.js:3691:13\n    at apply (/home/pinchuk_a/Projects/blog/node_modules/async/dist/async.js:21:25)\n    at /home/pinchuk_a/Projects/blog/node_modules/async/dist/async.js:56:12\n    at /home/pinchuk_a/Projects/blog/node_modules/webpack/lib/NormalModuleFactory.js:121:22\n    at onResolved (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/Resolver.js:70:11)\n    at loggingCallbackWrapper (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/createInnerCallback.js:31:19)\n    at afterInnerCallback (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/Resolver.js:138:10)\n    at loggingCallbackWrapper (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/createInnerCallback.js:31:19)\n    at Resolver.applyPluginsAsyncSeriesBailResult1 (/home/pinchuk_a/Projects/blog/node_modules/tapable/lib/Tapable.js:181:46)\n    at innerCallback (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/Resolver.js:125:19)\n    at loggingCallbackWrapper (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/createInnerCallback.js:31:19)\n    at /home/pinchuk_a/Projects/blog/node_modules/tapable/lib/Tapable.js:283:15\n    at /home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/UnsafeCachePlugin.js:38:4\n    at loggingCallbackWrapper (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/createInnerCallback.js:31:19)\n    at afterInnerCallback (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/Resolver.js:138:10)\n    at loggingCallbackWrapper (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/createInnerCallback.js:31:19)\n    at Resolver.applyPluginsAsyncSeriesBailResult1 (/home/pinchuk_a/Projects/blog/node_modules/tapable/lib/Tapable.js:181:46)\n    at innerCallback (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/Resolver.js:125:19)\n    at loggingCallbackWrapper (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/createInnerCallback.js:31:19)\n    at /home/pinchuk_a/Projects/blog/node_modules/tapable/lib/Tapable.js:283:15\n    at innerCallback (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/Resolver.js:123:11)\n    at loggingCallbackWrapper (/home/pinchuk_a/Projects/blog/node_modules/enhanced-resolve/lib/createInnerCallback.js:31:19)");
 
 /***/ }),
 /* 3 */
@@ -10424,7 +10424,7 @@ angular.module('main', ['ui.router', 'ui.bootstrap'], function ($interpolateProv
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {
-window._ = __webpack_require__(12);
+window._ = __webpack_require__(17);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -10434,7 +10434,7 @@ window._ = __webpack_require__(12);
 
 window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(0);
 
-__webpack_require__(11);
+__webpack_require__(16);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -10442,7 +10442,7 @@ __webpack_require__(11);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Noty = __webpack_require__(13);
+window.Noty = __webpack_require__(18);
 
 __webpack_require__(8);
 __webpack_require__(7);
@@ -10451,12 +10451,13 @@ __webpack_require__(9);
 __webpack_require__(5);
 __webpack_require__(3);
 __webpack_require__(4);
-__webpack_require__(26);
 __webpack_require__(10);
-__webpack_require__(28);
-__webpack_require__(29);
+__webpack_require__(11);
+__webpack_require__(12);
+__webpack_require__(13);
+__webpack_require__(14);
+__webpack_require__(15);
 __webpack_require__(30);
-__webpack_require__(31);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -17686,6 +17687,26 @@ __webpack_require__(31);
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function($) {var _this = this;
+
+// when we try to delete smth in profile
+$(document).on('click', '.delete', function (e) {
+
+	var attr = $(_this).attr('href');
+	var text_type = attr.substr(attr.indexOf('/', 10) + 1, attr.indexOf('/', 24) - (attr.indexOf('/', 10) + 1));
+
+	if (!confirm("Delete this " + text_type + "?")) {
+		e.preventDefault();
+		e.stopImmediatePropagation();
+		return false;
+	}
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function($) {function showPagination() {
 	$('#pagi').css('display', 'block');
 }
@@ -17701,7 +17722,128 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(document).on('click', '.a-hover', function () {
+	var _this = this;
+
+	//let id = $(this).data('id');
+
+
+	var id = $(this).data('post');
+	var type = $(this).data('type');
+
+	$.ajax({
+		url: '/likes',
+		type: 'get',
+		data: {
+			id: id,
+			type: type
+		},
+		dataType: 'json',
+		success: function success(response) {
+
+			$(_this).find('span#likes').html(response);
+		}
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
+	$(".edit").click(function () {
+		$("#myModal").modal('show');
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(document).on('click', '.change-status', function () {
+
+	var id = $(this).data('id');
+
+	$.ajax({
+		url: '/article/status',
+		type: 'get',
+		data: {
+			id: id
+		},
+		success: function success(response) {
+			$('#tr' + id).find('td.status').html(response);
+
+			Noty({
+				//type: 'information',
+				layout: 'bottomRight',
+				text: 'Status has been changed!',
+				//theme: 'defaultTheme',
+				timeout: 2000,
+				template: '<div class="noty_message" ><span class="noty_text"></span><div class="noty_close"></div></div>',
+				animation: {
+					open: { height: 'toggle' },
+					close: { height: 'toggle' },
+					easing: 'swing',
+					speed: 400 // opening & closing animation speed
+				}
+			});
+			// tried to override classes of noty but these options were unwilling to change :\
+			$(".noty_message").css("text-align", "center");
+			$("li").css("border", "none");
+		}
+	});
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
+	$('.stripe-button-el').css('display', 'none');
+});
+
+$(document).on('click', '.subscribe_button', function () {
+
+	$(".content").fadeIn(500);
+
+	$('html, body').animate({
+		'scrollTop': $('.become_subscriber').offset().top
+	}, 1000);
+});
+
+$(document).on('click', '.payment_method', function () {
+
+	var type = $(this).data('type');
+	$('.payment_method').css('border', '2px solid white');
+	$(this).css({ 'border': '2px solid orange', 'border-radius': '5px' });
+
+	$('.payment_button').prop("disabled", false);
+
+	$('.payment_button').parents('form:first').attr('action', '/payment/' + type);
+});
+
+$(document).on('click', '.payment_button', function () {
+
+	var action = $('.payment_button').parents('form:first').attr('action');
+
+	if (action == '/payment') {
+		return false;
+	} else if (action == '/payment/paypal') {
+		$('form script').remove();
+		$('body iframe').remove();
+		$('.payment_button').parents('form:first').submit();
+	}
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -20085,7 +20227,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -37174,10 +37316,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(14), __webpack_require__(15)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19), __webpack_require__(20)(module)))
 
 /***/ }),
-/* 13 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(root, factory) {
@@ -39066,7 +39208,7 @@ return window.noty;
 });
 
 /***/ }),
-/* 14 */
+/* 19 */
 /***/ (function(module, exports) {
 
 var g;
@@ -39093,7 +39235,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 15 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -39121,7 +39263,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 16 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
@@ -39129,168 +39271,74 @@ module.exports = __webpack_require__(2);
 
 
 /***/ }),
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
 /* 22 */,
 /* 23 */,
 /* 24 */,
 /* 25 */,
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {var _this = this;
-
-// when we try to delete smth in profile
-$(document).on('click', '.delete', function (e) {
-
-	var attr = $(_this).attr('href');
-	var text_type = attr.substr(attr.indexOf('/', 10) + 1, attr.indexOf('/', 24) - (attr.indexOf('/', 10) + 1));
-
-	if (!confirm("Delete this " + text_type + "?")) {
-		e.preventDefault();
-		e.stopImmediatePropagation();
-		return false;
-	}
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
+/* 26 */,
 /* 27 */,
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {function like(elem) {
-
-	var id = $(elem).data('post');
-	var type = $(elem).data('type');
-
-	$.ajax({
-		url: '/likes',
-		type: 'get',
-		data: {
-			id: id,
-			type: type
-		},
-		dataType: 'json',
-		success: function success(response) {
-
-			$(elem).find('span#likes').html(response);
-		}
-	});
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
-	$(".edit").click(function () {
-		$("#myModal").modal('show');
-	});
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
+/* 28 */,
+/* 29 */,
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {//function changeStatus(elem) {
-//
-//	let id = $(elem).data('id');
-//
-//	$.ajax({
-//		url: '/article/status',
-//		type: 'get',
-//		data: {
-//			id: id
-//		},
-//		success: (response) => {
-//			$('#tr' + id).find('td.status').html(response);
-//
-//			Noty({
-//				type: 'success',
-//				layout:'bottomRight',
-//				text: 'Status has been changed!'
-//			});
-//		}
-//	});
-//}
+/* WEBPACK VAR INJECTION */(function($) {var text = $('#comment_text');
+var url = $(location).attr('href').split("/");
+var done = false;
 
-$(document).on('click', '.change-status', function () {
+//showing comments
+if ($('#view-article').length) {
+	$(window).scroll(function () {
 
-	var id = $(this).data('id');
+		if ($(window).scrollTop() > $('#view-article').offset().top && done === false) {
+			$.post('/comments', {
+				article_id: url[4]
+			}, function (response) {
+				$.each(response, function (key, comments) {
 
-	$.ajax({
-		url: '/article/status',
-		type: 'get',
-		data: {
-			id: id
-		},
-		success: function success(response) {
-			$('#tr' + id).find('td.status').html(response);
-
-			Noty({
-				type: 'information',
-				layout: 'bottomRight',
-				text: 'Status has been changed!',
-				theme: 'defaultTheme', // or relax
-				timeout: 2000,
-				animation: {
-					open: { height: 'toggle' },
-					close: { height: 'toggle' },
-					easing: 'swing',
-					speed: 400 // opening & closing animation speed
-				}
+					response_partial(comments);
+				}, 'json');
 			});
+
+			done = true;
 		}
 	});
-});
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+}
 
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
+//onclick on the answer button
+$(document).on('click', '.answer_button', function () {
 
-/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
-	$('.stripe-button-el').css('display', 'none');
-});
-
-$(document).on('click', '.subscribe_button', function () {
-
-	$(".content").fadeIn(500);
+	var name = $(this).data('name');
+	var text = $('#comment_text');
 
 	$('html, body').animate({
-		'scrollTop': $('.become_subscriber').offset().top
-	}, 1000);
+		scrollTop: text.offset().top
+	}, 600);
+
+	text.val(name + ", ");
+	text.attr('data-name', name + ", ");
 });
 
-$(document).on('click', '.payment_method', function () {
+// save comment
+$(document).on('click', '.write-comment', function () {
 
-	var type = $(this).data('type');
-	$('.payment_method').css('border', '2px solid white');
-	$(this).css({ 'border': '2px solid orange', 'border-radius': '5px' });
-
-	$('.payment_button').prop("disabled", false);
-
-	$('.payment_button').parents('form:first').attr('action', '/payment/' + type);
+	if (text.val() != 0) {
+		$.post('/comment/save', {
+			id: url[4],
+			text: text.val()
+		}, function (response) {
+			response_partial(response);
+		}, 'json');
+	} else return false;
+	$('#comment_text').val('');
 });
 
-$(document).on('click', '.payment_button', function () {
+function response_partial(server_answer) {
+	var templates = _.template($('#pageContent').html());
+	var likes = server_answer.likes.length;
 
-	var action = $('.payment_button').parents('form:first').attr('action');
-
-	if (action == '/payment') {
-		return false;
-	} else if (action == '/payment/paypal') {
-		$('form script').remove();
-		$('body iframe').remove();
-		$('.payment_button').parents('form:first').submit();
-	}
-});
+	$('#comment_block').append(templates({ comments: server_answer, likes: likes }));
+}
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })

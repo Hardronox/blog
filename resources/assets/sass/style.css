@@ -179,7 +179,7 @@ label{
 #blog-image
 {
     width:100%;
-    height:300px;
+    height:250px;
     margin-bottom:1em;
 }
 
@@ -200,7 +200,14 @@ h5.head {
 	text-align:center;
 	margin-top: -1px;
 }
-
+.noty_message{
+    background:#1ac7c3;
+    font-size:1.25em;
+}
+.noty_text{
+    color:#fff;
+    font-family: 'Antonio-Regular';
+}
 .article h6 {
 	color: #1ac7c3;
 	font-size: 1.3em;
@@ -1733,7 +1740,7 @@ li.media{
     height: 50px;
     width: 50px;
 }
-.comment_button
+.answer_button
 {
     cursor: pointer;
 }

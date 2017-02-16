@@ -176,9 +176,9 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
 		Collective\Html\HtmlServiceProvider::class,
 		Laracasts\Flash\FlashServiceProvider::class,
-		//Anouar\Paypalpayment\PaypalpaymentServiceProvider::class,
 		SocialiteProviders\Manager\ServiceProvider::class,
 
     ],

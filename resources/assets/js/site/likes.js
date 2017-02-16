@@ -1,7 +1,10 @@
-function like(elem) {
+$(document).on('click', '.a-hover', function() {
 
-	let id = $(elem).data('post');
-	let type = $(elem).data('type');
+	//let id = $(this).data('id');
+
+
+	let id = $(this).data('post');
+	let type = $(this).data('type');
 
 	$.ajax({
 		url: '/likes',
@@ -13,8 +16,8 @@ function like(elem) {
 		dataType: 'json',
 		success: (response) => {
 
-			$(elem).find('span#likes').html(response);
+			$(this).find('span#likes').html(response);
 
 		}
 	});
-}
+});

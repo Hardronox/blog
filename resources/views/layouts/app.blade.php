@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>@yield('pageTitle')</title>
-    <link href="/bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
-    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/app.css" rel='stylesheet' type='text/css' />
+    {{--<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />--}}
     {{--<script src="/js/js_modules/jquery.min.js"></script>--}}
     {{--<script src="/js/js_modules/underscore-min.js"></script>--}}
 

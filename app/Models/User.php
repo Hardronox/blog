@@ -21,6 +21,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereRememberToken($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Models\User whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Articles[] $blogs
+ * @property-read \App\Models\UsersProfile $profile
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Role[] $roles
  */
 class User extends Authenticatable
 {
@@ -55,7 +58,7 @@ class User extends Authenticatable
 
     public function blogs()
     {
-        return $this->hasMany('App\Models\Blogs');
+        return $this->hasMany('App\Models\Articles');
     }
 
     public function profile()

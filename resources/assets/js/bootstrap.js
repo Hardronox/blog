@@ -32,6 +32,7 @@ require ("./site/likes.js");
 require ("./site/modal.js");
 require ("./site/my-articles.js");
 require ("./site/subscribe.js");
+require ("./site/comments.js");
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

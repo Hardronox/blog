@@ -6,6 +6,37 @@ use Illuminate\Database\Eloquent\Model;
 use Elasticsearch\ClientBuilder;
 
 
+/**
+ * App\Models\Articles
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property string $title
+ * @property string $description
+ * @property string $text
+ * @property bool $category_id
+ * @property int $views
+ * @property string $image
+ * @property string $status
+ * @property bool $premium_content
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read \App\Models\ArticleCategory $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Likes[] $likes
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereCategoryId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereImage($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles wherePremiumContent($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereText($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereTitle($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereViews($value)
+ * @mixin \Eloquent
+ */
 class Articles extends Model
 {
     protected $fillable = ['title', 'text', 'description', 'category_id','image'];

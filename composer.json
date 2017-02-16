@@ -6,18 +6,17 @@
     "type": "project",
     "require": {
         "php": ">=5.6.4",
+        "barryvdh/laravel-ide-helper": "^2.3",
+        "doctrine/dbal": "~2.3",
+        "elasticsearch/elasticsearch": "~2.0",
+        "laracasts/flash": "^2.0",
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
-        "barryvdh/laravel-ide-helper": "*",
-        "doctrine/dbal": "~2.3",
-        "vinelab/laravel-editor": "*",
-        "unisharp/laravel-ckeditor": "^4.5",
         "laravelcollective/html": "~5.0",
-        "laracasts/flash": "^2.0",
-        "elasticsearch/elasticsearch": "~2.0",
-        "anouar/paypalpayment": "~1.0",
+        "socialiteproviders/vkontakte": "^1.1",
         "stripe/stripe-php": "^4.3",
-        "socialiteproviders/vkontakte": "^1.1"
+        "unisharp/laravel-ckeditor": "^4.5",
+        "vinelab/laravel-editor": "*"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

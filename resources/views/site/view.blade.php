@@ -3,7 +3,6 @@
 @section('pageTitle', $blog->title)
 
 @section('content')
-{!!Html::script('js/comments.js')!!}
 <div class="container" >
     <div class="content">
         <div class="col-md-7 col-md-offset-1 content-left">
@@ -28,7 +27,7 @@
                         </div>
                     @else
                         <div class="likes_block">
-                            <a class="a-hover" onclick="like(this);"  data-type="Blog" data-post="{{$blog['id']}}">
+                            <a class="a-hover" data-type="Blog" data-post="{{$blog['id']}}">
                                 <span id="likes">{{$likes}}</span><span class="glyphicon glyphicon-heart"></span>
                             </a>
                         </div>
@@ -51,9 +50,9 @@
                                             <a class="guest-hover pull-right">
                                             <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
                                         @else
-                                            <a class="comment_button" data-id="<%= comments.id %>" data-name="<%= comments.author_profile.firstname %>" onclick="answer(this)">Answer</a>
+                                            <a class="answer_button" data-id="<%= comments.id %>" data-name="<%= comments.author_profile.firstname %>">Answer</a>
 
-                                            <a class="a-hover pull-right" onclick="like(this);" data-type="Comment" data-post="<%- comments.id %>">
+                                            <a class="a-hover pull-right" data-type="Comment" data-post="<%- comments.id %>">
                                                 <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
                                             </a>
                                         @endif
@@ -74,7 +73,7 @@
                             {!! Form::textarea('text', '', ['class'=>'form-control', 'id'=>'comment_text', 'rows'=>3]) !!}
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-raised btn-success pull-right" type="button" onclick="saveComment(this);">Отправить</button>
+                            <button class="btn btn-raised btn-success pull-right write-comment" type="button" >Отправить</button>
                         </div>
                     {!! Form::close() !!}
                 @endif

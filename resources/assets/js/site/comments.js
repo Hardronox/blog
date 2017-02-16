@@ -1,24 +1,34 @@
 var text = $('#comment_text');
 var url = $(location).attr('href').split("/");
-//console.log(url[0]);
-$(document).ready( () => {
-	$.post('/comments',
-		{
-			article_id: url[4]
-		},
-		(response) => {
-			$.each(response, (key, comments) => {
+var done=false;
 
-				response_partial(comments);
+//showing comments
+if ($('#view-article').length){
+	$(window).scroll(function() {
 
-			}, 'json');
-		});
-});
+		if( ($(window).scrollTop() > $('#view-article').offset().top ) && done === false) {
+			$.post('/comments',
+				{
+					article_id: url[4]
+				},
+				(response) => {
+					$.each(response, (key, comments) => {
+
+						response_partial(comments);
+
+					}, 'json');
+				});
+
+			done =true;
+		}
+	});
+}
+
 
 //onclick on the answer button
-function answer(elem)
-{
-	let name = $(elem).data('name');
+$(document).on('click', '.answer_button', function() {
+
+	let name = $(this).data('name');
 	let text = $('#comment_text');
 
 	$('html, body').animate({
@@ -27,16 +37,16 @@ function answer(elem)
 
 	text.val(name + ", ");
 	text.attr('data-name', name + ", ");
-}
+});
 
-function saveComment() {
-	let text = $('#comment_text').val();
+// save comment
+$(document).on('click', '.write-comment', () => {
 
-	if (text != 0) {
+	if (text.val() != 0) {
 		$.post('/comment/save',
 			{
 				id: url[4],
-				text
+				text: text.val()
 			},
 			(response) => {
 				response_partial(response);
@@ -44,7 +54,8 @@ function saveComment() {
 	}
 	else return false;
 	$('#comment_text').val('');
-}
+});
+
 
 function response_partial(server_answer) {
 	let templates = _.template($('#pageContent').html());
@@ -52,3 +63,6 @@ function response_partial(server_answer) {
 
 	$('#comment_block').append(templates({comments: server_answer, likes}));
 }
+
+
+
