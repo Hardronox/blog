@@ -12,19 +12,19 @@ body{
 }
 @font-face {
     font-family: 'Times-Italic';
-    src: url('../fonts/Times-Italic.ttf') format('truetype');
+    src: url('fonts/Times-Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Antonio-Regular';
-    src: url('../fonts/Antonio-Regular.ttf') format('truetype');
+    src: url('fonts/Antonio-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Georgia Italic';
-    src: url('../fonts/Georgia Italic.ttf') format('truetype');
+    src: url('fonts/Georgia Italic.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -408,7 +408,7 @@ ul.nav li a:first-letter
 	border-top: 1px solid #e6e6e6;
 }
 .features {
-	background:url('../images/blog/features-bg.jpg') no-repeat 0px 0px;
+	background:url('/public/images/blog/features-bg.jpg') no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -840,6 +840,10 @@ p.span {
 p.span a:hover {
 	text-decoration: underline;
 }
+ul.layout_menu{
+    background-color:black;
+    text-align:center;
+}
 p.span a {
 	color: #1ac7c3;
 	font-size: 1.1em;
@@ -848,6 +852,9 @@ p.span a {
 	font-family: 'Times-Italic';
 	font-style: italic;
 	margin: 0.5em 0;
+}
+span a:hover {
+    text-decoration: none;
 }
 .features-list h3 {
 	color: #282828;
@@ -1256,7 +1263,7 @@ p.span a {
 	span.menu{
 		width:28px;
 		height:28px;
-		background:url(../images/blog/nav.png)no-repeat;
+		background:url(/public/images/blog/nav.png)no-repeat;
 		display: inline-block;
 		float:right;
 		cursor: pointer;
@@ -1749,4 +1756,32 @@ li.media{
     margin-top: 1%;
     margin-left: 49%;
     font-size: 24px;
+}
+.primary{
+    background-color: #00d1b2;
+    border-color: transparent;
+    color: #fff;
+}
+.info{
+    background-color: #3273dc;
+    border-color: transparent;
+    color: #fff;
+}
+.success{
+    background-color: #23d160;
+    border-color: transparent;
+    color: #fff;
+}
+.warning{
+    background-color: #ffdb4a;
+    border-color: transparent;
+    color: rgba(0, 0, 0, 0.7);
+}
+.warning:hover{
+    color: white;
+}
+.danger{
+    background-color: #ff3860;
+    border-color: transparent;
+    color: #fff;
 }
