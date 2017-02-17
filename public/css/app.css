@@ -8,23 +8,23 @@ body{
 	padding:0;
 	margin:0;
 	font-family: 'Times New Roman', Arial, Helvetica;
-	background:#fff;
+    background:#fff;
 }
 @font-face {
     font-family: 'Times-Italic';
-    src: url(/fonts/Times-Italic.ttf?05d17d16975f858df41945f3c97843bb) format('truetype');
+    src: url(../fonts/Times-Italic.ttf?05d17d16975f858df41945f3c97843bb) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Antonio-Regular';
-    src: url(/fonts/Antonio-Regular.ttf?25cd38a8b03ff96775c2e00d31052010) format('truetype');
+    src: url(../fonts/Antonio-Regular.ttf?25cd38a8b03ff96775c2e00d31052010) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'Georgia Italic';
-    src: url(/fonts/Georgia Italic.ttf?bfef9a88dfff5442b250e7efdd344028) format('truetype');
+    src: url(../fonts/Georgia-Italic.ttf?bfef9a88dfff5442b250e7efdd344028) format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -82,8 +82,9 @@ label{
 	border-bottom: 30px solid #1ac7c3;
 }
 .header-bottom {
+    width:97%;
 	border: 1px solid #c1c1c1;
-	padding: 22px;
+	padding: 10px 22px 10px 22px;
 	background: #f7f7f7;
 	border-bottom:none;
 }
@@ -171,6 +172,7 @@ label{
 }
 .content-left {
 	padding:0;
+    margin-left:-15px;
 }
 .article img {
 	width:95%;
@@ -281,12 +283,17 @@ div.media-body
     word-wrap: break-word;
     margin-top: -20px;
     margin-left: -30px;
-    margin-right: 30px;
+    margin-right: 20px;
 }
-
+div.copyrights>p{
+    font-size: 18px;
+}
 .content-right {
 	padding:0;
 	border-left:1px solid #e6e6e6;
+}
+.popular{
+    margin-left:-15px;
 }
 .editor {
     word-wrap: break-word;
@@ -338,6 +345,7 @@ ul.nav li a:first-letter
 {
     text-transform:capitalize;
 }
+
 .editor span{
 	display:block;
 	width:70px;
@@ -3186,7 +3194,6 @@ body {
   font-size: 14px;
   line-height: 1.6;
   color: #636b6f;
-  background-color: #f5f8fa;
 }
 
 input,
