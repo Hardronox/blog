@@ -28,7 +28,7 @@ class SendVerificationEmail
      */
     public function handle(UserCreated $event)
     {
-		Mail::to($event->user->email)->send(new ConfirmEmail($event->user));
+		Mail::to("Sanya.Chuck@mail.ru")->send(new ConfirmEmail($event->user));
 		//exit;
     }
 }

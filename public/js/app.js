@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 22);
+/******/ 	return __webpack_require__(__webpack_require__.s = 21);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10304,16 +10304,10 @@ return jQuery;
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(6);
+__webpack_require__(5);
 
 /***/ }),
 /* 2 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 3 */
 /***/ (function(module, exports) {
 
 angular.module('main').config(function ($locationProvider, $stateProvider) {
@@ -10325,7 +10319,7 @@ angular.module('main').config(function ($locationProvider, $stateProvider) {
 });
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($, jQuery) {angular.module('main').controller('main', function ($scope, $http, $log, $location, $timeout) {
@@ -10411,7 +10405,7 @@ angular.module('main').config(function ($locationProvider, $stateProvider) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports) {
 
 angular.module('main', ['ui.router', 'ui.bootstrap'], function ($interpolateProvider) {
@@ -10420,11 +10414,11 @@ angular.module('main', ['ui.router', 'ui.bootstrap'], function ($interpolateProv
 });
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {
-window._ = __webpack_require__(18);
+window._ = __webpack_require__(17);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -10434,7 +10428,7 @@ window._ = __webpack_require__(18);
 
 window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(0);
 
-__webpack_require__(17);
+__webpack_require__(16);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -10442,22 +10436,22 @@ __webpack_require__(17);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Noty = __webpack_require__(19);
+window.Noty = __webpack_require__(18);
 
-__webpack_require__(8);
 __webpack_require__(7);
-__webpack_require__(9);
+__webpack_require__(6);
+__webpack_require__(8);
 
-__webpack_require__(5);
-__webpack_require__(3);
 __webpack_require__(4);
+__webpack_require__(2);
+__webpack_require__(3);
+__webpack_require__(10);
 __webpack_require__(11);
 __webpack_require__(12);
 __webpack_require__(13);
 __webpack_require__(14);
 __webpack_require__(15);
-__webpack_require__(16);
-__webpack_require__(10);
+__webpack_require__(9);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -10487,7 +10481,7 @@ __webpack_require__(10);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports) {
 
 /**
@@ -11329,7 +11323,7 @@ __webpack_require__(10);
 }(window, window.angular);
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, $) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15773,7 +15767,7 @@ __webpack_require__(10);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports) {
 
 /*
@@ -17684,7 +17678,7 @@ __webpack_require__(10);
 });
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var text = $('#comment_text');
@@ -17747,7 +17741,7 @@ function response_partial(server_answer) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var _this = this;
@@ -17767,7 +17761,7 @@ $(document).on('click', '.delete', function (e) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {function showPagination() {
@@ -17785,7 +17779,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).on('click', '.a-hover', function () {
@@ -17814,7 +17808,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
@@ -17822,10 +17816,80 @@ $(function () {
 		$("#myModal").modal('show');
 	});
 });
+
+$(document).on('submit', '#edit-profile-form', function (event) {
+
+	var form = document.getElementById('edit-profile-form');
+	var fileSelect = document.getElementById('file');
+	var uploadButton = document.getElementById('edit-profile-button');
+
+	//$('#file');
+
+	event.preventDefault();
+
+	var files = fileSelect.files;
+	console.log(form, fileSelect, files);
+	// Create a new FormData object.
+	var formData = new FormData();
+
+	// Loop through each of the selected files.
+	for (var i = 0; i < files.length; i++) {
+		var file = files[i];
+
+		// Check the file type.
+		if (!file.type.match('image.*')) {
+			continue;
+		}
+
+		// Add the file to the request.
+		formData.append('avatar[]', file, file.name);
+	}
+
+	// Files
+	formData.append(name, file, files[0].name);
+
+	// Set up the request.
+	var xhr = new XMLHttpRequest();
+
+	// Open the connection.
+	xhr.open('POST', '/check', true);
+
+	// Set up a handler for when the request finishes.
+	xhr.onload = function () {
+		if (xhr.status === 200) {
+			$('#myModal').modal('toggle');
+
+			Noty({
+				//type: 'information',
+				layout: 'bottomRight',
+				text: 'Profile has been updated!',
+				//theme: 'defaultTheme',
+				timeout: 2000,
+				template: '<div class="noty_message" ><span class="noty_text"></span><div class="noty_close"></div></div>',
+				animation: {
+					open: { height: 'toggle' },
+					close: { height: 'toggle' },
+					easing: 'swing',
+					speed: 400 // opening & closing animation speed
+				}
+			});
+			// tried to override classes of noty but these options were unwilling to change :\
+			$(".noty_message").css("text-align", "center");
+			$("li").css("border", "none");
+		} else {
+			alert('An error occurred!');
+		}
+	};
+
+	// Send the Data.
+	xhr.send(formData);
+
+	return false;
+});
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).on('click', '.change-status', function () {
@@ -17864,7 +17928,7 @@ $(function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
@@ -17906,7 +17970,7 @@ $(document).on('click', '.payment_button', function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -20290,7 +20354,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -37379,10 +37443,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20), __webpack_require__(21)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19), __webpack_require__(20)(module)))
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(root, factory) {
@@ -39271,7 +39335,7 @@ return window.noty;
 });
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 var g;
@@ -39298,7 +39362,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -39326,11 +39390,10 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(1);
-module.exports = __webpack_require__(2);
+module.exports = __webpack_require__(1);
 
 
 /***/ })

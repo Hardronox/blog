@@ -5,18 +5,14 @@
             <div class="modal_content">
                 <h3>Edit Profile</h3>
                 <br>
-                {!! Form::open(array('url'=>route('edit-profile'),'method'=>'POST', 'files'=>true)) !!}
+                {!! Form::open(array('method'=>'POST', 'files'=>true, 'id'=>'edit-profile-form')) !!}
 
                 <div class="profile_avatar">
                     {!! Form::label('file', 'Avatar') !!}
                     {!! Form::file('image', array('id' =>'file')) !!}
                 </div>
 
-                @if (isset($user->profile->avatar))
-                    <img class="profile_image" src="images/avatars/{{$user->profile->avatar}}" alt="">
-                @else
-                    <img class="profile_image" src="images/avatars/no-image.png" alt="">
-                @endif
+                <img class="profile_image" src="images/avatars/{{$user->profile->avatar ? $user->profile->avatar : 'no-image.png'}}" alt="">
 
                 <div class="form-group">
                     {!! Form::label('firstname', 'FirstName') !!}
@@ -46,7 +42,7 @@
                 @endif
                 {!! Form::token() !!}
 
-                {!! Form::submit('Edit', array('class'=>'btn btn-success pull-right')) !!}
+                {!! Form::submit('Edit', array('class'=>'btn success pull-right','id'=>'edit-profile-button')) !!}
                 {!! Form::close() !!}
                 <div class="modal_height"></div>
             </div>

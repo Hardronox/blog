@@ -1630,10 +1630,11 @@ table.profile tr td,th
 }
 .profile_image
 {
-    margin-left: 36%;
+    margin-left: 29%;
     width:150px;
     height:150px;
 }
+
 .modal_height
 {
     height: 40px;
