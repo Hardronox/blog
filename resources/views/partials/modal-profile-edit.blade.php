@@ -9,10 +9,10 @@
 
                 <div class="profile_avatar">
                     {!! Form::label('file', 'Avatar') !!}
-                    {!! Form::file('image', array('id' =>'file')) !!}
+                    {!! Form::file('image', array('id' =>'file','accept'=>'image/*')) !!}
                 </div>
 
-                <img class="profile_image" src="images/avatars/{{$user->profile->avatar ? $user->profile->avatar : 'no-image.png'}}" alt="">
+                <img class="profile_image" src="{{Storage::url($avatar)}}" alt="">
 
                 <div class="form-group">
                     {!! Form::label('firstname', 'FirstName') !!}

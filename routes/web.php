@@ -64,8 +64,6 @@ Route::post('/check', function(){
 	if (!empty($_FILES["avatar"])) {
 		$myFile = $_FILES["avatar"];
 
-//		var_dump('<pre>', $myFile["tmp_name"], '</pre>');
-//		exit;
 
 		// preserve file from temporary directory
 		$success = move_uploaded_file($myFile["tmp_name"][0],

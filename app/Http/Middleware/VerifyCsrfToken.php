@@ -16,6 +16,6 @@ class VerifyCsrfToken extends BaseVerifier
 		'/payment/card',
 		'/comments',
 		'/comment/save',
-		'/check'
+		'/profile/edit'
     ];
 }

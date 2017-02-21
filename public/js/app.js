@@ -17776,6 +17776,27 @@ $(function () {
 $(function () {
 	$('select[name=category]').addClass('form-control');
 });
+
+$.noty.defaults.layout = 'bottomRight';
+$.noty.defaults.timeout = 2000;
+$.noty.defaults.animation = {
+	open: { height: 'toggle' },
+	close: { height: 'toggle' },
+	easing: 'swing',
+	speed: 400 // opening & closing animation speed
+};
+
+$.noty.defaults.template = '<div class="noty_message" ><span class="noty_text"></span><div class="noty_close"></div></div>';
+
+$.noty.defaults.callback = {
+	onShow: function onShow() {
+
+		// tried to override classes of noty but these options were unwilling to change :\
+		$(".noty_message").css("text-align", "center");
+		$("li").css("border", "none");
+	}
+
+};
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -17821,16 +17842,13 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 
 	var form = document.getElementById('edit-profile-form');
 	var fileSelect = document.getElementById('file');
-	var uploadButton = document.getElementById('edit-profile-button');
+	var files = fileSelect.files;
+	var formData = new FormData();
+	var firstname = $('#firstname').val();
 
-	//$('#file');
+	var lastname = $('#lastname').val();
 
 	event.preventDefault();
-
-	var files = fileSelect.files;
-	console.log(form, fileSelect, files);
-	// Create a new FormData object.
-	var formData = new FormData();
 
 	// Loop through each of the selected files.
 	for (var i = 0; i < files.length; i++) {
@@ -17845,46 +17863,31 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 		formData.append('avatar[]', file, file.name);
 	}
 
-	// Files
-	formData.append(name, file, files[0].name);
+	formData.append("firstname", firstname);
+	formData.append("lastname", lastname);
 
-	// Set up the request.
 	var xhr = new XMLHttpRequest();
-
-	// Open the connection.
-	xhr.open('POST', '/check', true);
+	xhr.open('POST', '/profile/edit', true);
 
 	// Set up a handler for when the request finishes.
-	xhr.onload = function () {
+	xhr.onload = function (response) {
 		if (xhr.status === 200) {
 			$('#myModal').modal('toggle');
 
+			//console.log(response);
+
+
+			$('#first').html(response[0]);
+			$('#last').html(response[1]);
+			$('#image').attr('src', response[2]);
+
 			Noty({
-				//type: 'information',
-				layout: 'bottomRight',
-				text: 'Profile has been updated!',
-				//theme: 'defaultTheme',
-				timeout: 2000,
-				template: '<div class="noty_message" ><span class="noty_text"></span><div class="noty_close"></div></div>',
-				animation: {
-					open: { height: 'toggle' },
-					close: { height: 'toggle' },
-					easing: 'swing',
-					speed: 400 // opening & closing animation speed
-				}
+				text: 'Profile has been updated!'
 			});
-			// tried to override classes of noty but these options were unwilling to change :\
-			$(".noty_message").css("text-align", "center");
-			$("li").css("border", "none");
-		} else {
-			alert('An error occurred!');
 		}
 	};
 
-	// Send the Data.
 	xhr.send(formData);
-
-	return false;
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -17906,22 +17909,8 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 			$('#tr' + id).find('td.status').html(response);
 
 			Noty({
-				//type: 'information',
-				layout: 'bottomRight',
-				text: 'Status has been changed!',
-				//theme: 'defaultTheme',
-				timeout: 2000,
-				template: '<div class="noty_message" ><span class="noty_text"></span><div class="noty_close"></div></div>',
-				animation: {
-					open: { height: 'toggle' },
-					close: { height: 'toggle' },
-					easing: 'swing',
-					speed: 400 // opening & closing animation speed
-				}
+				text: 'Status has been updated!'
 			});
-			// tried to override classes of noty but these options were unwilling to change :\
-			$(".noty_message").css("text-align", "center");
-			$("li").css("border", "none");
 		}
 	});
 });

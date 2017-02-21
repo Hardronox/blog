@@ -15,7 +15,7 @@
                 <tr>
                     <th>Avatar</th>
                     <td>
-                        <img class="image_proportions" src="images/avatars/{{$user->profile->avatar ? $user->profile->avatar : 'no-image.png'}}" alt="">
+                        <img class="image_proportions" id="image" src="{{Storage::url($avatar)}}" alt="">
                     </td>
                 </tr>
                 <tr>
@@ -32,13 +32,13 @@
                 </tr>
                 <tr>
                     <th>FirstName</th>
-                    <td>
+                    <td id="first">
                         {{$user->profile->firstname ? $user->profile->firstname : 'No information'}}
                     </td>
                 </tr>
                 <tr>
                     <th>LastName</th>
-                    <td>
+                    <td id="last">
                         {{$user->profile->lastname ? $user->profile->lastname : 'No information'}}
                     </td>
                 </tr>

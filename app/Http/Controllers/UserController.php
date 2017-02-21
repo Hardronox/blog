@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\UsersProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 use Laracasts\Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -26,7 +27,9 @@ class UserController extends Controller
 
         $user= User::with('profile')->find($user_id['id']);
 
-        return view('/site/profile',['user'=>$user]);
+		$avatar= $user->profile->avatar ? $user->profile->avatar : 'no-image.png';
+
+        return view('/site/profile',['user'=>$user, 'avatar'=>$avatar]);
     }
 
 
@@ -45,67 +48,25 @@ class UserController extends Controller
     /**
      * in user profile after click on Profile Edit button, modal window displays. after it, works similar to article edit\create
      */
-    public function editProfile()
+    public function editProfile(Request $request)
     {
-        $user_id = Auth::user();
 
-        $user= User::find($user_id);
+//		var_dump('<pre>', $request->firstname, '</pre>');
+//		exit;
+		Auth::user()->profile()->update([
+			'firstname'=>$request->firstname,
+			'lastname'=>$request->lastname,
 
-        if (!empty($_POST))
-        {
-            $user_id = Auth::user();
+		]);
 
-            $file = array('image' => Input::file('image'));
-            $rules = array('image' => 'mimes:jpeg,bmp,png'); //mimes:jpeg,bmp,png and for max size max:10000
+		$avatar=$request->avatar[0]->store('public/images/avatars');
 
-            $validator = Validator::make($file, $rules);
-            if ($validator->fails()) {
-                return Redirect::to('/profile')->withInput()->withErrors($validator);
-            }
-            else
-            {
-                if (Input::file('image'))
-                {
-                    $destinationPath = 'images/avatars'; // upload path
-                    $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-                    $fileName = str_random(30).'.'.$extension; // renaming image
-                    Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-                    $array_to_update = ['firstname'=>$_POST['firstname'], 'lastname'=>$_POST['lastname'], 'avatar'=>$fileName];
-                }
-                else
-                    $array_to_update = ['firstname'=>$_POST['firstname'], 'lastname'=>$_POST['lastname']];
-
-
-                $profile=UsersProfile::where(['user_id'=> $user_id['id']])->get();
-
-                if (sizeof($profile)===0)
-                {
-                    $userProfile= new UsersProfile();
-                    $userProfile->user_id=$user_id['id'];
-                    $userProfile->firstname=$_POST['firstname'];
-                    $userProfile->lastname=$_POST['lastname'];
-                    if(isset($fileName))
-                    {
-                        $userProfile->avatar=$fileName;
-                    }
-                    $userProfile->save();
-                }
-                else
-                {
-                    UsersProfile::where(['user_id'=> $user_id['id']])
-                        ->update($array_to_update);
-                }
-
-                if(isset($_POST['password']))
-                {
-                    User::where(['id'=> $user_id['id']])
-                        ->update(['password'=>bcrypt($_POST['password'])]);
-                }
-                flash('Your profile was edited successfully!', 'success');
-                return redirect('/profile');
-            }
-        }
-        return view('/site/edit-profile',['user' => $user]);
+		if ($request->hasFile('avatar')){
+			Auth::user()->profile()->update([
+				'avatar'=>$avatar
+			]);
+		}
+		return [$request->firstname, $request->lastname, $avatar];
     }
 
     /**
