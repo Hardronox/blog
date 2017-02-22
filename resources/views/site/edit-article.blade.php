@@ -3,8 +3,8 @@
 @section('pageTitle', 'Edit an Article')
 
 @section('content')
-    {!!Html::script('/js/vendor/tinymce/js/tinymce/tinymce.min.js')!!}
-    {!!Html::script('js/site/init.js')!!}
+    {!!Html::script('/js/tinymce/js/tinymce/tinymce.min.js')!!}
+    {!!Html::script('js/tinymce/init.js')!!}
     <div class="container container_tmargin">
         <div class="content">
             <div class="col-md-9 col-md-offset-2">
@@ -36,7 +36,7 @@
                     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top"
                           title="For better quality upload images with width 3 times more than height"></span>
 
-                    {!! Form::file('image', array('id' =>'file')) !!}
+                    {!! Form::file('image', array('id' =>'file','accept'=>'image/*')) !!}
                     {!! Form::submit('Submit', array('class'=>'send-btn btn btn-success pull-right')) !!}
                 {!! Form::close() !!}
             </div>

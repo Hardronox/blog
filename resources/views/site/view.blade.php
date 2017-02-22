@@ -12,7 +12,7 @@
                     {{$blog->title}}
                 </span>
                 <div>
-                    <img id="blog-image" src="/images/blog/{{$blog->image ? $blog->image : 'no-image.png'}}" alt="" />
+                    <img id="blog-image" src="{{Storage::url($blog->image)}}" alt="" />
                 </div>
                 <div id="view-article">{!! $blog->text !!}</div>
                 <div class="views_likes">
@@ -40,10 +40,10 @@
                         <li class="media">
                             <div id="m<%- comments.id %>">
                                 <div class="media-left">
-                                    <img class="comment_image" src="/images/avatars/<%= comments.author_profile.avatar ? comments.author_profile.avatar : 'no-image.png'%>"/>
+                                    <img class="comment_image" src="<%= comments.author_profile.avatar %>"/>
                                 </div>
                                 <div class="media-body">
-                                    <a href="#"><h5><%= comments.author_profile.firstname %> <%= comments.author_profile.lastname %></h5></a>
+                                    <a href="#"><p><%= comments.author_profile.firstname %> <%= comments.author_profile.lastname %></p></a>
                                     <p><%= comments.text %></p>
                                     <p><%= comments.created_at %>
                                         @if (Auth::guest())
@@ -73,7 +73,7 @@
                             {!! Form::textarea('text', '', ['class'=>'form-control', 'id'=>'comment_text', 'rows'=>3]) !!}
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-raised btn-success pull-right write-comment" type="button" >Отправить</button>
+                            <button class="btn success btn-raised pull-right write-comment" type="button">Send</button>
                         </div>
                     {!! Form::close() !!}
                 @endif
@@ -87,7 +87,7 @@
                 @foreach($ads as $ad)
                     <a href="{{ url($ad->website)}}">
                         <div class="editor text-center">
-                            <img src="/images/advertisement/{{$ad->image}}" alt="">
+                            <img src="{{Storage::url($ad->image)}}" alt="">
                             {{$ad->title}}
                             <span></span>
                         </div>

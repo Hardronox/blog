@@ -9,9 +9,9 @@ $(document).on('submit', '#edit-profile-form', (event) => {
 	let form = document.getElementById('edit-profile-form');
 	let fileSelect = document.getElementById('file');
 	let files = fileSelect.files;
+
 	let formData = new FormData();
 	let firstname = $('#firstname').val();
-
 	let lastname = $('#lastname').val();
 
 	event.preventDefault();
@@ -19,11 +19,6 @@ $(document).on('submit', '#edit-profile-form', (event) => {
 	// Loop through each of the selected files.
 	for (let i = 0; i < files.length; i++) {
 		let file = files[i];
-
-		// Check the file type.
-		if (!file.type.match('image.*')) {
-			continue;
-		}
 
 		// Add the file to the request.
 		formData.append('avatar[]', file, file.name);
@@ -33,28 +28,28 @@ $(document).on('submit', '#edit-profile-form', (event) => {
 	formData.append("lastname",lastname);
 
 
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', '/profile/edit', true);
-
-	// Set up a handler for when the request finishes.
-	xhr.onload = function (response) {
-		if (xhr.status === 200) {
+	$.ajax({
+		url: '/profile/edit',
+		data: formData,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		success: function(response){
 			$('#myModal').modal('toggle');
-
-			//console.log(response);
-
 
 			$('#first').html(response[0]);
 			$('#last').html(response[1]);
-			$('#image').attr('src',response[2]);
+
+			if(response[2] !== ''){
+				let image = response[2].replace("public", "storage");
+				$('.profile_image').attr('src',image);
+				$('#image').attr('src',image);
+			}
 
 			Noty({
 				text: 'Profile has been updated!'
 			});
-
 		}
-	};
-
-	xhr.send(formData);
-
+	});
 });
+

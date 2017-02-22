@@ -31,11 +31,7 @@
                             <%blog._source.title%>
                         </a>
 
-
-
-                        <img class="blog_image" src="images/blog/<% blog._source.image ? blog._source.image : 'no-image.png'%>" alt="" />
-
-
+                        <img class="blog_image" src="{{Storage::url("<% blog._source.image %>")}}" />
 
                         <p><%blog._source.description%></p>
                         <div class="pull-right blog_views"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"></span></div>

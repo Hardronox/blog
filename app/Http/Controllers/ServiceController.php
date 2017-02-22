@@ -143,7 +143,7 @@ class ServiceController extends Controller
     public static function uploadToElastic($src)
     {
         $client = ClientBuilder::create()->build();
-        
+
         $params = [
             'index' => 'myblogs',
             'type' => 'myblogs',

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use App\Models\Articles;
 use App\Models\Comments;
 use App\Models\User;
 use App\Models\UsersProfile;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
@@ -50,18 +50,18 @@ class UserController extends Controller
      */
     public function editProfile(Request $request)
     {
+		$avatar='';
 
-//		var_dump('<pre>', $request->firstname, '</pre>');
-//		exit;
 		Auth::user()->profile()->update([
 			'firstname'=>$request->firstname,
 			'lastname'=>$request->lastname,
-
+			'updated_at'=>Carbon::now('Europe/Kiev')
 		]);
 
-		$avatar=$request->avatar[0]->store('public/images/avatars');
-
 		if ($request->hasFile('avatar')){
+
+			$avatar=$request->avatar[0]->store('public/images/avatars');
+
 			Auth::user()->profile()->update([
 				'avatar'=>$avatar
 			]);

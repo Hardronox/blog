@@ -31,7 +31,6 @@ $.noty.defaults.callback= {
 		$(".noty_message").css("text-align","center");
 		$("li").css("border","none");
 	}
-
 };
 
 

@@ -10385,6 +10385,10 @@ angular.module('main').config(function ($locationProvider, $stateProvider) {
 				"from": 0, "size": 10
 			}).success(function (response) {
 				$scope.populars = response.hits.hits;
+
+				//troubles with Carbon date format (microseconds) :\
+				var date = $('.blog_date').text();
+				$('.blog_date').text(date.substr(0, 19));
 			});
 		}
 	};
@@ -17737,6 +17741,9 @@ function response_partial(server_answer) {
 	var likes = server_answer.likes.length;
 
 	$('#comment_block').append(templates({ comments: server_answer, likes: likes }));
+
+	var src = $('.comment_image').attr('src').replace('public', '/storage');
+	$('.comment_image').attr('src', src);
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -17744,12 +17751,10 @@ function response_partial(server_answer) {
 /* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {var _this = this;
-
-// when we try to delete smth in profile
+/* WEBPACK VAR INJECTION */(function($) {// when we try to delete smth in profile
 $(document).on('click', '.delete', function (e) {
 
-	var attr = $(_this).attr('href');
+	var attr = $(this).attr('href');
 	var text_type = attr.substr(attr.indexOf('/', 10) + 1, attr.indexOf('/', 24) - (attr.indexOf('/', 10) + 1));
 
 	if (!confirm("Delete this " + text_type + "?")) {
@@ -17795,7 +17800,6 @@ $.noty.defaults.callback = {
 		$(".noty_message").css("text-align", "center");
 		$("li").css("border", "none");
 	}
-
 };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
@@ -17843,9 +17847,9 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 	var form = document.getElementById('edit-profile-form');
 	var fileSelect = document.getElementById('file');
 	var files = fileSelect.files;
+
 	var formData = new FormData();
 	var firstname = $('#firstname').val();
-
 	var lastname = $('#lastname').val();
 
 	event.preventDefault();
@@ -17854,11 +17858,6 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 	for (var i = 0; i < files.length; i++) {
 		var file = files[i];
 
-		// Check the file type.
-		if (!file.type.match('image.*')) {
-			continue;
-		}
-
 		// Add the file to the request.
 		formData.append('avatar[]', file, file.name);
 	}
@@ -17866,28 +17865,29 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 	formData.append("firstname", firstname);
 	formData.append("lastname", lastname);
 
-	var xhr = new XMLHttpRequest();
-	xhr.open('POST', '/profile/edit', true);
-
-	// Set up a handler for when the request finishes.
-	xhr.onload = function (response) {
-		if (xhr.status === 200) {
+	$.ajax({
+		url: '/profile/edit',
+		data: formData,
+		processData: false,
+		contentType: false,
+		type: 'POST',
+		success: function success(response) {
 			$('#myModal').modal('toggle');
-
-			//console.log(response);
-
 
 			$('#first').html(response[0]);
 			$('#last').html(response[1]);
-			$('#image').attr('src', response[2]);
+
+			if (response[2] !== '') {
+				var image = response[2].replace("public", "storage");
+				$('.profile_image').attr('src', image);
+				$('#image').attr('src', image);
+			}
 
 			Noty({
 				text: 'Profile has been updated!'
 			});
 		}
-	};
-
-	xhr.send(formData);
+	});
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 

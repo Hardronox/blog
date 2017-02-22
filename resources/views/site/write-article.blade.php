@@ -39,9 +39,9 @@
                     <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top"
                           title="For better quality upload images with width 3 times more than height"></span>
 
-                    {!! Form::file('image', array('id' =>'file')) !!}
+                    {!! Form::file('image', array('id' =>'file','accept'=>'image/*')) !!}
 
-                    {!! Form::submit('Submit', array('class'=>'send-btn btn btn-success pull-right')) !!}
+                    {!! Form::submit('Submit', array('class'=>'send-btn btn success pull-right')) !!}
 
                 {!! Form::close() !!}
             </div>

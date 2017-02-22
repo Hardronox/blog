@@ -44,50 +44,35 @@ class BlogController extends Controller
     /**
      * displays create-article page and is form-create action(if $_POST isset)
      */
-    public function articleCreate()
+    public function articleCreate(Request $request)
     {
         if (!empty($_POST))
         {
-            $user = Auth::user();
             $blog= new Articles();
 
-            $blog->user_id=$user['id'];
+            $blog->user_id=Auth::user()->id;
             $blog->title=$_POST['title'];
             $blog->description=$_POST['desc'];
             $blog->text=$_POST['text'];
             $blog->category_id=$_POST['category'];
-            $blog->created_at=Carbon::now('Europe/Kiev');;
+            $blog->created_at=new Carbon('now');
 
 
+			if ($request->hasFile('image')){
 
-            $file = array('image' => Input::file('image'));
-            $rules = array('image' => 'mimes:jpeg,bmp,png'); //mimes:jpeg,bmp,png and for max size max:10000
+				$image=$request->image->store('public/images/blog');
 
-            $validator = Validator::make($file, $rules);
-            if ($validator->fails()) {
-                // send back to the page with the input data and errors
-                return Redirect::to('create')->withInput()->withErrors($validator);
-            }
-            else
-            {
-                if (Input::file('image'))
-                {
-                    $destinationPath = 'images/blog'; // upload path
-                    $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-                    $fileName = str_random(30).'.'.$extension; // renaming image
+				$blog->image=str_replace('public/', '', $image);
+			}
 
-                    $blog->image=$fileName;
-                    Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
+			$blog->save();
 
-                }
-                $blog->save();
+			ServiceController::uploadToElastic($blog);
 
-                ServiceController::uploadToElastic($blog);
+			// sending back with message
+			flash('Your Article was created successfully!', 'success');
+			return redirect('/');
 
-                // sending back with message
-                flash('Your Article was created successfully!', 'success');
-                return redirect('/');
-            }
         }
 
         return view('/site/write-article',['categories' =>ServiceController::getCategories()

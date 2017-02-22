@@ -14,6 +14,7 @@ if ($('#view-article').length){
 				(response) => {
 					$.each(response, (key, comments) => {
 
+
 						response_partial(comments);
 
 					}, 'json');
@@ -62,6 +63,10 @@ function response_partial(server_answer) {
 	let likes = server_answer.likes.length;
 
 	$('#comment_block').append(templates({comments: server_answer, likes}));
+
+	let src=$('.comment_image').attr('src').replace('public','/storage');
+	$('.comment_image').attr('src',src);
+
 }
 
 

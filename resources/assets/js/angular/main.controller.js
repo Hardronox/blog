@@ -59,6 +59,9 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 				}).success( (response) => {
 					$scope.blogs = response.hits.hits;
 					$scope.totalItems = response.hits.total;
+
+
+
 				});
 
 			$http.post("http://127.0.0.1:9200/myblogs/_search?sort=views:desc",
@@ -66,6 +69,10 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 					"from": 0, "size": 10
 				}).success( (response) => {
 					$scope.populars = response.hits.hits;
+
+					//troubles with Carbon date format (microseconds) :\
+					let date=$('.blog_date').text();
+					$('.blog_date').text(date.substr(0,19));
 				});
 
 		}

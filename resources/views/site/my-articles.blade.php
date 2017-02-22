@@ -28,9 +28,9 @@
                                 <td class="col-md-1 status">{{$blog['status']}}</td>
                                 <td class="col-md-1 active">
                                     <div class="btn-group-vertical">
-                                        <button class="btn btn-info change-status" data-id="{{$blog['id']}}">Change Status</button>
-                                        <a href="{{ url("/article/edit/".$blog['id']."")}}" class="btn btn-warning">Edit</a>
-                                        <a href="{{ url("/article/delete/".$blog['id']."")}}" class="btn btn-danger delete">Delete</a>
+                                        <button class="btn primary change-status" data-id="{{$blog['id']}}">Change Status</button>
+                                        <a href="{{ url("/article/edit/".$blog['id']."")}}" class="btn info">Edit</a>
+                                        <a href="{{ url("/article/delete/".$blog['id']."")}}" class="btn danger delete">Delete</a>
                                     </div>
                                 </td>
                             </tr>
