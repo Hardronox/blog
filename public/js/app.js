@@ -10310,7 +10310,7 @@ __webpack_require__(5);
 /* 2 */
 /***/ (function(module, exports) {
 
-angular.module('main').config(function ($locationProvider, $stateProvider) {
+angular.module('main').config(function ($locationProvider) {
 
 	$locationProvider.html5Mode({
 		enabled: true,
@@ -10322,7 +10322,7 @@ angular.module('main').config(function ($locationProvider, $stateProvider) {
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($, jQuery) {angular.module('main').controller('main', function ($scope, $http, $log, $location, $timeout) {
+/* WEBPACK VAR INJECTION */(function($) {angular.module('main').controller('main', function ($scope, $http, $log, $location, $timeout) {
 	$scope.blogs = [];
 	$scope.totalItems = 0;
 
@@ -10381,6 +10381,7 @@ angular.module('main').config(function ($locationProvider, $stateProvider) {
 				$scope.totalItems = response.hits.total;
 			});
 
+			//right column(popular)
 			$http.post("http://127.0.0.1:9200/myblogs/_search?sort=views:desc", {
 				"from": 0, "size": 10
 			}).success(function (response) {
@@ -10403,10 +10404,10 @@ angular.module('main').config(function ($locationProvider, $stateProvider) {
 					'scrollTop': $('#top').offset().top
 				}, 1000);
 			});
-		})(jQuery);
+		})($);
 	};
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 4 */

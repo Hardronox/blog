@@ -1,7 +1,6 @@
 <?php
 
 use App\Mail\ConfirmEmail;
-use Illuminate\Support\Facades\Input;
 
 Route::get('/', 'BlogController@index');
 
@@ -9,7 +8,7 @@ Route::get('/blog/{id}', 'BlogController@articleView')->middleware('subscriber')
 
 Route::group(['middleware'=>'auth'], function()
 {
-	Route::get('/create', 'BlogController@articleCreate');
+	Route::get('/article/write', 'BlogController@articleCreate');
 
 	Route::post('/create', 'BlogController@articleCreate')->name('create-article');
 
@@ -59,23 +58,6 @@ Route::get('/mail', function(){
 
 Route::post('/check', function(){
 
-	define("UPLOAD_DIR", "images/avatars/");
-
-	if (!empty($_FILES["avatar"])) {
-		$myFile = $_FILES["avatar"];
-
-
-		// preserve file from temporary directory
-		$success = move_uploaded_file($myFile["tmp_name"][0],
-			UPLOAD_DIR . $myFile["name"][0]);
-		if (!$success) {
-			echo "<p>Unable to save file.</p>";
-			exit;
-		}
-	}
-
-		// set proper permissions on the new file
-		chmod(UPLOAD_DIR . $myFile["name"][0], 0644);
 });
 
 Route::get('/elastic', 'BlogController@elastic');

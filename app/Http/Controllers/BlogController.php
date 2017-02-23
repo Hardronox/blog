@@ -38,7 +38,7 @@ class BlogController extends Controller
 
         ServiceController::views($blog);
 
-        return view('/site/view',['blog'=>$blog, 'ads'=>$ads, 'likes'=> sizeof($blog->likes)]);
+        return view('/site/article-view',['blog'=>$blog, 'ads'=>$ads, 'likes'=> sizeof($blog->likes)]);
     }
 
     /**
@@ -75,7 +75,7 @@ class BlogController extends Controller
 
         }
 
-        return view('/site/write-article',['categories' =>ServiceController::getCategories()
+        return view('/site/article-write',['categories' =>ServiceController::getCategories()
         ]);
     }
 
@@ -125,7 +125,7 @@ class BlogController extends Controller
                 return redirect('/profile/articles');
             }
         }
-        return view('/site/edit-article',[
+        return view('/site/article-edit',[
                                     'article' => $article,
                                     'categories' => ServiceController::getCategories()
 
@@ -199,7 +199,7 @@ class BlogController extends Controller
         $article=Articles::find($id);
         $request->session()->put('article_id', $article->id);
 
-        return view('site.permission', ['article'=>$article]);
+        return view('site.article-permission', ['article'=>$article]);
     }
 
     /**

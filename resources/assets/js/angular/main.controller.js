@@ -59,11 +59,9 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 				}).success( (response) => {
 					$scope.blogs = response.hits.hits;
 					$scope.totalItems = response.hits.total;
-
-
-
 				});
 
+			//right column(popular)
 			$http.post("http://127.0.0.1:9200/myblogs/_search?sort=views:desc",
 				{
 					"from": 0, "size": 10
@@ -74,9 +72,7 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 					let date=$('.blog_date').text();
 					$('.blog_date').text(date.substr(0,19));
 				});
-
 		}
-
 	};
 
 	$scope.pageChanged = () => {
@@ -89,6 +85,6 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 					'scrollTop': $('#top').offset().top
 				}, 1000);
 			});
-		})(jQuery);
+		})($);
 	};
 });

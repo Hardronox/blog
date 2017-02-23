@@ -3,9 +3,6 @@
 <head>
     <title>@yield('pageTitle')</title>
     <link href="/css/app.css" rel='stylesheet' type='text/css' />
-    {{--<link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />--}}
-
-
     <link rel="icon" type="image/png" href="/images/site/favicon.png">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
@@ -38,7 +35,7 @@
                         </a>
 
                         <ul class="dropdown-menu layout_menu" role="menu">
-                            <li><a href="{{ url('/create') }}">Write an article</a></li>
+                            <li><a href="{{ url('/article/write') }}">Write an article</a></li>
                             <li><a href="{{ url('/profile') }}">My Profile</a></li>
                             <li><a href="{{ url('/logout') }}">Logout</a></li>
                         </ul>
@@ -60,17 +57,6 @@
         </div>
     </div>
 </div>
-
-
-        <!-- JavaScripts -->
-{{--<script src="/bootstrap/js/bootstrap.min.js"></script>--}}
-{{--<script src="/js/js_modules/angular.min.js"></script>--}}
-{{--<script src="/js/js_modules/angular-ui-router.min.js"></script>--}}
-{{--<script src="/js/js_modules/ui-bootstrap-tpls-1.2.5.min.js"></script>--}}
-{{--<script src="/js/angular/main.module.js"></script>--}}
-{{--<script src="/js/angular/main.config.js"></script>--}}
-{{--<script src="/js/angular/main.controller.js"></script>--}}
-
 <script src="/js/app.js"></script>
 </body>
 </html>

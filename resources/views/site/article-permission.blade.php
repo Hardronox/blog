@@ -3,9 +3,6 @@
 @section('pageTitle', 'Permission Denied')
 
 @section('content')
-    {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
-    {!!Html::script('js/site/subscribe.js')!!}
-
 <div class="container blog_create_container">
     <div class="row">
         <div class="col-md-7 col-md-offset-2">
@@ -32,17 +29,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7 col-md-offset-2" >
+            <div class="col-md-7 col-md-offset-2 payment_block" >
                 <div class="col-md-6 card_payment" >
                     <div class="payment_method" data-type="card">
                         <div class="payment_name">Credit card</div>
-                        <img width="250px" height="250px"  src="/images/site/credit_card.jpg" alt="">
+                        <img width="250px" height="250px"  src="{{Storage::url("images/site/credit_card.jpg")}}" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 paypal_payment" >
                     <div class="payment_method" data-type="paypal">
                         <div class="payment_name">PayPal</div>
-                        <img width="250px" height="250px" src="/images/site/paypal_logo.png" alt="">
+                        <img width="250px" height="250px" src="{{Storage::url("images/site/paypal_logo.png")}}" alt="">
                     </div>
                 </div>
             </div>
@@ -60,7 +57,7 @@
                                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                 data-locale="auto">
                             </script>
-                            <input class="btn btn-success payment_button" type="submit" value="Proceed to Payment!" disabled="true">
+                            <input class="payment_button" type="submit" value="Proceed to Payment!" disabled="true">
                         </form>
                     </div>
                 </div>
