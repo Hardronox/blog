@@ -10325,7 +10325,9 @@ angular.module('main').config(function ($locationProvider) {
 /* WEBPACK VAR INJECTION */(function($) {angular.module('main').controller('main', function ($scope, $http, $log, $location, $timeout) {
 	$scope.blogs = [];
 	$scope.totalItems = 0;
+	$scope.itemsPerPage = 7;
 
+	//on page load
 	$timeout(function () {
 		if ($location.search().page) {
 			$scope.currentPage = $location.search().page;
@@ -10335,13 +10337,15 @@ angular.module('main').config(function ($locationProvider) {
 		$scope.loadData();
 	});
 
-	$scope.itemsPerPage = 7;
+	//loading articles from elastic
 	$scope.loadData = function (category, changeCategory) {
 
 		$scope.category = category;
 		$scope.pageForSize = $scope.currentPage - 1;
+
 		if ($scope.pageForSize == -1) $scope.currentPage = 1;
 
+		// on-change article category
 		if (category) {
 			$http.post("http://127.0.0.1:9200/myblogs/_search", {
 				"from": $scope.itemsPerPage * ($scope.currentPage - 1), "size": $scope.itemsPerPage,
@@ -10368,6 +10372,7 @@ angular.module('main').config(function ($locationProvider) {
 				$location.search('page', 1);
 			}
 		} else {
+			//default load
 			$http.post("http://127.0.0.1:9200/myblogs/_search", {
 				"from": $scope.itemsPerPage * ($scope.currentPage - 1), "size": $scope.itemsPerPage,
 
@@ -10398,6 +10403,7 @@ angular.module('main').config(function ($locationProvider) {
 		$location.search('page', $scope.currentPage);
 		$scope.loadData($scope.category);
 
+		//scroll to top after click on paginate
 		(function ($) {
 			$(document).ready(function () {
 				$('html, body').animate({
