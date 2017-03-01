@@ -76,14 +76,13 @@ class UserController extends Controller
     {
         $logged_user = Auth::user();
 
-        if ($request->input('id') && $logged_user->hasRole('admin')) //for security reasons
-        {
+        if ($request->input('id') && $logged_user->hasRole('admin')) { //for security reasons
+
             $user_id=intval($request->input('id'));
             $msg='This';
             $redirectTo=url()->previous();
-        }
-        else
-        {
+        } else {
+
             $user_id=$logged_user['id'];
             $msg='Your';
             $redirectTo='/';
@@ -127,17 +126,12 @@ class UserController extends Controller
 
         $comment= Comments::find(intval($id));
 
-        if ($logged_user->hasRole('admin')) //for security reasons
-        {
+        if ($logged_user->hasRole('admin')) { //for security reasons
             $msg='This';
-        }
-        elseif($logged_user['id'] === intval($comment->author_id))
-        {
+        } elseif($logged_user['id'] === intval($comment->author_id)) {
             $msg='Your';
-        }
-        else
+        } else
             abort(403);
-
 
         $comment->delete();
 

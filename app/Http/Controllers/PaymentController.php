@@ -113,8 +113,7 @@ class PaymentController extends Controller
 
         $user = Auth::user();
 
-        if(!$user->hasRole('subscriber'))
-        {
+        if(!$user->hasRole('subscriber')) {
             $user->roles()->attach(2);
         }
         else

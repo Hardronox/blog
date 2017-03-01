@@ -20,6 +20,11 @@ class Subscriber
         $id=$request->route('id');
         $article=Articles::find($id);
 
+		// if article doesn't exists - exception
+		if (!$article)
+			abort(404,'Article not found.');
+
+
         if(intval($article->premium_content)===1)
         {
             if (!$user = Auth::user())

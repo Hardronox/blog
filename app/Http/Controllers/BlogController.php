@@ -46,8 +46,8 @@ class BlogController extends Controller
      */
     public function articleCreate(Request $request)
     {
-        if (!empty($_POST))
-        {
+        if (!empty($_POST)) {
+
             $blog= new Articles();
 
             $blog->user_id=Auth::user()->id;
@@ -60,9 +60,9 @@ class BlogController extends Controller
 
 			if ($request->hasFile('image')){
 
-				$image=$request->image->store('public/images/blog');
+				$image=$request->image->store('public/images/articles');
 
-				$blog->image=str_replace('public/', '', $image);
+				$blog->image=$image;
 			}
 
 			$blog->save();
@@ -75,60 +75,48 @@ class BlogController extends Controller
 
         }
 
-        return view('/site/article-write',['categories' =>ServiceController::getCategories()
+        return view('/site/article-write',[
+			'categories' =>ServiceController::getCategories()
         ]);
     }
 
     /**
      * displays edit-article page(just like create above)
      */
-    public function articleEdit($id)
+    public function articleEdit($id, Request $request)
     {
         $article= Articles::find($id);
 
-        if (!empty($_POST))
-        {
-            $file = array('image' => Input::file('image'));
-            $rules = array('image' => 'mimes:jpeg,bmp,png'); //mimes:jpeg,bmp,png and for max size max:10000
+        if (!empty($_POST)) {
 
-            $validator = Validator::make($file, $rules);
-            if ($validator->fails()) {
-                return Redirect::to('/profile/articles')->withInput()->withErrors($validator);
-            }
-            else
-            {
-                $array_to_update = [
-                    'title'=>$_POST['title'],
-                    'description'=>$_POST['desc'],
-                    'text'=>$_POST['text'],
-                    'category_id'=>$_POST['category']
-                ];
+			$image='';
 
-                if (Input::file('image'))
-                {
-                    $destinationPath = 'images/blog'; // upload path
-                    $extension = Input::file('image')->getClientOriginalExtension(); // getting image extension
-                    $fileName = str_random(30).'.'.$extension; // renaming image
-                    Input::file('image')->move($destinationPath, $fileName); // uploading file to given path
-                    $array_to_update = array_add($array_to_update, 'image', $fileName);
-                }
-                else
-                    $fileName='';
+			$article->update([
+				'title'=>$_POST['title'],
+				'description'=>$_POST['desc'],
+				'text'=>$_POST['text'],
+				'category_id'=>$_POST['category'],
+				'updated_at'=>Carbon::now('Europe/Kiev')
+			]);
 
-                Articles::find($id)
-                    ->update($array_to_update);
+			if ($request->hasFile('image')){
 
-                Articles::editElastic($id, $_POST, $fileName);
+				$image=$request->image->store('public/images/articles');
 
+				$article->update([
+					'image'=>$image
+				]);
+			}
 
-                flash('Your Article was edited successfully!', 'success');
-                return redirect('/profile/articles');
-            }
+			Articles::editElastic($id, $_POST, $image);
+
+			flash('Your Article was edited successfully!', 'success');
+			return redirect('/profile/articles');
+
         }
         return view('/site/article-edit',[
                                     'article' => $article,
                                     'categories' => ServiceController::getCategories()
-
         ]);
     }
 
@@ -137,13 +125,13 @@ class BlogController extends Controller
      */
     public function articleStatus()
     {
-        if (\Illuminate\Support\Facades\Request::ajax())
-        {
+        if (\Illuminate\Support\Facades\Request::ajax()) {
+
             $article = Articles::find($_GET['id']);
             $user = Auth::user();
 
-            if ($article['user_id'] == $user['id'])
-            {
+            if ($article['user_id'] == $user['id']) {
+
                 if ($article->status == "Draft") {
                     $article->status = "Published";
                 } else {
@@ -168,8 +156,8 @@ class BlogController extends Controller
         $article= Articles::find($id);
         $user = Auth::user();
 
-        if ($article['user_id']==$user['id'] || $user->hasRole('admin'))
-        {
+        if ($article['user_id']==$user['id'] || $user->hasRole('admin')) {
+
             $article->delete();
 
             $client = ClientBuilder::create()->build();
@@ -183,9 +171,7 @@ class BlogController extends Controller
 
             flash('Your Article was deleted successfully!', 'success');
             return redirect(url()->previous());
-        }
-        else
-        {
+        } else {
             abort(403, 'You are not allowed to perform this action');
         }
     }

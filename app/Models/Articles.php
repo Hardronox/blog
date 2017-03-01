@@ -100,7 +100,7 @@ class Articles extends Model
                         'description'=>$src['desc'],
                         'text'=>$src['text'],
                         'category'=>$category,
-                        'image' =>$fileName
+                        'image' =>str_replace('public/', '', $fileName)
                     ]
                 ]
             ];

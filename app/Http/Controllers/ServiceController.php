@@ -48,8 +48,8 @@ class ServiceController extends Controller
      */
     public function likes()
     {
-        if (Request::ajax())
-        {
+        if (Request::ajax()) {
+
             $user = Auth::user();
 
             $likes=Likes::where(
@@ -59,21 +59,18 @@ class ServiceController extends Controller
                     ['user_id','=',$user['id']]
                 ])->first();
 
-            if ($likes===NULL)
-            {
+            if ($likes===NULL) {
+
                 $like= new Likes();
                 $like->type=$_GET['type'];
                 $like->type_id=$_GET['id'];
                 $like->user_id=$user['id'];
                 $like->save();
-            }
-            else
-            {
+            } else {
                 $likes->delete();
             }
 
-            $likes = Likes::where(
-                [
+            $likes = Likes::where([
                     ['type','=',$_GET['type']],
                     ['type_id','=',$_GET['id']]
                 ])->count();
@@ -106,8 +103,7 @@ class ServiceController extends Controller
      */
     public function showComments()
     {
-        if (Request::ajax())
-        {
+        if (Request::ajax()) {
             $comments = Comments::with(['authorProfile','likes'])->where('article_id','=',$_POST['article_id'])
                                 ->orderBy('created_at', 'asc')->get();
 
@@ -120,8 +116,8 @@ class ServiceController extends Controller
      */
     public function saveComment()
     {
-        if (Request::ajax())
-        {
+        if (Request::ajax()) {
+
             $user = Auth::user();
 
             $comment = new Comments();
@@ -155,7 +151,7 @@ class ServiceController extends Controller
                 'text'=>$src->text,
                 'category'=>$src->category->name,
                 'views'=>(int)$src->views,
-                'image'=>$src->image ? $src->image : NULL,
+                'image'=>$src->image ? str_replace('public/', '', $src->image) : NULL,
                 'status'=>$src->status,
                 'created_at'=>$src->created_at
             ]
