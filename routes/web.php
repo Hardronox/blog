@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\ConfirmEmail;
+use Illuminate\Support\Facades\Redis;
 
 Route::get('/', 'BlogController@index');
 
@@ -53,7 +54,10 @@ Route::group(['middleware'=>'admin'], function()
 
 
 Route::get('/mail', function(){
-	Mail::to("Sanya.Chuck@mail.ru")->send(new ConfirmEmail());
+	$kek=Redis::get("article/12324/views");
+	var_dump('<pre>', $kek, '</pre>');
+	exit;
+	//Mail::to("Sanya.Chuck@mail.ru")->send(new ConfirmEmail());
 });
 
 Route::post('/check', function(){

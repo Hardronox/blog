@@ -36,9 +36,14 @@ class BlogController extends Controller
 
         $ads=Advertisement::get();
 
-        ServiceController::views($blog);
+        $views=ServiceController::views($blog);
 
-        return view('/site/article-view',['blog'=>$blog, 'ads'=>$ads, 'likes'=> sizeof($blog->likes)]);
+        return view('/site/article-view',[
+			'blog'=>$blog,
+			'ads'=>$ads,
+			'likes'=> sizeof($blog->likes),
+			'views'=>$views
+		]);
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Elasticsearch\ClientBuilder;
+use Illuminate\Database\Query\Builder;
 
 
 /**
@@ -23,18 +24,18 @@ use Elasticsearch\ClientBuilder;
  * @property \Carbon\Carbon $updated_at
  * @property-read \App\Models\ArticleCategory $category
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Likes[] $likes
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereCategoryId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereCreatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereDescription($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereImage($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles wherePremiumContent($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereStatus($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereText($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereTitle($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereUpdatedAt($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereUserId($value)
- * @method static \Illuminate\Database\Query\Builder|\App\Models\Articles whereViews($value)
+ * @method static Builder|\App\Models\Articles whereCategoryId($value)
+ * @method static Builder|\App\Models\Articles whereCreatedAt($value)
+ * @method static Builder|\App\Models\Articles whereDescription($value)
+ * @method static Builder|\App\Models\Articles whereId($value)
+ * @method static Builder|\App\Models\Articles whereImage($value)
+ * @method static Builder|\App\Models\Articles wherePremiumContent($value)
+ * @method static Builder|\App\Models\Articles whereStatus($value)
+ * @method static Builder|\App\Models\Articles whereText($value)
+ * @method static Builder|\App\Models\Articles whereTitle($value)
+ * @method static Builder|\App\Models\Articles whereUpdatedAt($value)
+ * @method static Builder|\App\Models\Articles whereUserId($value)
+ * @method static Builder|\App\Models\Articles whereViews($value)
  * @mixin \Eloquent
  */
 class Articles extends Model

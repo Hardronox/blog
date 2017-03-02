@@ -17,7 +17,7 @@
                 <div id="view-article">{!! $blog->text !!}</div>
                 <div class="views_likes">
                     <div class="pull-right views">
-                        {{$blog->views}} <span class="glyphicon glyphicon-eye-open"></span>
+                        {{$views}} <span class="glyphicon glyphicon-eye-open"></span>
                     </div>
                     @if (Auth::guest())
                         <div class="likes_block">

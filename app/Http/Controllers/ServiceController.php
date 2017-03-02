@@ -6,6 +6,7 @@ use App\Models\ArticleCategory;
 use App\Models\Comments;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
+use Illuminate\Support\Facades\Redis;
 use Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -17,9 +18,7 @@ class ServiceController extends Controller
      */
     public static function views($source)
     {
-        //increments views in DB
-        $source->views+=1;
-        $source->save();
+		Redis::incr("article/{$source->id}/views");
 
         //increments views in elastic
         $client = ClientBuilder::create()->build();
@@ -36,6 +35,8 @@ class ServiceController extends Controller
         ];
 
         $client->update($params);
+
+		return Redis::get("article/{$source->id}/views");
     }
 
 
@@ -59,7 +60,7 @@ class ServiceController extends Controller
                     ['user_id','=',$user['id']]
                 ])->first();
 
-            if ($likes===NULL) {
+            if (!isset($likes)) {
 
                 $like= new Likes();
                 $like->type=$_GET['type'];
@@ -104,8 +105,10 @@ class ServiceController extends Controller
     public function showComments()
     {
         if (Request::ajax()) {
-            $comments = Comments::with(['authorProfile','likes'])->where('article_id','=',$_POST['article_id'])
-                                ->orderBy('created_at', 'asc')->get();
+            $comments = Comments::with(['authorProfile','likes'])
+								->where('article_id','=',$_POST['article_id'])
+                                ->orderBy('created_at', 'asc')
+								->get();
 
             return $comments;
         }
@@ -150,7 +153,7 @@ class ServiceController extends Controller
                 'description'=>$src->description,
                 'text'=>$src->text,
                 'category'=>$src->category->name,
-                'views'=>(int)$src->views,
+                'views'=>Redis::get("article/{$src->id}/views") ? (int)Redis::get("article/{$src->id}/views") : 0,
                 'image'=>$src->image ? str_replace('public/', '', $src->image) : NULL,
                 'status'=>$src->status,
                 'created_at'=>$src->created_at
