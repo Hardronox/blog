@@ -7,18 +7,19 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ConfirmEmail extends Mailable
+class ConfirmUserEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
+	public $total;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($total)
     {
-        //
+        $this->total=$total;
     }
 
     /**

@@ -14,6 +14,7 @@
         "laravel/framework": "5.4.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "~5.0",
+        "phpmailer/phpmailer": "^5.2",
         "predis/predis": "^1.1",
         "socialiteproviders/vkontakte": "^1.1",
         "stripe/stripe-php": "^4.3",
