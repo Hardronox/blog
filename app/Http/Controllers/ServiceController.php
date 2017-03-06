@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArticleCategory;
+use App\Models\Articles;
 use App\Models\Comments;
 use App\Models\Likes;
 use Elasticsearch\ClientBuilder;
@@ -150,11 +151,12 @@ class ServiceController extends Controller
             'body' => [
                 'id'=>(int)$src->id,
                 'title' => $src->title,
+                'slug' => ServiceController::getSlug($src->id),
                 'description'=>$src->description,
                 'text'=>$src->text,
                 'category'=>$src->category->name,
-                'views'=>Redis::get("article/{$src->id}/views") ? (int)Redis::get("article/{$src->id}/views") : 0,
-                'image'=>$src->image ? str_replace('public/', '', $src->image) : NULL,
+                'views'=>0,
+                'image'=>str_replace('public/', '', $src->image),
                 'status'=>$src->status,
                 'created_at'=>$src->created_at
             ]
@@ -173,4 +175,32 @@ class ServiceController extends Controller
         return $final;
     }
 
+	/**
+	 * returns article slug. it's made from the title, but title might not be unique, so i concatenated id of it to slug
+	 * but to display it without id - I should cut the string back
+	 */
+	public static function doSlug()
+	{
+		$articles= Articles::get();
+
+		foreach ($articles as $article) {
+
+			$article->slug=$article->id.'+'.$article->slug;
+			$article->save();
+
+		}
+	}
+	
+	/**
+	 * returns article slug. it's made from the title, but title might not be unique, so i concatenated id of it to slug
+	 * but to display it without id - I should cut the string back
+	 */
+	public static function getSlug($id)
+	{
+		$article= Articles::find($id);
+
+		$slug= explode('+', $article->slug);;
+
+		return $slug[1];
+	}
 }

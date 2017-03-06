@@ -70,8 +70,9 @@ class RegisterController extends Controller
 			'password' => bcrypt($data['password']),
 			'created_at'=> Carbon::now('Europe/Kiev')
 		]);
-		event(new UserCreated($user));
-        return $user;
 
+		event(new UserCreated($user));
+
+        return $user;
     }
 }

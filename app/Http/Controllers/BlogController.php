@@ -30,9 +30,9 @@ class BlogController extends Controller
     /**
      * displays single article
      */
-    public function articleView($id)
+    public function articleView($slug)
     {
-        $blog=Articles::with('likes')->find($id);
+        $blog=Articles::with('likes')->where('slug','=',$slug)->first();
 
         $ads=Advertisement::get();
 
@@ -53,10 +53,13 @@ class BlogController extends Controller
     {
         if (!empty($_POST)) {
 
+			$image='public/images/articles/no-image.png';
+
             $blog= new Articles();
 
             $blog->user_id=Auth::user()->id;
             $blog->title=$_POST['title'];
+			$blog->slug=str_slug($blog->id+$_POST['title']);
             $blog->description=$_POST['desc'];
             $blog->text=$_POST['text'];
             $blog->category_id=$_POST['category'];
@@ -66,10 +69,8 @@ class BlogController extends Controller
 			if ($request->hasFile('image')){
 
 				$image=$request->image->store('public/images/articles');
-
-				$blog->image=$image;
 			}
-
+			$blog->image=$image;
 			$blog->save();
 
 			ServiceController::uploadToElastic($blog);

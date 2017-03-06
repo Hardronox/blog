@@ -14,9 +14,11 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 
 $factory->define(App\Models\Articles::class, function (Faker\Generator $faker) {
+	$title=$faker->name;
 	return [
 		'user_id' => 1,
-		'title' => $faker->name,
+		'title' => $title,
+		'slug' => str_slug($title),
 		'description' => $faker->realText(200),
 		'image' => "images/blog/no-image.png",
 		'text' => $faker->realText(4000),

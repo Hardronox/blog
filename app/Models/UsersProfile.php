@@ -28,6 +28,8 @@ class UsersProfile extends Model
 {
     protected $table= 'users_profile';
 
+	protected $fillable= ['user_id','firstname','lastname','avatar'];
+
     public function users()
     {
         return $this->belongsTo('App\Models\User', 'user_id');

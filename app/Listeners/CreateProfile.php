@@ -3,13 +3,11 @@
 namespace App\Listeners;
 
 use App\Events\UserCreated;
-use App\Mail\ConfirmUserEmail;
-use Illuminate\Mail\Mailer;
-use Illuminate\Support\Facades\Mail;
+use App\Models\UsersProfile;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class SendVerificationEmail
+class CreateProfile
 {
     /**
      * Create the event listener.
@@ -29,6 +27,8 @@ class SendVerificationEmail
      */
     public function handle(UserCreated $event)
     {
-		Mail::to($event->user['email'])->send(new ConfirmUserEmail($event->user));
+        UsersProfile::create([
+			'user_id'=>$event->user->id
+		]);
     }
 }

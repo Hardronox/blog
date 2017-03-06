@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Redis;
 
 Route::get('/', 'BlogController@index');
 
-Route::get('/blog/{id}', 'BlogController@articleView')->middleware('subscriber');
+Route::get('/article/{slug}', 'BlogController@articleView')->middleware('subscriber');
 
 Route::group(['middleware'=>'auth'], function()
 {
@@ -70,7 +70,7 @@ Route::get('/likes', 'ServiceController@likes');
 
 Route::post('/comments', 'ServiceController@showComments');
 
-Route::get('/article-permissions/{id}', 'BlogController@articlePermissions');
+Route::get('/article-permissions/{slug}', 'BlogController@articlePermissions');
 
 Route::get('auth/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallback');

@@ -40,7 +40,7 @@ use Illuminate\Database\Query\Builder;
  */
 class Articles extends Model
 {
-    protected $fillable = ['title', 'text', 'description', 'category_id','image'];
+    protected $fillable = ['title', 'slug', 'text', 'description', 'category_id','image'];
 
     /**
      * relations
@@ -73,7 +73,7 @@ class Articles extends Model
                 break;
         }
 
-        if($fileName=='')
+        if($fileName==='')
         {
             $params = [
                 'index' => 'myblogs',

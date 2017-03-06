@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Controllers\ServiceController;
 use App\Models\Articles;
 use Illuminate\Support\Facades\Auth;
 use Closure;
@@ -17,9 +18,11 @@ class Subscriber
      */
     public function handle($request, Closure $next)
     {
-        $id=$request->route('id');
-        $article=Articles::find($id);
+		$slug=$request->route('slug');
+        $article=Articles::where('slug', '=', $slug)->first();
 
+		var_dump('<pre>', $slug, '</pre>');
+		exit;
 		// if article doesn't exists - exception
 		if (!$article)
 			abort(404,'Article not found.');
@@ -38,7 +41,7 @@ class Subscriber
                     return $next($request);
                 }
                 else
-                    return redirect("/article-permissions/$id");
+                    return redirect("/article-permissions/$slug");
             }
         }
 

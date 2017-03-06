@@ -11,15 +11,15 @@ class ConfirmUserEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-	public $total;
+	public $user;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($total)
+    public function __construct($user)
     {
-        $this->total=$total;
+        $this->user=$user;
     }
 
     /**

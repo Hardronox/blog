@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-7 col-md-offset-2">
             <div class="msg_subcribers">
-                <h3><a href="{{ url("/blog/$article->id")}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
+                <h3><a href="{{ url("/article/$article->slug")}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
             </div>
             <button class="subscribe_button">Become a Subscriber!</button>
         </div>

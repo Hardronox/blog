@@ -15,7 +15,6 @@ class UserCreated
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
 	public $user;
-
     /**
      * Create a new event instance.
      *
