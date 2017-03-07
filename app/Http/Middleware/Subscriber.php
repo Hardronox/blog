@@ -21,26 +21,21 @@ class Subscriber
 		$slug=$request->route('slug');
         $article=Articles::where('slug', '=', $slug)->first();
 
-		var_dump('<pre>', $slug, '</pre>');
-		exit;
 		// if article doesn't exists - exception
 		if (!$article)
 			abort(404,'Article not found.');
 
 
-        if(intval($article->premium_content)===1)
-        {
-            if (!$user = Auth::user())
-            {
+        if(intval($article->premium_content)===1) {
+            if (!$user = Auth::user()) {
+
                 return redirect("/login");
-            }
-            else
-            {
-                if($user->hasRole('subscriber'))
-                {
+            } else {
+
+                if($user->hasRole('subscriber')) {
+
                     return $next($request);
-                }
-                else
+				} else
                     return redirect("/article-permissions/$slug");
             }
         }

@@ -30,7 +30,7 @@ class ServiceController extends Controller
             'id' => $source->id,
             'body' => [
                 'doc' => [
-                    'views' => $source->views
+                    'views' => Redis::get("article/{$source->id}/views")
                 ]
             ]
         ];
@@ -151,7 +151,7 @@ class ServiceController extends Controller
             'body' => [
                 'id'=>(int)$src->id,
                 'title' => $src->title,
-                'slug' => ServiceController::getSlug($src->id),
+                'slug' => $src->slug,
                 'description'=>$src->description,
                 'text'=>$src->text,
                 'category'=>$src->category->name,
@@ -174,33 +174,4 @@ class ServiceController extends Controller
 
         return $final;
     }
-
-	/**
-	 * returns article slug. it's made from the title, but title might not be unique, so i concatenated id of it to slug
-	 * but to display it without id - I should cut the string back
-	 */
-	public static function doSlug()
-	{
-		$articles= Articles::get();
-
-		foreach ($articles as $article) {
-
-			$article->slug=$article->id.'+'.$article->slug;
-			$article->save();
-
-		}
-	}
-	
-	/**
-	 * returns article slug. it's made from the title, but title might not be unique, so i concatenated id of it to slug
-	 * but to display it without id - I should cut the string back
-	 */
-	public static function getSlug($id)
-	{
-		$article= Articles::find($id);
-
-		$slug= explode('+', $article->slug);;
-
-		return $slug[1];
-	}
 }

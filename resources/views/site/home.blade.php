@@ -27,7 +27,7 @@
                     <h5 class="head">recent</h5>
                     <div class="article" ng-repeat="blog in blogs">
                         <h6><%blog._source.category%> </h6>
-                        <a target="_self" class="title home_a" href="/article/<%blog._source.slug%>">
+                        <a target="_self" class="title home_a" href="/post/<%blog._source.slug%>">
                             <%blog._source.title%>
                         </a>
 
@@ -35,14 +35,14 @@
 
                         <p><%blog._source.description%></p>
                         <div class="pull-right blog_views"><%blog._source.views%> <span class="glyphicon glyphicon-eye-open"></span></div>
-                        <span class="blog_date"><%blog._source.created_at.date%></span>
+                        <span class="blog_date"><%blog._source.created_at.date | microDate %></span>
                     </div>
 
                 </div>
                 <div class="col-md-5 content-right">
                     <h5 class="head popular">Popular</h5>
                     <div class="content-right-top" ng-repeat="popular in populars">
-                        <a target="_self" class="home_a" href="/blog/<%popular._source.id%>">
+                        <a target="_self" class="home_a" href="/post/<%popular._source.id%>">
                             <div class="editor text-center">
                                 <h3><%popular._source.title%></h3>
                                 <p><%popular._source.description%></p>

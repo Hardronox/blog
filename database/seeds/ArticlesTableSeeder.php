@@ -13,7 +13,6 @@ class ArticlesTableSeeder extends Seeder
 	public function run()
 	{
 		factory(App\Models\Articles::class, 80)->create();
-		ServiceController::doSlug();
 		$ch = curl_init('http://127.0.0.1:9200/myblogs/');
 		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "DELETE");
 		curl_exec($ch);

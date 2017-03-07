@@ -29,8 +29,11 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 				{
 					"from": $scope.itemsPerPage * ($scope.currentPage - 1), "size": $scope.itemsPerPage,
 					"query": {
-						"match": {
-							"category": category
+						"bool" : {
+							"must" : [
+								{ "match": { "status": "Published" } },
+								{ "match": { "category": category } }
+							]
 						}
 					},
 					"sort": {
@@ -50,13 +53,16 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 				$scope.currentPage = 1;
 				$location.search('page', 1);
 			}
-		}
-		else {
+		} else {
 			//default load
 			$http.post("http://127.0.0.1:9200/myblogs/_search",
 				{
 					"from": $scope.itemsPerPage * ($scope.currentPage - 1), "size": $scope.itemsPerPage,
-
+					"query": {
+						"match" : {
+							"status" : "Published"
+						}
+					},
 					"sort": {
 						"id": {
 							"order": "desc"
@@ -68,15 +74,27 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 				});
 
 			//right column(popular)
-			$http.post("http://127.0.0.1:9200/myblogs/_search?sort=views:desc",
+			$http.post("http://127.0.0.1:9200/myblogs/_search",
 				{
-					"from": 0, "size": 10
+					"from": 0, "size": 10,
+					"query": {
+						"bool": {
+							"should":
+								{
+									"match": {
+										"status": "Published"
+									}
+								}
+						}
+					},
+					"sort": {
+						"views": {
+							"order": "desc"
+						}
+					}
 				}).success( (response) => {
 					$scope.populars = response.hits.hits;
 
-					//troubles with Carbon date format (microseconds) :\
-					let date=$('.blog_date').text();
-					$('.blog_date').text(date.substr(0,19));
 				});
 		}
 	};
@@ -84,7 +102,6 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 	$scope.pageChanged = () => {
 		$location.search('page', $scope.currentPage);
 		$scope.loadData($scope.category);
-
 		//scroll to top after click on paginate
 		( ($) => {
 			$(document).ready( () => {
@@ -93,5 +110,11 @@ angular.module('main').controller('main', ($scope, $http, $log, $location, $time
 				}, 1000);
 			});
 		})($);
+	};
+});
+
+angular.module('main').filter('microDate', function () {
+	return function (item) {
+		return item.substr(0,19);
 	};
 });

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Redis;
 
 Route::get('/', 'BlogController@index');
 
-Route::get('/article/{slug}', 'BlogController@articleView')->middleware('subscriber');
+Route::get('/post/{slug}', 'BlogController@articleView')->middleware('subscriber');
 
 Route::group(['middleware'=>'auth'], function()
 {

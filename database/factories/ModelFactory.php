@@ -20,7 +20,7 @@ $factory->define(App\Models\Articles::class, function (Faker\Generator $faker) {
 		'title' => $title,
 		'slug' => str_slug($title),
 		'description' => $faker->realText(200),
-		'image' => "images/blog/no-image.png",
+		'image' => "images/articles/no-image.png",
 		'text' => $faker->realText(4000),
 		'status' => 'Published',
 		'category_id' => rand(1,3),

@@ -59,7 +59,7 @@ class BlogController extends Controller
 
             $blog->user_id=Auth::user()->id;
             $blog->title=$_POST['title'];
-			$blog->slug=str_slug($blog->id+$_POST['title']);
+			$blog->slug=str_slug($_POST['title']);
             $blog->description=$_POST['desc'];
             $blog->text=$_POST['text'];
             $blog->category_id=$_POST['category'];
@@ -136,13 +136,13 @@ class BlogController extends Controller
             $article = Articles::find($_GET['id']);
             $user = Auth::user();
 
-            if ($article['user_id'] == $user['id']) {
+            if ($article['user_id'] == $user['id'])
 
-                if ($article->status == "Draft") {
+                if ($article->status == "Draft")
                     $article->status = "Published";
-                } else {
+                 else
                     $article->status = "Draft";
-                }
+
                 $article->save();
 
 
@@ -150,7 +150,7 @@ class BlogController extends Controller
             } else {
                 abort(403, 'You are not allowed to perform this action');
             }
-        }
+
     }
 
     /**

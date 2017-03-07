@@ -10350,8 +10350,8 @@ angular.module('main').config(function ($locationProvider) {
 			$http.post("http://127.0.0.1:9200/myblogs/_search", {
 				"from": $scope.itemsPerPage * ($scope.currentPage - 1), "size": $scope.itemsPerPage,
 				"query": {
-					"match": {
-						"category": category
+					"bool": {
+						"must": [{ "match": { "status": "Published" } }, { "match": { "category": category } }]
 					}
 				},
 				"sort": {
@@ -10375,7 +10375,11 @@ angular.module('main').config(function ($locationProvider) {
 			//default load
 			$http.post("http://127.0.0.1:9200/myblogs/_search", {
 				"from": $scope.itemsPerPage * ($scope.currentPage - 1), "size": $scope.itemsPerPage,
-
+				"query": {
+					"match": {
+						"status": "Published"
+					}
+				},
 				"sort": {
 					"id": {
 						"order": "desc"
@@ -10387,14 +10391,24 @@ angular.module('main').config(function ($locationProvider) {
 			});
 
 			//right column(popular)
-			$http.post("http://127.0.0.1:9200/myblogs/_search?sort=views:desc", {
-				"from": 0, "size": 10
+			$http.post("http://127.0.0.1:9200/myblogs/_search", {
+				"from": 0, "size": 10,
+				"query": {
+					"bool": {
+						"should": {
+							"match": {
+								"status": "Published"
+							}
+						}
+					}
+				},
+				"sort": {
+					"views": {
+						"order": "desc"
+					}
+				}
 			}).success(function (response) {
 				$scope.populars = response.hits.hits;
-
-				//troubles with Carbon date format (microseconds) :\
-				var date = $('.blog_date').text();
-				$('.blog_date').text(date.substr(0, 19));
 			});
 		}
 	};
@@ -10402,7 +10416,6 @@ angular.module('main').config(function ($locationProvider) {
 	$scope.pageChanged = function () {
 		$location.search('page', $scope.currentPage);
 		$scope.loadData($scope.category);
-
 		//scroll to top after click on paginate
 		(function ($) {
 			$(document).ready(function () {
@@ -10411,6 +10424,12 @@ angular.module('main').config(function ($locationProvider) {
 				}, 1000);
 			});
 		})($);
+	};
+});
+
+angular.module('main').filter('microDate', function () {
+	return function (item) {
+		return item.substr(0, 19);
 	};
 });
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
