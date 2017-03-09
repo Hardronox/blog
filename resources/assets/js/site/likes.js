@@ -1,7 +1,4 @@
-$(document).on('click', '.a-hover', function() {
-
-	//let id = $(this).data('id');
-
+$(document).on('mousedown', '.a-hover', function() {
 
 	let id = $(this).data('post');
 	let type = $(this).data('type');
@@ -17,7 +14,6 @@ $(document).on('click', '.a-hover', function() {
 		success: (response) => {
 
 			$(this).find('span#likes').html(response);
-
 		}
 	});
 });

@@ -1,7 +1,7 @@
 var text = $('#comment_text');
 var url = $(location).attr('href').split("/");
 var done=false;
-
+var slug =url[4];
 //showing comments
 if ($('#view-article').length){
 	$(window).scroll(function() {
@@ -9,7 +9,7 @@ if ($('#view-article').length){
 		if( ($(window).scrollTop() > $('#view-article').offset().top ) && done === false) {
 			$.post('/comments',
 				{
-					article_id: url[4]
+					slug
 				},
 				(response) => {
 					$.each(response, (key, comments) => {
@@ -46,7 +46,7 @@ $(document).on('click', '.write-comment', () => {
 	if (text.val() != 0) {
 		$.post('/comment/save',
 			{
-				id: url[4],
+				slug,
 				text: text.val()
 			},
 			(response) => {

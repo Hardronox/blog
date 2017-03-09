@@ -17714,14 +17714,14 @@ __webpack_require__(9);
 /* WEBPACK VAR INJECTION */(function($) {var text = $('#comment_text');
 var url = $(location).attr('href').split("/");
 var done = false;
-
+var slug = url[4];
 //showing comments
 if ($('#view-article').length) {
 	$(window).scroll(function () {
 
 		if ($(window).scrollTop() > $('#view-article').offset().top && done === false) {
 			$.post('/comments', {
-				article_id: url[4]
+				slug: slug
 			}, function (response) {
 				$.each(response, function (key, comments) {
 
@@ -17753,7 +17753,7 @@ $(document).on('click', '.write-comment', function () {
 
 	if (text.val() != 0) {
 		$.post('/comment/save', {
-			id: url[4],
+			slug: slug,
 			text: text.val()
 		}, function (response) {
 			response_partial(response);
@@ -17833,11 +17833,8 @@ $.noty.defaults.callback = {
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$(document).on('click', '.a-hover', function () {
+/* WEBPACK VAR INJECTION */(function($) {$(document).on('mousedown', '.a-hover', function () {
 	var _this = this;
-
-	//let id = $(this).data('id');
-
 
 	var id = $(this).data('post');
 	var type = $(this).data('type');

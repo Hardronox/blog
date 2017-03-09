@@ -64,6 +64,9 @@ Route::post('/check', function(){
 
 });
 
+Route::get('/confirm-email', 'UserController@confirmEmail');
+
+
 Route::get('/elastic', 'BlogController@elastic');
 
 Route::get('/likes', 'ServiceController@likes');

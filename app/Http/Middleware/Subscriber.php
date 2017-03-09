@@ -2,7 +2,6 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\ServiceController;
 use App\Models\Articles;
 use Illuminate\Support\Facades\Auth;
 use Closure;

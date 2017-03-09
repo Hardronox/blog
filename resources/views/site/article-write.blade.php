@@ -11,28 +11,47 @@
                 <h3>Write an Article</h3>
                 <br>
                 {!! Form::open(array('url'=>route('create-article'),'method'=>'POST', 'files'=>true)) !!}
-                    <div class="form-group">
+
+                    <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                         {!! Form::label('title', 'Title') !!}
                         {!! Form::text('title', '', ['class'=>'form-control','id'=>'title']) !!}
+
+                        @if ($errors->has('title'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('title') }}</strong>
+                            </span>
+                        @endif
                     </div>
 
-                    <div class="form-group">
-                        {!! Form::label('desc', 'Description') !!}
+                    <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                        {!! Form::label('description', 'Description') !!}
                         <span class="glyphicon glyphicon-info-sign" data-toggle="tooltip" data-placement="top"
                               title="Not required field, if empty - little part of text will become a description"></span>
-                        {!! Form::textarea('desc', '', ['class'=>'form-control','id'=>'desc','rows'=>3]) !!}
+                        {!! Form::textarea('description', '', ['class'=>'form-control','id'=>'desc','rows'=>3]) !!}
+
+                        @if ($errors->has('description'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('description') }}</strong>
+                            </span>
+                        @endif
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group{{ $errors->has('text') ? ' has-error' : '' }}">
                         {!! Form::label('input', 'Text') !!}
                         {!! Form::textarea('text', '', ['id'=>'input']) !!}
+
+                        @if ($errors->has('text'))
+                            <span class="help-block">
+                                <strong>{{ $errors->first('text') }}</strong>
+                            </span>
+                        @endif
                     </div>
 
                     {!! Form::token() !!}
 
                     <div class="form-group">
                         {!! Form::label('sel1', 'Category') !!}
-                        {!! Form::select('category', $categories, ['class'=>'form-control','id'=>'sel1']) !!}
+                        {!! Form::select('category', $categories, ['class'=>'form-control','id'=>'sel1','required'=>'true']) !!}
                     </div>
                     {!! Form::label('file', 'Main Blog Image') !!}
 

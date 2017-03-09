@@ -95,6 +95,17 @@ class UserController extends Controller
         return redirect($redirectTo);
     }
 
+	public function confirmEmail(Request $request)
+	{
+		$hash=$request->input('hash');
+		if ($hash === ){
+
+			if (hash('sha256', $hash))
+			return view('site/after-confirm-email');
+		}
+		else
+			return view('site/confirm-email');
+	}
 
     public function adminUsers()
     {

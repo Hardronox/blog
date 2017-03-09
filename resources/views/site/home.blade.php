@@ -46,7 +46,7 @@
                             <div class="editor text-center">
                                 <h3><%popular._source.title%></h3>
                                 <p><%popular._source.description%></p>
-                                <label><%popular._source.created_at.date%></label>
+                                <label><%popular._source.created_at.date | microDate %></label>
                                 <span></span>
                             </div>
                         </a>

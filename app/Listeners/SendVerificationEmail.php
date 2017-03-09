@@ -29,6 +29,7 @@ class SendVerificationEmail
      */
     public function handle(UserCreated $event)
     {
-		Mail::to($event->user['email'])->send(new ConfirmUserEmail($event->user));
+		$hash=base64_encode($event->user);
+		Mail::to('Sanya.Chuck@mail.ru')->send(new ConfirmUserEmail($hash));
     }
 }

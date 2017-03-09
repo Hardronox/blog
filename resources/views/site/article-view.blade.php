@@ -43,9 +43,9 @@
                                     <img class="comment_image" src="<%= comments.author_profile.avatar %>"/>
                                 </div>
                                 <div class="media-body">
-                                    <a href="#"><p><%= comments.author_profile.firstname %> <%= comments.author_profile.lastname %></p></a>
+                                    <a href="#"><span><%= comments.author_profile.firstname %> <%= comments.author_profile.lastname %></span></a>
                                     <p><%= comments.text %></p>
-                                    <p><%= comments.created_at %>
+                                    <span><%= comments.created_at %>
                                         @if (Auth::guest())
                                             <a class="guest-hover pull-right">
                                             <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
@@ -56,7 +56,7 @@
                                                 <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
                                             </a>
                                         @endif
-                                    </p>
+                                    </span>
                                 </div>
                             </div>
                         </li>

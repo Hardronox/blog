@@ -53,6 +53,13 @@ class BlogController extends Controller
     {
         if (!empty($_POST)) {
 
+			$this->validate(request(),[
+				'title'=>'required|max:25',
+				'description'=>'min:10',
+				'text'=>'min:100',
+			]);
+
+
 			$image='public/images/articles/no-image.png';
 
             $blog= new Articles();
@@ -60,7 +67,7 @@ class BlogController extends Controller
             $blog->user_id=Auth::user()->id;
             $blog->title=$_POST['title'];
 			$blog->slug=str_slug($_POST['title']);
-            $blog->description=$_POST['desc'];
+            $blog->description=$_POST['description'];
             $blog->text=$_POST['text'];
             $blog->category_id=$_POST['category'];
             $blog->created_at=new Carbon('now');
@@ -150,7 +157,6 @@ class BlogController extends Controller
             } else {
                 abort(403, 'You are not allowed to perform this action');
             }
-
     }
 
     /**

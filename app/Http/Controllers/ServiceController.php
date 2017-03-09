@@ -107,9 +107,10 @@ class ServiceController extends Controller
     {
         if (Request::ajax()) {
             $comments = Comments::with(['authorProfile','likes'])
-								->where('article_id','=',$_POST['article_id'])
+								->where('article_id','=',ServiceController::getArticleBySlug($_POST['slug']))
                                 ->orderBy('created_at', 'asc')
 								->get();
+
 
             return $comments;
         }
@@ -126,7 +127,7 @@ class ServiceController extends Controller
 
             $comment = new Comments();
             $comment->text=$this->filterComment($_POST['text']);
-            $comment->article_id=$_POST['id'];
+            $comment->article_id=ServiceController::getArticleBySlug($_POST['slug']);
             $comment->author_id=$user['id'];
             $comment->created_at=Carbon::now('Europe/Kiev');
             $comment->save();
@@ -174,4 +175,11 @@ class ServiceController extends Controller
 
         return $final;
     }
+
+	public static function getArticleBySlug($slug)
+	{
+		$article= Articles::where('slug','=',$slug)->first();
+
+		return $article->id;
+	}
 }
