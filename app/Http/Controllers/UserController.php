@@ -97,10 +97,19 @@ class UserController extends Controller
 
 	public function confirmEmail(Request $request)
 	{
-		$hash=$request->input('hash');
-		if ($hash === ){
+		$user = User::where('name','=',session('user_name'))->first();
+		$hash=$request->input('code');
 
-			if (hash('sha256', $hash))
+		if ($hash){
+
+			if ($hash === hash('sha256',$user->email)){
+
+				$user->update([
+					'status'=>1
+				]);
+			}
+			else
+				abort(404);
 			return view('site/after-confirm-email');
 		}
 		else

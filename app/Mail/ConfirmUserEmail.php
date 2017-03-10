@@ -29,6 +29,6 @@ class ConfirmUserEmail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.confirm-email');
+        return $this->markdown('emails.confirm-email',['hash'=>$this->hash]);
     }
 }

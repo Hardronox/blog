@@ -8,6 +8,7 @@ use Illuminate\Mail\Mailer;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Facades\Request;
 
 class SendVerificationEmail
 {
@@ -29,7 +30,9 @@ class SendVerificationEmail
      */
     public function handle(UserCreated $event)
     {
-		$hash=base64_encode($event->user);
+		session(['user_name' => $event->user['name']]);
+		$hash=hash('sha256',$event->user['email']);
+
 		Mail::to('Sanya.Chuck@mail.ru')->send(new ConfirmUserEmail($hash));
     }
 }

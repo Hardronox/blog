@@ -54,10 +54,9 @@ Route::group(['middleware'=>'admin'], function()
 
 
 
-Route::get('/mail', function(Mailer $mailer){
+Route::get('/not-confirmed', function(){
 
-	$mailer->to('Sanya.Chuck@mail.ru')->send(new ConfirmUserEmail(30));
-
+	return view('errors.not-confirmed');
 });
 
 Route::post('/check', function(){

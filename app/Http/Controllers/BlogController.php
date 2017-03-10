@@ -54,8 +54,8 @@ class BlogController extends Controller
         if (!empty($_POST)) {
 
 			$this->validate(request(),[
-				'title'=>'required|max:25',
-				'description'=>'min:10',
+				'title'=>'required|max:200',
+				'description'=>'min:50',
 				'text'=>'min:100',
 			]);
 
@@ -69,6 +69,7 @@ class BlogController extends Controller
 			$blog->slug=str_slug($_POST['title']);
             $blog->description=$_POST['description'];
             $blog->text=$_POST['text'];
+            $blog->status="Published";
             $blog->category_id=$_POST['category'];
             $blog->created_at=new Carbon('now');
 

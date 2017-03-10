@@ -42,7 +42,7 @@
                 <div class="col-md-5 content-right">
                     <h5 class="head popular">Popular</h5>
                     <div class="content-right-top" ng-repeat="popular in populars">
-                        <a target="_self" class="home_a" href="/post/<%popular._source.id%>">
+                        <a target="_self" class="home_a" href="/post/<%popular._source.slug%>">
                             <div class="editor text-center">
                                 <h3><%popular._source.title%></h3>
                                 <p><%popular._source.description%></p>
