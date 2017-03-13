@@ -27,7 +27,7 @@ class UserController extends Controller
 
         $user= User::with('profile')->find($user_id['id']);
 
-		$avatar= $user->profile->avatar ? $user->profile->avatar : 'no-image.png';
+		$avatar= $user->profile->avatar ?? 'no-image.png';
 
         return view('/site/profile',['user'=>$user, 'avatar'=>$avatar]);
     }
@@ -95,6 +95,11 @@ class UserController extends Controller
         return redirect($redirectTo);
     }
 
+
+	/**
+	 * after registration shows the page where user is forced to check email and confirm it
+	 * and when user confirms email, he's redirected to success page
+	 */
 	public function confirmEmail(Request $request)
 	{
 		$user = User::where('name','=',session('user_name'))->first();
@@ -116,7 +121,11 @@ class UserController extends Controller
 			return view('site/confirm-email');
 	}
 
-    public function adminUsers()
+
+	/**
+	 * admin page with all users
+	 */
+	public function adminUsers()
     {
         $users=User::with('profile')->orderBy('created_at','desc')->paginate(20);
 
@@ -124,7 +133,10 @@ class UserController extends Controller
 
     }
 
-    public function adminArticles()
+	/**
+	 * admin page with all articles
+	 */
+	public function adminArticles()
     {
         $articles=Articles::orderBy('created_at','desc')->paginate(10);
 
@@ -132,7 +144,10 @@ class UserController extends Controller
 
     }
 
-    public function adminComments()
+	/**
+	 * admin page with all comments
+	 */
+	public function adminComments()
     {
         $comments=Comments::orderBy('created_at','desc')->paginate(20);
 
@@ -140,7 +155,10 @@ class UserController extends Controller
 
     }
 
-    public function deleteComment($id)
+	/**
+	 * deletes comment by both user and admin
+	 */
+	public function deleteComment($id)
     {
         $logged_user = Auth::user();
 

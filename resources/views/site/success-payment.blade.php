@@ -3,7 +3,6 @@
 @section('pageTitle', 'Access Granted!')
 
 @section('content')
-    {{--<link rel="stylesheet" href="{{ URL::asset('js/init.js') }}">--}}
     {!!Html::script('js/site/subscribe.js')!!}
 
     <div class="container blog_create_container">

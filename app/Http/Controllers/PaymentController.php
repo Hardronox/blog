@@ -107,7 +107,10 @@ class PaymentController extends Controller
     }
 
 
-    public function successPayment(Request $request)
+	/**
+	 *  redirct on this action after payment is complete
+	 */
+	public function successPayment(Request $request)
     {
         $article_id = $request->session()->get('article_id');
 

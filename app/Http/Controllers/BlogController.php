@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Redirect;
 
 class BlogController extends Controller
 {
-
     /**
      * displays home page(whole logic in angular(js/angular/main.controller.js) )
      */
@@ -47,7 +46,7 @@ class BlogController extends Controller
     }
 
     /**
-     * displays create-article page and is form-create action(if $_POST isset)
+     * displays create-article page and displays form-create action(if $_POST isset)
      */
     public function articleCreate(Request $request)
     {
@@ -141,23 +140,24 @@ class BlogController extends Controller
     {
         if (\Illuminate\Support\Facades\Request::ajax()) {
 
-            $article = Articles::find($_GET['id']);
-            $user = Auth::user();
+			$article = Articles::find($_GET['id']);
+			$user = Auth::user();
 
-            if ($article['user_id'] == $user['id'])
+			if ($article['user_id'] == $user['id']) {
 
-                if ($article->status == "Draft")
-                    $article->status = "Published";
-                 else
-                    $article->status = "Draft";
+				if ($article->status == "Draft")
+					$article->status = "Published";
+				else
+					$article->status = "Draft";
 
-                $article->save();
+				$article->save();
 
 
-                return $article->status;
-            } else {
-                abort(403, 'You are not allowed to perform this action');
-            }
+				return $article->status;
+			} else {
+				abort(403, 'You are not allowed to perform this action');
+			}
+		}
     }
 
     /**
@@ -173,6 +173,7 @@ class BlogController extends Controller
 
             $article->delete();
 
+			//delete from elastic
             $client = ClientBuilder::create()->build();
 
             $params = [

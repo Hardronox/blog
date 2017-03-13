@@ -28,7 +28,7 @@
                                 <td class="col-md-2">{{$comment['author']['name']}}</td>
                                 <td class="col-md-1">{{$comment['created_at']}}</td>
                                 <td class="col-md-1 active">
-                                    <a href="{{ url("/comment/delete/".$comment['id']."")}}" class="btn btn-danger delete">Delete</a>
+                                    <a href="{{ url("/comment/delete/".$comment['id']."")}}" class="btn danger delete">Delete</a>
                                 </td>
                             </tr>
                         @endforeach

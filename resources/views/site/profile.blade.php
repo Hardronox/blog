@@ -33,13 +33,13 @@
                 <tr>
                     <th>FirstName</th>
                     <td id="first">
-                        {{$user->profile->firstname ? $user->profile->firstname : 'No information'}}
+                        {{$user->profile->firstname ?? 'No information'}}
                     </td>
                 </tr>
                 <tr>
                     <th>LastName</th>
                     <td id="last">
-                        {{$user->profile->lastname ? $user->profile->lastname : 'No information'}}
+                        {{$user->profile->lastname ?? 'No information'}}
                     </td>
                 </tr>
                 <tr>
