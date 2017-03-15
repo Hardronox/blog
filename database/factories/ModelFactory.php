@@ -24,5 +24,6 @@ $factory->define(App\Models\Articles::class, function (Faker\Generator $faker) {
 		'text' => $faker->realText(4000),
 		'status' => 'Published',
 		'category_id' => rand(1,3),
+		'premium_content' => rand(0,1),
 	];
 });

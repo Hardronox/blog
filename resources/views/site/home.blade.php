@@ -27,9 +27,12 @@
                     <h5 class="head">recent</h5>
                     <div class="article" ng-repeat="blog in blogs">
                         <h6><%blog._source.category%> </h6>
-                        <a target="_self" class="title home_a" href="/post/<%blog._source.slug%>">
-                            <%blog._source.title%>
-                        </a>
+                        <div class="title-premium">
+                            <a target="_self" class="title home_a" href="/post/<%blog._source.slug%>" style="width: 50%">
+                                <%blog._source.title%>
+                            </a>
+                            <span ng-show="blog._source.premium" class="label label_warning pull-right">Premium</span>
+                        </div>
 
                         <img class="blog_image" src="{{Storage::url("<% blog._source.image %>")}}" />
 

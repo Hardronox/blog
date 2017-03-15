@@ -156,7 +156,7 @@ class UserController extends Controller
     }
 
 	/**
-	 * deletes comment by both user and admin
+	 * deletes comment by user or admin
 	 */
 	public function deleteComment($id)
     {

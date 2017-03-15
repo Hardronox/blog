@@ -40,7 +40,7 @@ use Illuminate\Database\Query\Builder;
  */
 class Articles extends Model
 {
-    protected $fillable = ['title', 'slug', 'text', 'description', 'category_id','image'];
+    protected $fillable = ['title', 'slug', 'text', 'description', 'category_id','image','premium_content'];
 
     /**
      * relations

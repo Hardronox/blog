@@ -17760,6 +17760,7 @@ $(document).on('click', '.write-comment', function () {
 		}, 'json');
 	} else return false;
 	$('#comment_text').val('');
+	$('.write-comment').blur();
 });
 
 function response_partial(server_answer) {

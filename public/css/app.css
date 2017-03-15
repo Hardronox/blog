@@ -225,8 +225,14 @@ a.title {
 	font-weight: 400;
 	margin: 0.85em 1.2em 0.9em 1.2em;
 	font-family: 'Antonio-Regular';
-	display:block;
 	line-height: 1.25em;
+}
+.title-premium{
+    margin-bottom: 20px;
+}
+.label_warning{
+    margin-top: 15px;
+    background-color: #f1621e;
 }
 .view-title {
     color: #282828;
@@ -237,6 +243,10 @@ a.title {
     font-family: 'Antonio-Regular';
     display:block;
     line-height: 1.25em;
+}
+.payment_image{
+    width:250px;
+    height:250px;
 }
 .editor img
 {

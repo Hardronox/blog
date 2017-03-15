@@ -55,6 +55,8 @@ $(document).on('click', '.write-comment', () => {
 	}
 	else return false;
 	$('#comment_text').val('');
+	$('.write-comment').blur();
+
 });
 
 

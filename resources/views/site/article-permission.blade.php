@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-7 col-md-offset-2">
             <div class="msg_subcribers">
-                <h3><a href="{{ url("/article/$article->slug")}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
+                <h3><a href="{{ url("/post/$article->slug")}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
             </div>
             <button class="subscribe_button">Become a Subscriber!</button>
         </div>
@@ -33,13 +33,13 @@
                 <div class="col-md-6 card_payment" >
                     <div class="payment_method" data-type="card">
                         <div class="payment_name">Credit card</div>
-                        <img width="250px" height="250px"  src="{{Storage::url("images/site/credit_card.jpg")}}" alt="">
+                        <img  class="payment_image"  src="{{Storage::url("images/site/credit_card.jpg")}}" alt="">
                     </div>
                 </div>
                 <div class="col-md-6 paypal_payment" >
                     <div class="payment_method" data-type="paypal">
                         <div class="payment_name">PayPal</div>
-                        <img width="250px" height="250px" src="{{Storage::url("images/site/paypal_logo.png")}}" alt="">
+                        <img class="payment_image" src="{{Storage::url("images/site/paypal_logo.png")}}" alt="">
                     </div>
                 </div>
             </div>

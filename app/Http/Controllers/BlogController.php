@@ -194,9 +194,11 @@ class BlogController extends Controller
     /**
      *  when non-premium user attempts to read premium article - he's redirected to this page
      */
-    public function articlePermissions(Request $request, $id)
+    public function articlePermissions(Request $request, $slug)
     {
-        $article=Articles::find($id);
+        $article=Articles::find(ServiceController::getArticleBySlug($slug));
+//		var_dump('<pre>', $article, '</pre>');
+//		exit;
         $request->session()->put('article_id', $article->id);
 
         return view('site.article-permission', ['article'=>$article]);
