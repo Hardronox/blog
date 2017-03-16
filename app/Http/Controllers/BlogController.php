@@ -160,6 +160,20 @@ class BlogController extends Controller
 		}
     }
 
+	/**
+	 * deletes article(from db and elastic)
+	 * can be used by both owner of article and an admin
+	 */
+	public function articleSearch()
+	{
+		$ads=Advertisement::get();
+
+		return view('/site/search',[
+			'ads'=>$ads
+		]);
+	}
+
+
     /**
      * deletes article(from db and elastic)
      * can be used by both owner of article and an admin

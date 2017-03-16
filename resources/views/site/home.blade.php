@@ -9,7 +9,7 @@
                 <div class="type">
                     <h5>Article Types</h5>
                 </div>
-                <div class="list-nav">
+                <div class="list-nav header_right">
                     <ul>
                         <li><a ng-click="loadData('Backend', 'true')">Backend</a></li>|
                         <li><a ng-click="loadData('Frontend', 'true')">Frontend</a></li>|
@@ -28,7 +28,7 @@
                     <div class="article" ng-repeat="blog in blogs">
                         <h6><%blog._source.category%> </h6>
                         <div class="title-premium">
-                            <a target="_self" class="title home_a" href="/post/<%blog._source.slug%>" style="width: 50%">
+                            <a target="_self" class="title home_link" href="/post/<%blog._source.slug%>">
                                 <%blog._source.title%>
                             </a>
                             <span ng-show="blog._source.premium" class="label label_warning pull-right">Premium</span>
@@ -45,7 +45,7 @@
                 <div class="col-md-5 content-right">
                     <h5 class="head popular">Popular</h5>
                     <div class="content-right-top" ng-repeat="popular in populars">
-                        <a target="_self" class="home_a" href="/post/<%popular._source.slug%>">
+                        <a target="_self" class="popular_link" href="/post/<%popular._source.slug%>">
                             <div class="editor text-center">
                                 <h3><%popular._source.title%></h3>
                                 <p><%popular._source.description%></p>

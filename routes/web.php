@@ -65,6 +65,7 @@ Route::post('/check', function(){
 
 Route::get('/confirm-email', 'UserController@confirmEmail');
 
+Route::get('/search', 'BlogController@articleSearch')->name('search');
 
 Route::get('/elastic', 'BlogController@elastic');
 

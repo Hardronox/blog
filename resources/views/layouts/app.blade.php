@@ -16,10 +16,16 @@
         <div class="logo">
            <span><a href="{{ url('/') }}">Face2WEB</a></span>
         </div>
-        <div class="navigation">
+        <div class="navigation header_right">
 
             <ul class="nav navbar-nav">
-                <li><a class="active" href="{{ url('/') }}">Home</a></li>
+                <li>
+                    <div class="form-style-8">
+                        {!! Form::open(array('url'=>route("search"),'method'=>'GET')) !!}
+                            {!! Form::text('q', '', ['placeholder'=>'Search...', 'required'=>'true']) !!}
+                        {!! Form::close() !!}
+                    </div>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

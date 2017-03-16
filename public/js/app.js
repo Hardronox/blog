@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "./";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 21);
+/******/ 	return __webpack_require__(__webpack_require__.s = 22);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -10304,7 +10304,7 @@ return jQuery;
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-__webpack_require__(5);
+__webpack_require__(6);
 
 /***/ }),
 /* 2 */
@@ -10447,8 +10447,69 @@ angular.module('main', ['ui.router', 'ui.bootstrap'], function ($interpolateProv
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
+/* WEBPACK VAR INJECTION */(function($) {angular.module('main').controller('search', function ($scope, $http, $log, $location, $timeout) {
+	$scope.blogs = [];
+	$scope.totalItems = 0;
+	$scope.itemsPerPage = 7;
+	$scope.textToSearch = $location.search().q;
+
+	//on page load
+	$timeout(function () {
+		if ($location.search().page) {
+			$scope.currentPage = $location.search().page;
+		} else {
+			$scope.currentPage = 0;
+		}
+		$scope.loadData();
+	});
+
+	//loading search results from elastic
+	$scope.loadData = function () {
+
+		$scope.pageForSize = $scope.currentPage - 1;
+
+		if ($scope.pageForSize == -1) $scope.currentPage = 1;
+
+		$http.post("http://127.0.0.1:9200/myblogs/_search", {
+			"from": $scope.itemsPerPage * ($scope.currentPage - 1), "size": $scope.itemsPerPage,
+			"query": {
+				"multi_match": {
+					"query": $scope.textToSearch,
+					"fields": ["title", "description", "text"]
+				}
+			},
+			"sort": {
+				"id": {
+					"order": "desc"
+				}
+			}
+		}).success(function (response) {
+			$scope.blogs = response.hits.hits;
+			$scope.totalItems = response.hits.total;
+		});
+	};
+
+	$scope.pageChanged = function () {
+		$location.search('page', $scope.currentPage);
+		$scope.loadData($scope.category);
+		//scroll to top after click on paginate
+		(function ($) {
+			$(document).ready(function () {
+				$('html, body').animate({
+					'scrollTop': $('#top').offset().top
+				}, 1000);
+			});
+		})($);
+	};
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery) {
-window._ = __webpack_require__(17);
+window._ = __webpack_require__(18);
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -10458,7 +10519,7 @@ window._ = __webpack_require__(17);
 
 window.$ = __webpack_provided_window_dot_jQuery = __webpack_require__(0);
 
-__webpack_require__(16);
+__webpack_require__(17);
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -10466,22 +10527,23 @@ __webpack_require__(16);
  * and simple, leaving you to focus on building your next great project.
  */
 
-window.Noty = __webpack_require__(18);
+window.Noty = __webpack_require__(19);
 
-__webpack_require__(7);
-__webpack_require__(6);
 __webpack_require__(8);
+__webpack_require__(7);
+__webpack_require__(9);
 
 __webpack_require__(4);
 __webpack_require__(2);
 __webpack_require__(3);
-__webpack_require__(10);
+__webpack_require__(5);
 __webpack_require__(11);
 __webpack_require__(12);
 __webpack_require__(13);
 __webpack_require__(14);
 __webpack_require__(15);
-__webpack_require__(9);
+__webpack_require__(16);
+__webpack_require__(10);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -10511,7 +10573,7 @@ __webpack_require__(9);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /**
@@ -11353,7 +11415,7 @@ __webpack_require__(9);
 }(window, window.angular);
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_provided_window_dot_jQuery, $) {var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -15797,7 +15859,7 @@ __webpack_require__(9);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0), __webpack_require__(0)))
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 /*
@@ -17708,7 +17770,7 @@ __webpack_require__(9);
 });
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {var text = $('#comment_text');
@@ -17775,7 +17837,7 @@ function response_partial(server_answer) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {// when we try to delete smth in profile
@@ -17793,7 +17855,7 @@ $(document).on('click', '.delete', function (e) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {function showPagination() {
@@ -17831,7 +17893,7 @@ $.noty.defaults.callback = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).on('mousedown', '.a-hover', function () {
@@ -17857,7 +17919,7 @@ $.noty.defaults.callback = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
@@ -17916,7 +17978,7 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).on('click', '.change-status', function () {
@@ -17941,7 +18003,7 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
@@ -17983,7 +18045,7 @@ $(document).on('click', '.payment_button', function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(jQuery) {/*!
@@ -20367,7 +20429,7 @@ if (typeof jQuery === 'undefined') {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -37456,10 +37518,10 @@ if (typeof jQuery === 'undefined') {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(19), __webpack_require__(20)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20), __webpack_require__(21)(module)))
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;!function(root, factory) {
@@ -39348,7 +39410,7 @@ return window.noty;
 });
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 var g;
@@ -39375,7 +39437,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -39403,7 +39465,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(1);

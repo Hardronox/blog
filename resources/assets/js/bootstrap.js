@@ -26,6 +26,7 @@ require ("./js_modules/ui-bootstrap-tpls-1.2.5.min.js");
 require ("./angular/main.module.js");
 require ("./angular/main.config.js");
 require ("./angular/main.controller.js");
+require ("./angular/search.controller.js");
 require ("./site/deleteObject.js");
 require ("./site/home.js");
 require ("./site/likes.js");
