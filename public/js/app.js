@@ -10544,6 +10544,7 @@ __webpack_require__(14);
 __webpack_require__(15);
 __webpack_require__(16);
 __webpack_require__(10);
+__webpack_require__(23);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -17858,7 +17859,18 @@ $(document).on('click', '.delete', function (e) {
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {function showPagination() {
+/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
+
+	if (localStorage.getItem('article-created')) {
+
+		Noty({
+			text: 'Article was created'
+		});
+		localStorage.removeItem('article-created');
+	}
+});
+
+function showPagination() {
 	$('#pagi').css('display', 'block');
 }
 setTimeout(showPagination, 2500);
@@ -39470,6 +39482,16 @@ module.exports = function(module) {
 
 module.exports = __webpack_require__(1);
 
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(document).on('submit', '#write-article', function () {
+
+	localStorage.setItem('article-created', true);
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

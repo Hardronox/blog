@@ -40,9 +40,9 @@ class UserController extends Controller
     {
         $user= Auth::user();
 
-        $blog=Articles::where('user_id','=',$user['id'])->orderBy('created_at','desc')->get();
+        $blogs=Articles::where('user_id','=',$user['id'])->orderBy('created_at','desc')->get();
 
-        return view('/site/my-articles',['blogs'=>$blog]);
+        return view('/site/my-articles',['blogs'=>$blogs]);
     }
 
     /**

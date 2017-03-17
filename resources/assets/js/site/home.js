@@ -1,3 +1,17 @@
+$(document).ready( () => {
+
+
+
+	if(	localStorage.getItem('article-created') ){
+
+		Noty({
+			text: 'Article was created'
+		});
+		localStorage.removeItem('article-created');
+	}
+
+});
+
 function showPagination() {
 	$('#pagi').css('display', 'block');
 }

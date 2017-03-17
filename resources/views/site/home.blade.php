@@ -26,12 +26,16 @@
                 <div class="col-md-7 content-left">
                     <h5 class="head">recent</h5>
                     <div class="article" ng-repeat="blog in blogs">
-                        <h6><%blog._source.category%> </h6>
+                        <h6 class="main_category"><%blog._source.category%> </h6>
                         <div class="title-premium">
-                            <a target="_self" class="title home_link" href="/post/<%blog._source.slug%>">
-                                <%blog._source.title%>
-                            </a>
-                            <span ng-show="blog._source.premium" class="label label_warning pull-right">Premium</span>
+                            <div class="col-md-10">
+                                <a target="_self" class="title home_link" href="/post/<%blog._source.slug%>">
+                                    <%blog._source.title%>
+                                </a>
+                            </div>
+                            <div>
+                                <span ng-show="blog._source.premium" class="label label_warning pull-right">Premium</span>
+                            </div>
                         </div>
 
                         <img class="blog_image" src="{{Storage::url("<% blog._source.image %>")}}" />

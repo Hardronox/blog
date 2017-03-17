@@ -53,7 +53,7 @@ class BlogController extends Controller
         if (!empty($_POST)) {
 
 			$this->validate(request(),[
-				'title'=>'required|max:200',
+				'title'=>'required|max:100|unique:articles',
 				'description'=>'min:50',
 				'text'=>'min:100',
 			]);
@@ -82,8 +82,6 @@ class BlogController extends Controller
 
 			ServiceController::uploadToElastic($blog);
 
-			// sending back with message
-			flash('Your Article was created successfully!', 'success');
 			return redirect('/');
 
         }
@@ -145,13 +143,30 @@ class BlogController extends Controller
 
 			if ($article['user_id'] == $user['id']) {
 
-				if ($article->status == "Draft")
+				$client = ClientBuilder::create()->build();
+
+				// change status to opposite in db and elastic
+				if ($article->status == "Draft"){
 					$article->status = "Published";
-				else
+				}
+				else {
 					$article->status = "Draft";
+				}
 
 				$article->save();
 
+				$params = [
+					'index' => 'myblogs',
+					'type' => 'myblogs',
+					'id' => $article->id,
+					'body' => [
+						'doc' => [
+							'status' => $article->status
+						]
+					]
+				];
+
+				$client->update($params);
 
 				return $article->status;
 			} else {

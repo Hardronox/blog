@@ -10,7 +10,7 @@
             <div class="col-md-9 col-md-offset-2">
                 <h3>Write an Article</h3>
                 <br>
-                {!! Form::open(array('url'=>route('create-article'),'method'=>'POST', 'files'=>true)) !!}
+                {!! Form::open(array('url'=>route('create-article'),'method'=>'POST', 'files'=>true, 'id'=>'write-article')) !!}
 
                     <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                         {!! Form::label('title', 'Title') !!}

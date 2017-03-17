@@ -164,8 +164,10 @@ label{
 .navigation {
 	float:right;
 }
+
 .blog_image
 {
+    margin-top: 15px;
     margin-left: 30px;
     width:700px;
     height:230px;
@@ -214,7 +216,7 @@ h5.head {
 	color: #1ac7c3;
 	font-size: 1.3em;
 	font-weight: 400;
-	margin-left: 1.8em;
+	margin-left: 1.55em;
 	font-family: 'Antonio-Regular';
 	margin-top:3em;
 }
@@ -223,12 +225,12 @@ a.title {
 	font-size: 1.85em;
 	text-decoration:none;
 	font-weight: 400;
-	margin: 0.85em 1.2em 0.9em 1.2em;
+	margin: 0.85em 1.2em 0.9em 0;
 	font-family: 'Antonio-Regular';
 	line-height: 1.25em;
 }
 .title-premium{
-    margin-bottom: 20px;
+    margin-left: 13px;
 }
 .label_warning{
     margin-top: 15px;
@@ -337,11 +339,15 @@ div.copyrights>p{
 	border-bottom:1px solid #e6e6e6;
 	padding: 2.3em 1.5em 0 1.5em;
 }
-.home_link,.popular_link:hover{
+.home_link, .popular_link:hover{
     text-decoration: none;
 }
 .home_link{
     width: 50%;
+    max-width:70%;
+}
+.main_category{
+    margin-left: -5px;
 }
 .editor h3 {
 	color: #282828;
@@ -1085,7 +1091,6 @@ span a:hover {
 	}
 	.article h6 {
 		font-size: 1.25em;
-		margin-left: 1.5em;
 		margin-top: 2em;
 	}
 	a.title {
