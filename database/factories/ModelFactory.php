@@ -15,6 +15,13 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
 
 $factory->define(App\Models\Articles::class, function (Faker\Generator $faker) {
 	$title=$faker->name;
+
+	$strings = array(
+		'free',
+		'premium',
+	);
+	$key = array_rand($strings);
+
 	return [
 		'user_id' => 1,
 		'title' => $title,
@@ -22,8 +29,8 @@ $factory->define(App\Models\Articles::class, function (Faker\Generator $faker) {
 		'description' => $faker->realText(200),
 		'image' => "images/articles/no-image.png",
 		'text' => $faker->realText(4000),
-		'status' => 'Published',
+		'status' => 'published',
 		'category_id' => rand(1,3),
-		'premium_content' => rand(0,1),
+		'premium' => $strings[$key],
 	];
 });

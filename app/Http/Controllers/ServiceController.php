@@ -111,7 +111,6 @@ class ServiceController extends Controller
                                 ->orderBy('created_at', 'asc')
 								->get();
 
-
             return $comments;
         }
     }
@@ -155,7 +154,7 @@ class ServiceController extends Controller
                 'slug' => $src->slug,
                 'description'=>$src->description,
                 'text'=>$src->text,
-				'premium'=>$src->premium_content,
+				'premium'=>$src->premium,
 				'category'=>$src->category->name,
                 'views'=>0,
                 'image'=>str_replace('public/', '', $src->image),

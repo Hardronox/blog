@@ -35,6 +35,7 @@ require ("./site/my-articles.js");
 require ("./site/subscribe.js");
 require ("./site/comments.js");
 require ("./site/write-article.js");
+require ("./site/admin-articles.js");
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests

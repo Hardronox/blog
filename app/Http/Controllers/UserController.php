@@ -7,6 +7,7 @@ use App\Models\Comments;
 use App\Models\User;
 use App\Models\UsersProfile;
 use Carbon\Carbon;
+use Elasticsearch\ClientBuilder;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
@@ -115,6 +116,7 @@ class UserController extends Controller
 			}
 			else
 				abort(404);
+
 			return view('site/after-confirm-email');
 		}
 		else
@@ -176,5 +178,38 @@ class UserController extends Controller
         flash("$msg comment was deleted successfully!", 'success');
         return redirect(url()->previous());
     }
+
+	/**
+	 * ajax-change status of article in profile/articles
+	 */
+	public function makePremium()
+	{
+		if (\Illuminate\Support\Facades\Request::ajax()) {
+
+			$article = Articles::find($_GET['id']);
+
+			$client = ClientBuilder::create()->build();
+
+			// change status to opposite in db and elastic
+			$article->premium = ($article->premium === "free") ? "premium" : "free";
+
+			$article->save();
+
+			$params = [
+				'index' => 'myblogs',
+				'type' => 'myblogs',
+				'id' => $article->id,
+				'body' => [
+					'doc' => [
+						'premium' => $article->premium
+					]
+				]
+			];
+
+			$client->update($params);
+
+			return ucfirst($article->premium);
+		}
+	}
 
 }

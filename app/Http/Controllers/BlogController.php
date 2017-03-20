@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Advertisement;
+use App\Models\Advertisements;
 use App\Models\Articles;
 use App\Models\ArticleCategory;
 use App\Models\Likes;
@@ -33,7 +33,7 @@ class BlogController extends Controller
     {
         $blog=Articles::with('likes')->where('slug','=',$slug)->first();
 
-        $ads=Advertisement::get();
+        $ads=Advertisements::get();
 
         $views=ServiceController::views($blog);
 
@@ -72,18 +72,16 @@ class BlogController extends Controller
             $blog->category_id=$_POST['category'];
             $blog->created_at=new Carbon('now');
 
-
 			if ($request->hasFile('image')){
-
 				$image=$request->image->store('public/images/articles');
 			}
+
 			$blog->image=$image;
 			$blog->save();
 
 			ServiceController::uploadToElastic($blog);
 
 			return redirect('/');
-
         }
 
         return view('/site/article-write',[
@@ -146,12 +144,7 @@ class BlogController extends Controller
 				$client = ClientBuilder::create()->build();
 
 				// change status to opposite in db and elastic
-				if ($article->status == "Draft"){
-					$article->status = "Published";
-				}
-				else {
-					$article->status = "Draft";
-				}
+				$article->status = ($article->status === "draft") ? "published" : "draft";
 
 				$article->save();
 
@@ -181,7 +174,7 @@ class BlogController extends Controller
 	 */
 	public function articleSearch()
 	{
-		$ads=Advertisement::get();
+		$ads=Advertisements::get();
 
 		return view('/site/search',[
 			'ads'=>$ads
@@ -226,8 +219,7 @@ class BlogController extends Controller
     public function articlePermissions(Request $request, $slug)
     {
         $article=Articles::find(ServiceController::getArticleBySlug($slug));
-//		var_dump('<pre>', $article, '</pre>');
-//		exit;
+
         $request->session()->put('article_id', $article->id);
 
         return view('site.article-permission', ['article'=>$article]);

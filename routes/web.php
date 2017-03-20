@@ -49,6 +49,9 @@ Route::group(['middleware'=>'admin'], function()
 	Route::get('/admin/articles', 'UserController@adminArticles');
 
 	Route::get('/admin/comments', 'UserController@adminComments');
+
+	Route::get('/article/premium', 'UserController@makePremium');
+
 });
 
 
