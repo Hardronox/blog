@@ -1,11 +1,9 @@
 $(document).ready( () => {
 
-
-
 	if(	localStorage.getItem('article-created') ){
 
 		Noty({
-			text: 'Article was created'
+			text: 'Article was created!'
 		});
 		localStorage.removeItem('article-created');
 	}

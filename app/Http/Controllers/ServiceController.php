@@ -154,11 +154,11 @@ class ServiceController extends Controller
                 'slug' => $src->slug,
                 'description'=>$src->description,
                 'text'=>$src->text,
-				'premium'=>$src->premium,
+				'premium'=>'free',
 				'category'=>$src->category->name,
                 'views'=>0,
                 'image'=>str_replace('public/', '', $src->image),
-                'status'=>$src->status,
+                'status'=>'Published',
                 'created_at'=>$src->created_at
             ]
         ];

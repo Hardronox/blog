@@ -26,7 +26,7 @@
                                     <td class="col-md-4">{{$blog['description']}}</td>
                                     <td class="col-md-1">{{$blog['views']}}</td>
                                     <td class="col-md-1">{{$blog['created_at']}}</td>
-                                    <td class="col-md-1 status">{{$blog['status']}}</td>
+                                    <td class="col-md-1 status">{{ucfirst($blog['status'])}}</td>
                                     <td class="col-md-1 active">
                                         <div class="btn-group-vertical">
                                             <button class="btn primary change-status" data-id="{{$blog['id']}}">Change Status</button>

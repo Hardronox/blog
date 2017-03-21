@@ -68,7 +68,6 @@ class BlogController extends Controller
 			$blog->slug=str_slug($_POST['title']);
             $blog->description=$_POST['description'];
             $blog->text=$_POST['text'];
-            $blog->status="Published";
             $blog->category_id=$_POST['category'];
             $blog->created_at=new Carbon('now');
 
@@ -119,7 +118,6 @@ class BlogController extends Controller
 
 			Articles::editElastic($id, $_POST, $image);
 
-			flash('Your Article was edited successfully!', 'success');
 			return redirect('/profile/articles');
 
         }
@@ -161,7 +159,7 @@ class BlogController extends Controller
 
 				$client->update($params);
 
-				return $article->status;
+				return ucfirst($article->status);
 			} else {
 				abort(403, 'You are not allowed to perform this action');
 			}

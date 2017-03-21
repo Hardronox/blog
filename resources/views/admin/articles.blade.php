@@ -27,8 +27,8 @@
                                 <td class="col-md-3">{{$article['description']}}</td>
                                 <td class="col-md-1">{{Redis::get("article/".$article['id']."/views") ?? 0}}</td>
                                 <td class="col-md-1">{{$article['created_at']}}</td>
-                                <td class="col-md-1 status">{{$article['status']}}</td>
-                                <td class="col-md-1 premium">{{ ($article['premium']==='free') ? 'Free' : 'Premium'}}</td>
+                                <td class="col-md-1 status">{{ucfirst($article['status'])}}</td>
+                                <td class="col-md-1 premium">{{ ucfirst($article['premium'])}}</td>
                                 <td class="col-md-1 active">
                                     <div class="btn-group-vertical">
                                         <button class="btn primary make-premium" data-id="{{$article['id']}}">Change Premium Status</button>

@@ -17890,7 +17890,7 @@ $(document).on('click', '.delete', function (e) {
 	if (localStorage.getItem('article-created')) {
 
 		Noty({
-			text: 'Article was created'
+			text: 'Article was created!'
 		});
 		localStorage.removeItem('article-created');
 	}
@@ -18019,7 +18019,18 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function($) {$(document).on('click', '.change-status', function () {
+/* WEBPACK VAR INJECTION */(function($) {$(document).ready(function () {
+
+	if (localStorage.getItem('article-edited')) {
+
+		Noty({
+			text: 'Article was edited!'
+		});
+		localStorage.removeItem('article-created');
+	}
+});
+
+$(document).on('click', '.change-status', function () {
 
 	var id = $(this).data('id');
 

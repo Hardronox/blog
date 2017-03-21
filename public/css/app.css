@@ -105,6 +105,7 @@ label{
 }
 .navigation ul li a:hover {
 	color:#1ac7c3;
+    background-color: #282828;
 }
 .logo {
 	float:left;
@@ -312,6 +313,7 @@ div.media-body
     font-family: 'Times-Italic';
     font-style:italic;
     margin-top:1.5em;
+    margin-left: -33px;
 }
 #margin-top
 {
@@ -895,8 +897,9 @@ p.span a:hover {
 	text-decoration: underline;
 }
 ul.layout_menu{
-    background-color:black;
-    text-align:center;
+    background-color: #282828;
+    text-align: center;
+    border: 1px solid;
 }
 p.span a {
 	color: #1ac7c3;
@@ -1643,11 +1646,6 @@ table.profile td, table.profile th
 .blog_create_container
 {
     margin-top:35px;
-}
-.layout_menu
-{
-    text-align: center;
-    background: black;
 }
 .navbar-nav li a:hover
 {
@@ -3267,7 +3265,7 @@ a {
 a:hover,
 a:focus {
   color: #216a94;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:focus {
@@ -6909,7 +6907,6 @@ tbody.collapse.in {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
 }
 
 .nav > li.disabled > a {
@@ -6927,8 +6924,11 @@ tbody.collapse.in {
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-  background-color: #eeeeee;
   border-color: #3097D1;
+}
+
+.layout_menu li:hover{
+    background-color: #282828;
 }
 
 .nav .nav-divider {

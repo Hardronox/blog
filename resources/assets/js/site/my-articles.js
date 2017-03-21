@@ -1,3 +1,15 @@
+$(document).ready( () => {
+
+	if(	localStorage.getItem('article-edited') ){
+
+		Noty({
+			text: 'Article was edited!'
+		});
+		localStorage.removeItem('article-created');
+	}
+
+});
+
 $(document).on('click', '.change-status', function() {
 
 	let id = $(this).data('id');

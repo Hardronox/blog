@@ -10,7 +10,7 @@
             <div class="col-md-9 col-md-offset-2">
                 <h3>Edit an Article</h3>
                 <br>
-                {!! Form::open(array('url'=>route("edit-article",['id'=>$article['id']]),'method'=>'POST', 'files'=>true)) !!}
+                {!! Form::open(array('url'=>route("edit-article",['id'=>$article['id']]),'method'=>'POST', 'files'=>true, 'id'=>'edit-article')) !!}
                     {!! Form::token() !!}
                     <div class="form-group">
                         {!! Form::label('title', 'Title') !!}
