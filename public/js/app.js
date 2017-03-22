@@ -10546,6 +10546,7 @@ __webpack_require__(17);
 __webpack_require__(11);
 __webpack_require__(18);
 __webpack_require__(10);
+__webpack_require__(25);
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -18026,7 +18027,7 @@ $(document).on('submit', '#edit-profile-form', function (event) {
 		Noty({
 			text: 'Article was edited!'
 		});
-		localStorage.removeItem('article-created');
+		localStorage.removeItem('article-edited');
 	}
 });
 
@@ -39529,6 +39530,16 @@ module.exports = function(module) {
 
 module.exports = __webpack_require__(1);
 
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function($) {$(document).on('submit', '#edit-article', function () {
+
+	localStorage.setItem('article-edited', true);
+});
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);

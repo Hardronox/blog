@@ -5,7 +5,7 @@ $(document).ready( () => {
 		Noty({
 			text: 'Article was edited!'
 		});
-		localStorage.removeItem('article-created');
+		localStorage.removeItem('article-edited');
 	}
 
 });

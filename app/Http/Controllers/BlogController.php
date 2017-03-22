@@ -54,7 +54,7 @@ class BlogController extends Controller
 
 			$this->validate(request(),[
 				'title'=>'required|max:100|unique:articles',
-				'description'=>'min:50',
+				'description'=>'min:50|max:300',
 				'text'=>'min:100',
 			]);
 
@@ -66,7 +66,7 @@ class BlogController extends Controller
             $blog->user_id=Auth::user()->id;
             $blog->title=$_POST['title'];
 			$blog->slug=str_slug($_POST['title']);
-            $blog->description=$_POST['description'];
+            $blog->description=$_POST['description'] ?? substr($_POST['text'], 250).'...';
             $blog->text=$_POST['text'];
             $blog->category_id=$_POST['category'];
             $blog->created_at=new Carbon('now');
