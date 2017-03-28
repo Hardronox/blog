@@ -83,4 +83,5 @@ Route::get('auth/{provider}/callback', 'Auth\AuthController@handleProviderCallba
 
 Route::get('/vk/auth', 'Auth\AuthController@vk');
 
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::auth();
