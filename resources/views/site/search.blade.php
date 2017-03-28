@@ -17,7 +17,7 @@
                                 </a>
                             </div>
                             <div>
-                                <span ng-show="blog._source.premium" class="label label_warning pull-right">Premium</span>
+                                <span ng-show="blog._source.premium == 'premium'" class="label label_warning pull-right">Premium</span>
                             </div>
                         </div>
 

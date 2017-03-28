@@ -1,6 +1,6 @@
 $(document).ready( () => {
 
-	if(	localStorage.getItem('article-created') ){
+	if(	localStorage.getItem('article-created') && window.location.pathname==='/'){
 
 		Noty({
 			text: 'Article was created!'

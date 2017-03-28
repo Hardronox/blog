@@ -154,7 +154,7 @@ class ServiceController extends Controller
                 'slug' => $src->slug,
                 'description'=>$src->description,
                 'text'=>$src->text,
-				'premium'=>'free',
+				'premium'=>$src->premium ?? 'free',
 				'category'=>$src->category->name,
                 'views'=>0,
                 'image'=>str_replace('public/', '', $src->image),

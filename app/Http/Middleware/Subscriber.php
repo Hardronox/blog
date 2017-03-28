@@ -25,7 +25,7 @@ class Subscriber
 			abort(404,'Article not found.');
 
 
-        if(intval($article->premium_content)===1) {
+        if($article->premium==='premium') {
             if (!$user = Auth::user()) {
 
                 return redirect("/login");

@@ -1,6 +1,6 @@
 $(document).ready( () => {
 
-	if(	localStorage.getItem('article-edited') ){
+	if(	localStorage.getItem('article-edited')  && window.location.pathname==='/profile/articles'){
 
 		Noty({
 			text: 'Article was edited!'
