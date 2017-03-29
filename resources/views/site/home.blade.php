@@ -22,6 +22,7 @@
             </div>
         </div>
         <div class="container" >
+            @lang('messages.welcome')
             <div class="content" >
                 <div class="col-md-7 content-left">
                     <h5 class="head">recent</h5>

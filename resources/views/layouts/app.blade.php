@@ -18,6 +18,20 @@
         </div>
         <div class="navigation header_right">
 
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Language <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu layout_menu" role="menu">
+                        <li><a href="/change-locale/ua">ua</a></li>
+                        <li><a href="/change-locale/en">en</a></li>
+                        <li><a href="/change-locale/ru">ru</a></li>
+                    </ul>
+                </li>
+            </ul>
+
             <ul class="nav navbar-nav">
                 <li>
                     <div class="form-style-8">
@@ -48,6 +62,7 @@
                     </li>
                 @endif
             </ul>
+
         </div>
         <div class="clearfix"></div>
     </div>

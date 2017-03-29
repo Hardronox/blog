@@ -10,6 +10,7 @@ use App\Models\Likes;
 use Carbon\Carbon;
 use Elasticsearch\ClientBuilder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
@@ -23,7 +24,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return view('/site/home');
+		return view('/site/home');
     }
 
     /**
