@@ -7,7 +7,7 @@
         <div class="container">
             <div class="header-bottom">
                 <div class="type">
-                    <h5>Article Types</h5>
+                    <h5>@lang('messages.article types'):</h5>
                 </div>
                 <div class="list-nav header_right">
                     <ul>
@@ -22,10 +22,9 @@
             </div>
         </div>
         <div class="container" >
-            @lang('messages.welcome')
             <div class="content" >
                 <div class="col-md-7 content-left">
-                    <h5 class="head">recent</h5>
+                    <h5 class="head">@lang('messages.recent')</h5>
                     <div class="article" ng-repeat="blog in blogs">
                         <h6 class="main_category"><%blog._source.category%> </h6>
                         <div class="title-premium">
@@ -35,7 +34,7 @@
                                 </a>
                             </div>
                             <div>
-                                <span ng-show="blog._source.premium == 'premium'" class="label label_warning pull-right">Premium</span>
+                                <span ng-show="blog._source.premium == 'premium'" class="label label_warning pull-right">@lang('messages.premium')</span>
                             </div>
                         </div>
 
@@ -48,7 +47,7 @@
 
                 </div>
                 <div class="col-md-5 content-right">
-                    <h5 class="head popular">Popular</h5>
+                    <h5 class="head popular">@lang('messages.popular')</h5>
                     <div class="content-right-top" ng-repeat="popular in populars">
                         <a target="_self" class="popular_link" href="/post/<%popular._source.slug%>">
                             <div class="editor text-center">

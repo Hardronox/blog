@@ -5,7 +5,6 @@
 @section('content')
 <div class="container" >
     <div class="content">
-        @lang('messages.welcome')
         <div class="col-md-7 col-md-offset-1 content-left">
             <div id="margin-top" class="article">
                 <span id="view-h6">{{$blog->category->name}} </span>

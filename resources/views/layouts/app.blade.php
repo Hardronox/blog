@@ -21,7 +21,7 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                        Language <span class="caret"></span>
+                        @lang('messages.language') <span class="caret"></span>
                     </a>
 
                     <ul class="dropdown-menu layout_menu" role="menu">
@@ -36,7 +36,7 @@
                 <li>
                     <div class="form-style-8">
                         {!! Form::open(array('url'=>route("search"),'method'=>'GET')) !!}
-                            {!! Form::text('q', '', ['placeholder'=>'Search...', 'required'=>'true']) !!}
+                            {!! Form::text('q', '', ['placeholder'=>__('messages.search'), 'required'=>'true']) !!}
                         {!! Form::close() !!}
                     </div>
                 </li>
@@ -46,8 +46,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ url('/login') }}">@lang('messages.login')</a></li>
+                    <li><a href="{{ url('/register') }}">@lang('messages.register')</a></li>
                 @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -55,9 +55,9 @@
                         </a>
 
                         <ul class="dropdown-menu layout_menu" role="menu">
-                            <li><a href="{{ url('/article/write') }}">Write an article</a></li>
-                            <li><a href="{{ url('/profile') }}">My Profile</a></li>
-                            <li><a href="{{ url('/logout') }}">Logout</a></li>
+                            <li><a href="{{ url('/article/write') }}">@lang('messages.write an article')</a></li>
+                            <li><a href="{{ url('/profile') }}">@lang('messages.my profile')</a></li>
+                            <li><a href="{{ url('/logout') }}">@lang('messages.logout')</a></li>
                         </ul>
                     </li>
                 @endif
@@ -73,7 +73,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="copyrights">
-                <p class="text-center">Face2WEB © 2017 All rights reserved </p>
+                <p class="text-center">Face2WEB © 2017  @lang('messages.all rights reserved')</p>
             </div>
         </div>
     </div>

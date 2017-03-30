@@ -2,5 +2,31 @@
 
 
 return [
-	'welcome' => 'Welcome to our application'
+	'search' => 'Search...',
+	'login' => 'Login',
+	'register' => 'Register',
+	'language' => 'Language',
+	'article types' => 'Article Types',
+	'recent' => 'Recent',
+	'popular' => 'Popular',
+	'premium' => 'Premium',
+	'write an article' => 'Write an Article',
+	'my profile' => 'My Profile',
+	'logout' => 'Logout',
+	'address' => 'Address',
+	'password' => 'Password',
+	'remember me' => 'Remember Me',
+	'forgot your password' => 'Forgot Your Password?',
+	'all rights reserved' => 'All rights reserved',
+	'name' => 'Name',
+	'confirm password' => 'Confirm Password',
+	'log in to leave a comment' => 'Log in to leave a comment',
+	'title' => 'Title',
+	'description' => 'Description',
+	'text' => 'Text',
+	'category' => 'Category',
+	'main article image' => 'Main Article Image',
+	'not required field, if empty - little part of text will become a description' => 'Not required field, if empty - little part of text will become a description',
+	'not required field, for better quality upload images with width 3 times more than height' => 'Not required field, for better quality upload images with width 3 times more than height',
+	'submit' => 'Submit',
 ];

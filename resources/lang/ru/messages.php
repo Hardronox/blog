@@ -2,5 +2,31 @@
 
 
 return [
-	'welcome' => 'Здарова'
+	'search' => 'Поиск...',
+	'login' => 'Войти',
+	'register' => 'Регистрация',
+	'language' => 'Язык',
+	'article types' => 'Типы Статей',
+	'recent' => 'Последние',
+	'popular' => 'Популярные',
+	'premium' => 'Премиум',
+	'write an article' => 'Написать Статью',
+	'my profile' => 'Мой Профиль',
+	'logout' => 'Выйти',
+	'address' => 'Адрес',
+	'password' => 'Пароль',
+	'remember me' => 'Запомнить Меня',
+	'forgot your password' => 'Забыли пароль?',
+	'all rights reserved' => 'Все права защищены',
+	'name' => 'Имя',
+	'confirm password' => 'Подтвердите пароль',
+	'log in to leave a comment' => 'Войдите, чтобы оставить комментарий',
+	'title' => 'Заголовок',
+	'description' => 'Описание',
+	'text' => 'Текст',
+	'category' => 'Категория',
+	'main article image' => 'Основное изображение статьи',
+	'not required field, if empty - little part of text will become a description' => 'Необязательное поле, если пустое - небольшая часть текста возьмётся в качестве описания',
+	'not required field, for better quality upload images with width 3 times more than height' => 'Необязательное поле, для лучшего качества загружайте картинки с шириной в 3 раза большей, чем высота',
+	'submit' => 'Отправить',
 ];
