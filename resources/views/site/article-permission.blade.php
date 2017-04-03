@@ -7,9 +7,9 @@
     <div class="row">
         <div class="col-md-7 col-md-offset-2">
             <div class="msg_subcribers">
-                <h3><a href="{{ url("/post/$article->slug")}}">{{$article->title}}</a><br>Article is available only for subscribers.</h3>
+                <h3><a href="{{ url("/post/$article->slug")}}">{{$article->title}}</a><br>@lang('messages.article is available only for subscribers.')</h3>
             </div>
-            <button class="subscribe_button">Become a Subscriber!</button>
+            <button class="subscribe_button">@lang('messages.become a subscriber!')</button>
         </div>
     </div>
 
@@ -18,13 +18,12 @@
             <div class="col-md-7 col-md-offset-2" >
                 <div class="become_subscriber">
                     <h4>
-                        Become a subscriber and level up your skills!
+                        @lang('messages.become a subscriber and level up your skills! as a premium subscriber you will have access to all videos, posts, and much more premium content.')
 
-                        As a premium subscriber you will have access to all videos, posts, and much more premium content.
                         <br>
-                        Signup for only $10 a month.
+                        @lang('messages.signup for only $10 a month!')
                     </h4>
-                    <h2 >Choose payment method:</h2>
+                    <h2>@lang('messages.choose payment method:')</h2>
                 </div>
             </div>
         </div>
@@ -32,7 +31,7 @@
             <div class="col-md-7 col-md-offset-2 payment_block" >
                 <div class="col-md-6 card_payment" >
                     <div class="payment_method" data-type="card">
-                        <div class="payment_name">Credit card</div>
+                        <div class="payment_name">@lang('messages.credit card')</div>
                         <img  class="payment_image"  src="{{Storage::url("images/site/credit_card.jpg")}}" alt="">
                     </div>
                 </div>
@@ -57,7 +56,7 @@
                                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
                                 data-locale="auto">
                             </script>
-                            <input class="payment_button" type="submit" value="Proceed to Payment!" disabled="true">
+                            <input class="payment_button" type="submit" value="@lang('messages.proceed to payment!')" disabled="true">
                         </form>
                     </div>
                 </div>

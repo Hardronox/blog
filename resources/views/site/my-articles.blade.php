@@ -12,26 +12,26 @@
                         <table class="table table-striped table-hover profile" width="100%">
                             <tr>
                                 <th>№</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Views</th>
-                                <th>Date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th>@lang('messages.title')</th>
+                                <th>@lang('messages.description')</th>
+                                <th>@lang('messages.views')</th>
+                                <th>@lang('messages.date')</th>
+                                <th>@lang('messages.status')</th>
+                                <th>@lang('messages.actions')</th>
                             </tr>
                             @foreach ($blogs as $key => $blog)
                                 <tr id="tr{{$blog['id']}}">
                                     <th class="col-md-1">{{$key+1}}</th>
                                     <td class="col-md-2"><a href="/blog/{{$blog['id']}}">{{$blog['title']}}</a></td>
                                     <td class="col-md-4">{{$blog['description']}}</td>
-                                    <td class="col-md-1">{{$blog['views']}}</td>
+                                    <td class="col-md-1">{{Redis::get("article/{$blog['id']}/views") ?? 0}}</td>
                                     <td class="col-md-1">{{$blog['created_at']}}</td>
-                                    <td class="col-md-1 status">{{ucfirst($blog['status'])}}</td>
+                                    <td class="col-md-1 status">@lang('messages.'.$blog['status'])</td>
                                     <td class="col-md-1 active">
                                         <div class="btn-group-vertical">
-                                            <button class="btn primary change-status" data-id="{{$blog['id']}}">Change Status</button>
-                                            <a href="{{ url("/article/edit/".$blog['id']."")}}" class="btn info">Edit</a>
-                                            <a href="{{ url("/article/delete/".$blog['id']."")}}" class="btn danger delete">Delete</a>
+                                            <button class="btn primary change-status" data-id="{{$blog['id']}}">@lang('messages.change status')</button>
+                                            <a href="{{ url("/article/edit/".$blog['id']."")}}" class="btn info">@lang('messages.edit')</a>
+                                            <a href="{{ url("/article/delete/".$blog['id']."")}}" class="btn danger delete">@lang('messages.delete')</a>
                                         </div>
                                     </td>
                                 </tr>

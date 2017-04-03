@@ -13,13 +13,13 @@
             @endif
             <table class="table table-striped table-hover profile" >
                 <tr>
-                    <th>Avatar</th>
+                    <th>@lang('messages.avatar')</th>
                     <td>
                         <img class="image_proportions" id="image" src="{{Storage::url($avatar)}}" alt="">
                     </td>
                 </tr>
                 <tr>
-                    <th>UserName</th>
+                    <th>@lang('messages.username')</th>
                     <td>
                         {{$user->name}}
                     </td>
@@ -31,23 +31,23 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>FirstName</th>
+                    <th>@lang('messages.firstname')</th>
                     <td id="first">
                         {{$user->profile->firstname ?? 'No information'}}
                     </td>
                 </tr>
                 <tr>
-                    <th>LastName</th>
+                    <th>@lang('messages.lastname')</th>
                     <td id="last">
                         {{$user->profile->lastname ?? 'No information'}}
                     </td>
                 </tr>
                 <tr>
-                    <th>Actions</th>
+                    <th>@lang('messages.actions')</th>
                     <td>
-                        <a class="btn primary" href="{{ url("/profile/articles")}}" >My Articles</a>
-                        <button class="btn info edit" >Edit Profile</button>
-                        <a id="delete" class="btn danger" href="{{ url("/profile/delete")}}" >Delete Account</a>
+                        <a class="btn primary" href="{{ url("/profile/articles")}}" >@lang('messages.my articles')</a>
+                        <button class="btn info edit" >@lang('messages.edit profile')</button>
+                        <a id="delete" class="btn danger" href="{{ url("/profile/delete")}}" >@lang('messages.delete account')</a>
                     </td>
                 </tr>
             </table>

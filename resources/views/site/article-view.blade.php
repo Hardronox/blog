@@ -50,7 +50,7 @@
                                             <a class="guest-hover pull-right">
                                             <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
                                         @else
-                                            <a class="answer_button" data-id="<%= comments.id %>" data-name="<%= comments.author_profile.firstname %>">Answer</a>
+                                            <a class="answer_button" data-id="<%= comments.id %>" data-name="<%= comments.author_profile.firstname %>">@lang('messages.answer')</a>
 
                                             <a class="a-hover pull-right" data-type="Comment" data-post="<%- comments.id %>">
                                                 <span id="likes"><%= likes %></span><span class="glyphicon glyphicon-heart likes"></span>
@@ -65,15 +65,15 @@
             </div>
             <div id="blog_comment_form">
                 @if (Auth::guest())
-                    <b>Log in to leave a comment</b>
+                    <b>@lang('messages.log in to leave a comment')</b>
                 @else
                     {!! Form::open(array('method'=>'POST', 'id'=>'comment_form')) !!}
                         <div class="form-group">
-                            {!! Form::label('comment_text', 'Write comment here') !!}
+                            {!! Form::label('comment_text', __('messages.write comment here')) !!}
                             {!! Form::textarea('text', '', ['class'=>'form-control', 'id'=>'comment_text', 'rows'=>3]) !!}
                         </div>
                         <div class="form-group">
-                            <button class="btn success btn-raised pull-right write-comment" type="button">Send</button>
+                            <button class="btn success btn-raised pull-right write-comment" type="button">@lang('messages.send')</button>
                         </div>
                     {!! Form::close() !!}
                 @endif

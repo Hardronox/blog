@@ -18052,10 +18052,10 @@ $(document).on('click', '.change-status', function () {
 			id: id
 		},
 		success: function success(response) {
-			$('#tr' + id).find('td.status').html(response);
+			$('#tr' + id).find('td.status').html(response[0]);
 
 			Noty({
-				text: 'Status has been updated!'
+				text: response[1]
 			});
 		}
 	});

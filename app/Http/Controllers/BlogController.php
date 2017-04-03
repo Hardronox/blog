@@ -160,7 +160,7 @@ class BlogController extends Controller
 
 				$client->update($params);
 
-				return ucfirst($article->status);
+				return [__('messages.'.$article->status), __('messages.'.'status has been updated!')];
 			} else {
 				abort(403, 'You are not allowed to perform this action');
 			}

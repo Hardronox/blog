@@ -7,7 +7,7 @@
         <div class="container" >
             <div class="content" >
                 <div class="col-md-7 content-left">
-                    <span><h2>Search results for: "<%textToSearch%>". <%totalItems%> Articles found </h2></span>
+                    <span><h2>@lang('messages.search results for'): "<%textToSearch%>". <%totalItems%> @lang('messages.articles found')</h2></span>
                     <div class="article" ng-repeat="blog in blogs">
                         <h6 class="main_category"><%blog._source.category%> </h6>
                         <div class="title-premium">
@@ -17,7 +17,7 @@
                                 </a>
                             </div>
                             <div>
-                                <span ng-show="blog._source.premium == 'premium'" class="label label_warning pull-right">Premium</span>
+                                <span ng-show="blog._source.premium == 'premium'" class="label label_warning pull-right">@lang('messages.premium')</span>
                             </div>
                         </div>
 
