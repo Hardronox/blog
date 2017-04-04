@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-7 col-md-offset-2">
                 <div class="msg_subcribers">
-                    <h3><br>Your email was confirmed successfully! Go to the <a href="/">Main Page!</a></h3>
+                    <h3><br>@lang('messages.your email was confirmed successfully! go to the') <a href="/">@lang('messages.main page!')</a></h3>
                 </div>
             </div>
         </div>

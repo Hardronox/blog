@@ -10,8 +10,7 @@
             <div class="col-md-7 col-md-offset-2">
                 <div class="msg_subcribers">
                     <h3>
-                        Congratulations! You're a subscriber now! You now have access to all premium content on this site!
-                        Get back to this Article!<br> <a href="{{ url("/post/$article->slug") }}">{{$article->title}}</a>
+                        @lang('messages.congratulations! you\'re a subscriber now! you now have access to all premium content on this site! get back to this article!')<br> <a href="{{ url("/post/$article->slug") }}">{{$article->title}}</a>
                         <br>
                     </h3>
 

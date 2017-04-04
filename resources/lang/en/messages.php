@@ -61,4 +61,10 @@ return [
 	'choose payment method:' => 'Choose payment method:',
 	'proceed to payment!' => 'Proceed to Payment!',
 	'credit card' => 'Credit Card',
+	'your email was confirmed successfully! go to the' => 'Your email was confirmed successfully! Go to the',
+	'main page!' => 'Main Page!',
+	'email verification was sent. check your email!' => 'Email verification was sent. Check your email!',
+
+	'congratulations! you\'re a subscriber now! you now have access to all premium content on this site! get back to this article!'
+	=> 'Congratulations! You\'re a subscriber now! You now have access to all premium content on this site! Get back to this Article!',
 ];

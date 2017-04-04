@@ -61,4 +61,9 @@ return [
 	'choose payment method:' => 'Выберите способ оплаты:',
 	'proceed to payment!' => 'Перейти к оплате!',
 	'credit card' => 'Кредитная карта',
+	'your email was confirmed successfully! go to the' => 'Ваш Email успешно подтверждён! Перейти на',
+	'main page!' => 'Главную!',
+	'email verification was sent. check your email!' => 'Подтверждение аккаунта было отправлено. Проверьте ваш Email!',
+	'congratulations! you\'re a subscriber now! you now have access to all premium content on this site! get back to this article!'
+	=> 'Поздравляем! Теперь вы платный подписчик! Теперь у вас есть доступ ко всему премиум контенту на сайте! Вернуться к этой статье!',
 ];
