@@ -53,10 +53,10 @@ return [
 	'answer' => 'Ответить',
 	'send' => 'Отправить',
 	'new password' => 'Новый пароль',
-	'article is available only for subscribers.' => 'Статья доступна только для подпичиков.',
+	'article is available only for subscribers.' => 'Статья доступна только для подписчиков.',
 	'become a subscriber!' => 'Стать Подписчиком!',
 	'become a subscriber and level up your skills! as a premium subscriber you will have access to all videos, posts, and much more premium content.'
-	=> 'Стань платным подписчиком и улучши свои скилы! Как платный подписчик, у вас есть доступ ко всем видео, статьям и остальному премиум контенту.',
+	=> 'Стань платным подписчиком и улучши свои скилы! Как у платного подписчика, у вас есть доступ ко всем видео, статьям и остальному премиум контенту.',
 	'signup for only $10 a month!' => 'Подпишитесь всего за 10$ в месяц!',
 	'choose payment method:' => 'Выберите способ оплаты:',
 	'proceed to payment!' => 'Перейти к оплате!',
